@@ -55,30 +55,30 @@ function Login() {
     }
   }
 
-  
-
   return (
-    <div>
+    <div className="auth-page" >
 
-      <h1>Log In</h1>
+      <h1>🍳🍳 Log In</h1>
 
-      <form onSubmit={handleLogin}>
+      <form  onSubmit={handleLogin}>
         <label>Email:</label>
+        <br />
         <input
           type="email"
           name="email"
           value={email}
           onChange={handleEmailChange}
         />
-
+        <br />
         <label>Password:</label>
+        <br />
         <input
           type="password"
           name="password"
           value={password}
           onChange={handlePasswordChange}
         />
-
+          <br />
         <button type="submit">Login</button>
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
         {/* {errorMessage !== "" && <p>{errorMessage}</p>} */}

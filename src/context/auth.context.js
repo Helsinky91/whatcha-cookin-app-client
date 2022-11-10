@@ -6,8 +6,8 @@ const AuthContext = createContext()
 function AuthWrapper(props) {
   //all global states and functions
 
-    //state to know if user is active
-    const [ isUserActive, setIsUserActive ] = useState(false)
+    //state to know if user is logged in
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
     //state to know the info of the active user
     const [ user, setUser ] = useState(null) 
@@ -30,21 +30,23 @@ function AuthWrapper(props) {
             const response = await verifyService()
             
             //from this point the Token is already validated in FE
-            setIsUserActive(true)
+            setIsLoggedIn(true)
             setUser(response.data)
             setIsFetching(false)
 
         } catch (err) {
             //if there's an error, don't change the States
-            setIsUserActive(false)
+            setIsLoggedIn(false)
             setUser(null)
             setIsFetching(false)
         }
     }
 
     const passedContext = {
-        setIsUserActive,
+        isLoggedIn,
+        setIsLoggedIn,
         user,
+        setUser,
         authenticaUser
     }
 

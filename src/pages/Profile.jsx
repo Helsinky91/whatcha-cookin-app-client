@@ -1,8 +1,13 @@
 import React from 'react'
 
 function Profile() {
+  
+  
+  
   return (
-    <div>Profile</div>
+    <div>
+        <h1>Este es tu perfil</h1>
+    </div>
   )
 }
 

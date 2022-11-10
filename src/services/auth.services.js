@@ -1,7 +1,5 @@
 import service from "./config.services";
 
-
-
 //for POST "auth/signup"
 const signupService = (newUser) => {
     return service.post("/auth/signup", newUser)
@@ -14,7 +12,6 @@ const loginService = (userCredentials) => {
 
 //for GET "auth/verify"
 const verifyService = () => {
-    //!this route recives the Token
     return service.get('/auth/verify')
 }
 

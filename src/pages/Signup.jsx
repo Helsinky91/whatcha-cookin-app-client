@@ -51,13 +51,14 @@ function Signup() {
   };
 
   return (
-    <div>
-      <p><i>poner img en background para el formulario?</i></p>
-      <h1>Sign Up</h1>
+    <div className="auth-page">
+      
+      <h1>👨‍🍳👩‍🍳 Sign Up</h1>
     
       <form onSubmit={handleSignup}>
 
       <label>Choose a username:</label>
+      <br />
         <input
           type="text"
           name="username"
@@ -67,6 +68,7 @@ function Signup() {
         <br />
 
         <label>Enter your email:</label>
+        <br />
         <input
           type="email"
           name="email"
@@ -75,6 +77,7 @@ function Signup() {
         />
         <br />
         <label>Create a password:</label>
+        <br />
         <input
           type="password"
           name="password"
