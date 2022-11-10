@@ -9,11 +9,11 @@ function Signup() {
   const navigate = useNavigate()
 
   //states to create newUser
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ username, setUsername ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [ errorMessage, setErrorMessage ] = useState("");
 
   //config to handle changes on the fields' form
   const handleUsernameChange = (e) => setUsername(e.target.value);
@@ -30,18 +30,19 @@ function Signup() {
       email: email,
       password: password
     }
-    //contact BackEnd to create the user (with the service)
+
     try {
+      //contact BackEnd to create the user (with the auth.service.js)
       await signupService(newUser)
 
       //redireccionar a login
       navigate("/login")
       //!crear pop up para que un nuevo user rellene la info en el profile
       
-    }catch (error) {
-      if(error.response && error.response.status === 400) {
+    }catch (err) {
+      if(err.response && err.response.status === 400) {
         //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
-        setErrorMessage(error.response.data.errorMessage)
+        setErrorMessage(err.response.data.errorMessage)
       } else {
         //si el error es otro(500) entonecs sí redirecciono a /error
         navigate('/error')
@@ -51,7 +52,7 @@ function Signup() {
 
   return (
     <div>
-
+      <p><i>poner img en background para el formulario?</i></p>
       <h1>Sign Up</h1>
     
       <form onSubmit={handleSignup}>
@@ -83,9 +84,7 @@ function Signup() {
         <br />
         <button type="submit">Signup</button>
         
-        {errorMessage !== "" ? <p>{errorMessage}</p> : null}
-        {/* {errorMessage !== "" && <p>{errorMessage}</p>} */}
-
+        {errorMessage !== "" && <p>{errorMessage}</p>} 
 
       </form>
       
