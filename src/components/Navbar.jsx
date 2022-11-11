@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from "../context/auth.context"
+import logo from "../assets/Logo.png"
+
 
 function Navbar() {
   const { authenticaUser, setIsLoggedIn } = useContext(AuthContext)
@@ -15,15 +17,18 @@ function Navbar() {
   const assignClassName = (navInfo) => {
     console.log(navInfo.isActive)
     if(navInfo.isActive === true) {
-      return "nav-active" //!la creamos en App.css
+      return "nav-active" //!la creamos en App.cssgit
     } else {
       return "nav-inactive" //!la creamos en App.css
     }
   }
 
   return (
-    <div >
-
+    <div className='navbar'>
+      <div>
+      <img src={logo} alt="whatcha cookin logo" width={50} />
+      </div>
+        
       {setIsLoggedIn === true ? (
 
         <div>
@@ -36,7 +41,7 @@ function Navbar() {
           <span className="nav-inactive">
             <button onClick={handleLogout}>Log out</button>
           </span>
-        </div> 
+      </div> 
 
       ) : (
 

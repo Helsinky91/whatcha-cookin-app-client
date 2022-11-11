@@ -4,9 +4,22 @@
   /* background-repeat: no-repeat; */
   /* margin-bottom: 7% */
 }
+.navbar{
+  background-color: rgba(7, 7, 7, 0.700);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+
+.navbar > div {
+  margin-left: 10px;
+  margin-right: 10px
+}
 
 .auth-page {
-  background-color: rgba(241, 157, 131, 0.474);
+  background-color: rgba(16, 53, 40, 0.374);
   background-image: url("../src/assets/login-signup2.png");
   min-height: 100vh;
   background-repeat: no-repeat;
@@ -24,13 +37,15 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.763);
+  background-color: rgba(7, 7, 7, 0.580);
+  color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
   font-size: 12px;
+
 }
 
 .footer div > a {
