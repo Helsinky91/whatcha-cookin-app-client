@@ -8,6 +8,7 @@ import Error from './pages/Error';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import IsPrivate from './components/IsPrivate';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
           <Route path='*' element= {<NotFound/> }/>
 
         </Routes>
+
+        <Footer/>
 
     </div>
   );

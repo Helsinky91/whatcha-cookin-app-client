@@ -2,13 +2,12 @@
   text-align: center;
   /* background-image: url(""); */
   /* background-repeat: no-repeat; */
-  
+  /* margin-bottom: 7% */
 }
 
 .auth-page {
   background-color: rgba(241, 157, 131, 0.474);
-  background-image: url("../src/assets/login-signup2.png")
- ;
+  background-image: url("../src/assets/login-signup2.png");
   min-height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -20,4 +19,22 @@
 
 .auth-page form{
   text-align: left;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.763);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+}
+
+.footer div > a {
+  /* text-align: left; */
+  /* margin-left: 10px */
+  text-decoration: none;
 }
