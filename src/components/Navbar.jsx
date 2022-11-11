@@ -5,7 +5,7 @@ import logo from "../assets/Logo.png"
 
 
 function Navbar() {
-  const { authenticaUser, setIsLoggedIn } = useContext(AuthContext)
+  const { authenticaUser, isLoggedIn } = useContext(AuthContext)
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")
@@ -17,7 +17,7 @@ function Navbar() {
   const assignClassName = (navInfo) => {
     console.log(navInfo.isActive)
     if(navInfo.isActive === true) {
-      return "nav-active" //!la creamos en App.cssgit
+      return "nav-active" //!la creamos en App.css
     } else {
       return "nav-inactive" //!la creamos en App.css
     }
@@ -25,32 +25,45 @@ function Navbar() {
 
   return (
     <div className='navbar'>
-      <div>
+      
+       <div>
       <img src={logo} alt="whatcha cookin logo" width={50} />
       </div>
+      
         
-      {setIsLoggedIn === true ? (
+      {isLoggedIn === true ? (
 
         <div>
-          <NavLink to="/" className={assignClassName}>
-            <button>Home</button>
+          
+          <NavLink to="/recipe-list" className={assignClassName}>
+            <button >Recipes</button>
           </NavLink>
-          <NavLink to="/profile" className={assignClassName}>
-            <button>Profile</button>
+          <NavLink to="/find-friends" className={assignClassName}>
+            <button >Friends</button>
           </NavLink>
-          <span className="nav-inactive">
-            <button onClick={handleLogout}>Log out</button>
+          
+          <NavLink to="/my-profile" className={assignClassName}>
+            <button >My Profile</button>
+          </NavLink>
+          
+
+
+          <span className="nav-logout">
+            <button  onClick={handleLogout}>Log out</button>
           </span>
       </div> 
 
       ) : (
 
         <div>
+          <NavLink to="/" className={assignClassName}>
+            <button >Home</button>
+          </NavLink>
           <NavLink to="/signup" className={assignClassName} >
-            <button>Sign up</button>
+            <button >Sign up</button>
           </NavLink>
           <NavLink to="/login" className={assignClassName}>
-            <button>Log in</button>
+            <button >Log in</button>
           </NavLink>
           </div>
       )}

@@ -42,7 +42,7 @@ function Login() {
       authenticaUser()
 
       //redirect user
-      navigate("/profile")
+      navigate("/profile/my-profile")
       
     }catch (err) {
       if(err.response && err.response.status === 400) {

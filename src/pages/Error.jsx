@@ -2,7 +2,10 @@ import React from 'react'
 
 function Error() {
   return (
-    <div>Error</div>
+    <div>
+       <div>Nuestros desarrolladores cometieron un error, estamos trabjando en ello!</div>
+    
+    </div>
   )
 }
 

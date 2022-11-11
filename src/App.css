@@ -3,10 +3,13 @@
   /* background-image: url(""); */
   /* background-repeat: no-repeat; */
   /* margin-bottom: 7% */
+  background-color: rgba(16, 53, 40, 0.374);
+  min-height: 100vh;
+
+
 }
 .navbar{
   background-color: rgba(7, 7, 7, 0.700);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +20,26 @@
   margin-left: 10px;
   margin-right: 10px
 }
+
+
+.nav-active button {
+  background-color: orange;
+  padding: 10px
+}
+
+.nav-inactive button {
+  background-color: rgba(255, 166, 0, 0.661);
+  padding: 8px
+}
+.nav-logout button {
+  background-color: rgba(255, 77, 0, 0.661);
+  padding: 8px
+}
+
+/* .nav-btn {
+  background-color: orange;
+  padding: 10px
+} */
 
 .auth-page {
   background-color: rgba(16, 53, 40, 0.374);
