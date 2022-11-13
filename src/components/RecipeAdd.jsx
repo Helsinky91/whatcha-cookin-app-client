@@ -49,6 +49,7 @@ function RecipeAdd(props) {
     }
   }
 
+      //! error cuando se añade uno, no se rellenan los campos
 
   return (
     <div>
