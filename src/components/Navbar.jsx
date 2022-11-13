@@ -36,7 +36,9 @@ function Navbar() {
       {isLoggedIn === true ? (
 
         <div>
-          
+          <NavLink to="/" className={assignClassName}>
+            <button >Home</button>
+          </NavLink>
           <NavLink to="/recipes-list" className={assignClassName}>
             <button >Recipes</button>
           </NavLink>
@@ -60,6 +62,9 @@ function Navbar() {
         <div>
           <NavLink to="/" className={assignClassName}>
             <button >Home</button>
+          </NavLink>
+          <NavLink to="/recipes-list" className={assignClassName}>
+            <button >Recipes</button>
           </NavLink>
           <NavLink to="/signup" className={assignClassName} >
             <button >Sign up</button>

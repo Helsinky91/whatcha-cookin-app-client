@@ -8,7 +8,7 @@ function IngredientAdd(props) {
 
     //set up state for all form fields:
     const [ nameInput, setNameInput ] = useState()
-    const [ IngredientImgInput, setIngredientImgInput ] = useState()
+    const [ ingredientImgInput, setIngredientImgInput ] = useState()
     const [ tagInput, setTagInput ] = useState()
     const [ commentInput, setCommentInput ] = useState()
     const [ categoryInput, setCategoryInput] = useState()
@@ -22,14 +22,14 @@ function IngredientAdd(props) {
     const handleCategoryChange = (event) => setCategoryInput(event.target.value)
 
     //to send info to DB:
-    const handleSubmit = async (event) => {
+    const addNewIngredient = async (event) => {
     event.preventDefault()
 
     const newIngredient = {
         name: nameInput,
         tag: tagInput,
         comment: commentInput, 
-        photo: IngredientImgInput, //! o req.file?.path,
+        photo: ingredientImgInput, //! o req.file?.path,
         category: categoryInput
     }
     
@@ -53,7 +53,7 @@ function IngredientAdd(props) {
 
       <form>
         <label for="IngredientImage">Ingredient's image</label>
-        <input value={IngredientImgInput} type="file" name="IngredientImage" onChange={handleImgChange} />
+        <input value={ingredientImgInput} type="file" name="IngredientImage" onChange={handleImgChange} />
             {/* type="file" and class is  is used for Cloudinary */}
         
             <br />
@@ -80,7 +80,7 @@ function IngredientAdd(props) {
             <br />
         
 
-      <button onClick={handleSubmit}>Add new ingredient</button>
+      <button onClick={addNewIngredient}>Add new ingredient</button>
       </form>
 
     </div>
