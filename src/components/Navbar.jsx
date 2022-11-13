@@ -27,7 +27,9 @@ function Navbar() {
     <div className='navbar'>
       
        <div>
-      <img src={logo} alt="whatcha cookin logo" width={50} />
+       <NavLink to="/">
+        <img src={logo} alt="whatcha cookin logo" width={50} />
+       </NavLink>
       </div>
       
         
@@ -35,14 +37,14 @@ function Navbar() {
 
         <div>
           
-          <NavLink to="/recipe-list" className={assignClassName}>
+          <NavLink to="/recipes-list" className={assignClassName}>
             <button >Recipes</button>
           </NavLink>
           <NavLink to="/find-friends" className={assignClassName}>
             <button >Friends</button>
           </NavLink>
           
-          <NavLink to="/my-profile" className={assignClassName}>
+          <NavLink to="/profile/my-profile" className={assignClassName}>
             <button >My Profile</button>
           </NavLink>
           

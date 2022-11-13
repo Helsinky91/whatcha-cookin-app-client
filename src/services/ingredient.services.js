@@ -1,31 +1,31 @@
 import service from "./config.services";
 
 //get the list of ingredients
-const getIngredientList = () => {
+const getIngredientListService = () => {
     return service.get("/ingredient/list")
 }
 
 //edit ingredient
-const updateIngredient = (id) => {
+const updateIngredientService = (id) => {
     return service.patch(`/profile/${id}/edit`)
 }
 
 //!notsure
 //POST "/api/ingredient/create"
-const createIngredient = (newIngredient) => {
+const createIngredientService = (newIngredient) => {
     return service.post("/ingredient/create", newIngredient)
 }
 
 // DELETE "/api/ingredient/:ingredientId/delete"
-const deleteIngredient = (id) => {
+const deleteIngredientService = (id) => {
     return service.get(`/profile/${id}/delete`)
 }
 
 
 export {
-    getIngredientList,
-    updateIngredient,
-    createIngredient,
-    deleteIngredient
+    getIngredientListService,
+    updateIngredientService,
+    createIngredientService,
+    deleteIngredientService
 
 }

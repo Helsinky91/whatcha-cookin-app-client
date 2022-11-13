@@ -1,18 +1,24 @@
 import React from 'react'
+import {useState} from 'react';
+
 
 function SearchRecipe(props) {
-    //! mirar lab-react-ironnutrition > App.js
-    //1. creamos estado de list + listToShow
-    //2. const filterList
 
-    //en RecipeList return <Search listToFilter={filterList}/>
-    //...
+  const [searchItem, setSearchItem] = useState("")
 
+  const handleChange = (event) => {
+      setSearchItem(event.target.value)
+
+      props.listToFilter(event.target.value)
+  }
 
   return (
     <div>
 
-    form para buscar recetas
+      <hr/>
+      <label>Search:</label>
+      <input value={searchItem} type="text" onChange={handleChange} />
+
     
 
     </div>

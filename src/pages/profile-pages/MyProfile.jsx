@@ -1,5 +1,5 @@
 import React from 'react'
-import { getMyProfile, getProfile, addFriend, unFriend, deleteProfile, editProfile } from '../../services/profile.service'
+import { getMyProfile, getProfile, addFriend, unFriend, deleteProfile, editProfile } from '../../services/profile.services'
 
 function Profile() {
   

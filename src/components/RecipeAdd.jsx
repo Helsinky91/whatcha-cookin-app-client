@@ -1,8 +1,20 @@
 import React from 'react'
 
-function RecipeAdd() {
+function RecipeAdd(props) {
+  
+    
+  //viene de addManyRecipes
+  
   return (
-    <div>RecipeAdd</div>
+    <div>
+      <h5>**component** Add a new recipe</h5>
+
+
+
+
+
+
+    </div>
   )
 }
 

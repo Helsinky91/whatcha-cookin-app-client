@@ -1,42 +1,42 @@
 import service from "./config.services";
 
 //get the list of recipes
-const getRecipesList = () => {
+const getRecipesListService = () => {
     return service.get("/recipes/recipes-list")
 }
 
 //get the random recipe
-const randomRecipe = () => {
+const randomRecipeService = () => {
     return service.get("/recipes/random-recipe")
 }
 
 //gets recipe detailed 
-const recipeDetails = (id) => {
+const recipeDetailsService = (id) => {
     return service.get(`/recipe/${id}/details`)
 }
 
 //edit a recipe
-const editRecipe = (id) => {
+const editRecipeService = (id) => {
     return service.patch(`/recipe/${id}/edit`)
 }
 
 //creates new recipe
-const createRecipe = () => {
+const createRecipeService = () => {
     return service.post("recipes/create")
 }
 
 //delete a recipe
-const deleteRecipe = (id) => {
+const deleteRecipeService = (id) => {
     return service.delete(`/recipe/${id}/edit`)
 }
 
 //add a recipe to favourites
-const favRecipe = (id) => {
+const favRecipeService = (id) => {
     return service.patch(`/recipe/${id}/fav-recipe`)
 }
 
 //remove recipe from favourites
-const deleteFavRecipe = (id) => {
+const deleteFavRecipeService = (id) => {
     return service.get(`/recipe/${id}/delete-fav`)
 }
 
@@ -44,13 +44,13 @@ const deleteFavRecipe = (id) => {
 
 
 export {
-    getRecipesList,
-    randomRecipe,
-    recipeDetails,
-    editRecipe,
-    createRecipe,
-    deleteRecipe,
-    favRecipe,
-    deleteFavRecipe
+    getRecipesListService,
+    randomRecipeService,
+    recipeDetailsService,
+    editRecipeService,
+    createRecipeService,
+    deleteRecipeService,
+    favRecipeService,
+    deleteFavRecipeService
 
 }

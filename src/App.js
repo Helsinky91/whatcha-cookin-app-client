@@ -28,12 +28,12 @@ function App() {
           <Route path='/' element= {<Home/> }/>
           <Route path='/signup' element= {<Signup  /> }/>
           <Route path='/login' element= {<Login /> }/>
-          <Route path='/recipe-list' element= { <RecipesList /> }/>
+          <Route path='/recipes-list' element= { <RecipesList /> }/>
           <Route path='/recipe/:recipeId/details' element= { <RecipeDetails /> }/>
           
 
           {/* private pages*/}
-          <Route path='/my-profile' element= { <IsPrivate> <MyProfile /> </IsPrivate> }/>
+          <Route path='/profile/my-profile' element= { <IsPrivate> <MyProfile /> </IsPrivate> }/>
           <Route path='/profile/:userId/details' element= { <IsPrivate> <Profile /> </IsPrivate> }/>
           <Route path='/profile/:userId/edit' element= { <IsPrivate> <ProfileEdit /> </IsPrivate> }/>
 
