@@ -9,7 +9,7 @@ function SearchRecipe(props) {
   const handleChange = (event) => {
       setSearchItem(event.target.value)
 
-      props.listToFilter(event.target.value)
+      props.filterList(event.target.value)
   }
 
   return (
@@ -18,8 +18,6 @@ function SearchRecipe(props) {
       <hr/>
       <label>Search:</label>
       <input value={searchItem} type="text" onChange={handleChange} />
-
-    
 
     </div>
   )

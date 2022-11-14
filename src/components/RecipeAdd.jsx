@@ -1,6 +1,7 @@
 import React from 'react'
 import { createRecipeService } from '../services/recipes.services'
 import { useState } from 'react'
+import IngredientAdd from './IngredientAdd'
 
 
 function RecipeAdd(props) {
@@ -14,7 +15,7 @@ function RecipeAdd(props) {
   const [ stepsInput, setStepsInput ] = useState()
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
   const [ IngredientsInput, setIngredientsInput ] = useState()
-  
+  const [formIsShowing, setFormIsShowing] = useState(false)
   // 
   
   //set up handlechanges for all the fields:
@@ -49,9 +50,18 @@ function RecipeAdd(props) {
     }
   }
 
-
+  //to hide the form unless pressing the button
+  const toggleForm = () => setFormIsShowing(!formIsShowing)
+  
   return (
     <div>
+      <div>
+     <button onClick={toggleForm}>Add Ingredient</button> 
+     {formIsShowing === true 
+    //  ? <IngredientAdd updateIngrList={getData}/>
+    ? <IngredientAdd/>
+     : null }
+    </div> 
       <form>
         <label for="recipeImage">Ingredient's image</label>
         <input value={recipeImgInput} type="file" name="recipeImage" onChange={handleImgChange} />
