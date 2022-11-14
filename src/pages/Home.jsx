@@ -2,8 +2,15 @@ import React from 'react'
 
 function Home() {
 
+
+
+
+
+
+
   return (
     <div>
+    {/* incloure complement de Random RECIPE */}
       <h1>Whatcha cookin'</h1>
       <h3>PAGE UNDER CONSTRUCTION...</h3>
     </div>

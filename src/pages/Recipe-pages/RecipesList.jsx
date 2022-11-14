@@ -1,20 +1,18 @@
 
-import React from 'react'
+import React, { useContext }from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
-
-import IngredientAdd from '../../components/IngredientAdd'
-
+import { AuthContext } from "../../context/auth.context"
 import RecipeAdd from '../../components/RecipeAdd'
 import SearchRecipe from '../../components/SearchRecipe'
 import { getRecipesListService } from '../../services/recipes.services'
-// import { getIngredientListService } from '../../services/ingredient.services'
 
 
 function RecipesList() {
 
   const navigate = useNavigate();
+  const { isLoggedIn } = useContext(AuthContext)
 
   //states
   const [recipeList, setRecipeList] = useState([])
@@ -35,6 +33,7 @@ function RecipesList() {
      const response = await getRecipesListService()
      console.log("response data: " , response.data)
      setRecipeList(response.data)
+     setRecipeListToShow(response.data)
      setIsFetching(false)
 
     }catch (error) {
@@ -53,6 +52,7 @@ function RecipesList() {
     setRecipeListToShow(copy2)
   }
 
+  //for the search button only by name
   const filterList = (filterQuery) => { 
         
     const filterArr = recipeList.filter((eachEl) => {
@@ -64,12 +64,6 @@ function RecipesList() {
 
   //to hide the form unless pressing the button
   const toggleForm = () => setFormIsShowing(!formIsShowing)
-  
-  //!only if it's admin
-  const deleteFood = (ItemName) => {
-    const filteredList = recipeListToShow.filter((eachEl) => (eachEl.name === ItemName) ? false : true)
-    setRecipeListToShow(filteredList);
-  } //acabar config ironnutricion lab
 
 
   //! change to loading SPINNER
@@ -80,37 +74,41 @@ function RecipesList() {
 
   return (
     <div>
-     {/* <div>
-     <h2>Add a new ingredient **under construction** </h2>
-     <IngredientAdd updateIngrList={getData}/>
-    </div>  */}
+      {/* only to show if you are logged in  */}
+      {isLoggedIn === true &&  
+      <div>
+        <button onClick={toggleForm}>Add recipe</button> 
+        {formIsShowing === true 
+          ? <RecipeAdd addManyRecipes={addRecipe}/>
+          : null }
+      </div>
+      }
+    
+    <div>
+       <h1>Check all the recipes!</h1>
+    
+      <SearchRecipe filterList={filterList} /> 
+    
+      <br/>
+      <div>
+      {recipeListToShow.map((eachRecipe) => {
+        return (
+          <div key={eachRecipe._id}>
+            <Link to={`/recipes/${eachRecipe._id}/details`}>
+              <img src={eachRecipe.photo} alt={eachRecipe.name} width={200} />
+              <p>{eachRecipe.name}</p>
+            </Link>
+          </div>
+      
+        )
+      })}
 
-    <div>
-      <button onClick={toggleForm}>Add recipe</button> 
-      {formIsShowing === true 
-        ? <RecipeAdd addManyRecipes={addRecipe}/>
-        : null }
-    </div>
+      </div>
+      </div>
     
-    <h1>Check all the recipes!</h1>
-    
-      <SearchRecipe listToFilter={filterList}/> 
-    
-    <br />
-    <div>
-    {recipeListToShow.map((eachRecipe) => {
-      return (
-        <div key={eachRecipe._id}>
-          <Link to={`/recipe/${eachRecipe._id}/details`}>
-            <img src={eachRecipe.photo} alt={eachRecipe.name} width={200} />
-            <p>{eachRecipe.name}</p>
-            
-          </Link>
-        </div>
-      )
-    })}
-  </div>
-  </div>
+
+
+     </div>
   )
 }
 

@@ -17,6 +17,9 @@ import FindFriends from './pages/profile-pages/FindFriends';
 import ProfileEdit from './pages/profile-pages/ProfileEdit';
 
 function App() {
+
+
+  
   return (
     <div className="App">
 
@@ -29,7 +32,7 @@ function App() {
           <Route path='/signup' element= {<Signup  /> }/>
           <Route path='/login' element= {<Login /> }/>
           <Route path='/recipes-list' element= { <RecipesList /> }/>
-          <Route path='/recipe/:recipeId/details' element= { <RecipeDetails /> }/>
+          <Route path='/recipes/:recipeId/details' element= { <RecipeDetails /> }/>
           
 
           {/* private pages*/}

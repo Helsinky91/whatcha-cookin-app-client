@@ -12,27 +12,27 @@ const randomRecipeService = () => {
 
 //gets recipe detailed 
 const recipeDetailsService = (id) => {
-    return service.get(`/recipe/${id}/details`)
+    return service.get(`/recipes/${id}/details`)
 }
 
 //edit a recipe
 const editRecipeService = (id) => {
-    return service.patch(`/recipe/${id}/edit`)
+    return service.patch(`/recipes/${id}/edit`)
 }
 
 //creates new recipe
-const createRecipeService = () => {
-    return service.post("recipes/create")
+const createRecipeService = (newRecipe) => {
+    return service.post("recipes/create", newRecipe)
 }
 
 //delete a recipe
 const deleteRecipeService = (id) => {
-    return service.delete(`/recipe/${id}/edit`)
+    return service.delete(`/recipes/${id}/edit`)
 }
 
 //add a recipe to favourites
 const favRecipeService = (id) => {
-    return service.patch(`/recipe/${id}/fav-recipe`)
+    return service.patch(`/recipes/${id}/fav-recipe`)
 }
 
 //remove recipe from favourites

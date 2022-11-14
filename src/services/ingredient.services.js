@@ -13,7 +13,7 @@ const updateIngredientService = (id) => {
 //!notsure
 //POST "/api/ingredient/create"
 const createIngredientService = (newIngredient) => {
-    return service.post("/ingredient/create", newIngredient)
+    return service.patch("/ingredient/create", newIngredient)
 }
 
 // DELETE "/api/ingredient/:ingredientId/delete"
