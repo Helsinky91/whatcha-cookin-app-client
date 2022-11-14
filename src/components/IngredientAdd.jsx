@@ -36,11 +36,7 @@ function IngredientAdd(props) {
     try {
         //contact DB with ingredient.services.js
       await createIngredientService(newIngredient)
-      //si JS llega a este punto es poq el ToDo se ha creado correctamente
-      /*tenemos q indicarle a React q la lista se ha actualizado, porq event.preventDefault
-      no deja que se vea la data */
-      //!change actualizarLista
-      props.updateIngrList() //le hemos pasado el getData from todoList
+      props.hideForm()
 
     } catch (error) {
        console.log(error)
@@ -80,7 +76,7 @@ function IngredientAdd(props) {
             <br />
         
 
-      <button onClick={addNewIngredient}>Add new ingredient</button>
+      <button onClick={addNewIngredient}>Añádelo!</button>
       </form>
 
     </div>

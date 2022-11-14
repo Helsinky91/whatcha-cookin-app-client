@@ -2,10 +2,9 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
-import RecipeAdd from '../../components/RecipeAdd'
 import SearchIngredient from '../../components/SearchIngredient'
 
-
+//!Ens carreguem aquest page?
 
 
 import IngredientAdd from '../../components/IngredientAdd'
@@ -43,15 +42,6 @@ function IngredientList() {
     }
   }
 
-  const addIngredient = (ingredient) => {
-    const copy = [...ingredientList];
-    copy.push(ingredient)
-    setIngredientList(copy)
-
-    const copy2 = [...ingredientListToShow];
-    copy2.push(ingredient)
-    setIngredientListToShow(copy2)
-  }
 
 
   const filterList = (filterQuery) => { 
@@ -82,7 +72,7 @@ function IngredientList() {
       <div>
         <button onClick={toggleForm}>Add recipe</button> 
         {formIsShowing === true 
-          ? <RecipeAdd addManyRecipes={addRecipe}/>
+          ? <ingredientAdd getData={getData}/>
           : null }
       </div>
       <div>

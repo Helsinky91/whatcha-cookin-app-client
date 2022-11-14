@@ -41,16 +41,6 @@ function RecipesList() {
     }
   }
   
-  const addRecipe = (recipe) => {
-
-    const copy = [...recipeList];
-    copy.push(recipe)
-    setRecipeList(copy)
-
-    const copy2 = [...recipeListToShow];
-    copy2.push(recipe)
-    setRecipeListToShow(copy2)
-  }
 
   //for the search button only by name
   const filterList = (filterQuery) => { 
@@ -65,12 +55,11 @@ function RecipesList() {
   //to hide the form unless pressing the button
   const toggleForm = () => setFormIsShowing(!formIsShowing)
 
-
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>
   }
-   
+
 
   return (
     <div>
@@ -79,13 +68,13 @@ function RecipesList() {
       <div>
         <button onClick={toggleForm}>Add recipe</button> 
         {formIsShowing === true 
-          ? <RecipeAdd addRecipe={addRecipe}/>
+          ? <RecipeAdd getData={getData} hideForm={setFormIsShowing} />
           : null }
       </div>
       }
-    
+
     <div>
-       <h1>Check all the recipes!</h1>
+       <h1>¿Qué quieres cocinar hoy?</h1>
     
       <SearchRecipe filterList={filterList} /> 
     
@@ -104,12 +93,10 @@ function RecipesList() {
       })}
 
       </div>
-      </div>
     
-
-
+</div>
      </div>
-  )
-}
+  
+)}
 
 export default RecipesList

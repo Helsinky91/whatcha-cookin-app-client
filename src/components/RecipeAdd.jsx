@@ -43,24 +43,25 @@ function RecipeAdd(props) {
     }
     try {
       await createRecipeService(newRecipe)
-      // props.addRecipe()
+      props.getData()
+      props.hideForm()
+      
       
     } catch (error) {
       console.log(error)
     }
   }
-
   //to hide the form unless pressing the button
   const toggleForm = () => setFormIsShowing(!formIsShowing)
         //! error cuando se añade uno, no se rellenan los campos
+  
 
   return (
     <div>
       <div>
      <button onClick={toggleForm}>Add Ingredient</button> 
      {formIsShowing === true 
-    //  ? <IngredientAdd updateIngrList={getData}/>
-    ? <IngredientAdd/>
+    ? <IngredientAdd hideForm={setFormIsShowing}/>
      : null }
     </div> 
       <form>
@@ -100,7 +101,7 @@ function RecipeAdd(props) {
             <br />
         
 
-      <button onClick={addNewRecipe}>Create!</button>
+      <button onClick={addNewRecipe}>Añádelo!</button>
       </form>
 
 
