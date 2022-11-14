@@ -24,7 +24,7 @@ function RecipeAdd(props) {
   const handleCreatedByChange = (event) => setCreatedByInput(event.target.value)
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
-  const handleTypeOfFoofChange = (event) => setTypeOfFoofdInput(event.target.value)
+  const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
   const handleIngredientsChange = (event) => setIngredientsInput(event.target.value)
 
   const addNewRecipe = async (event) => {
@@ -78,7 +78,7 @@ function RecipeAdd(props) {
         <input value={stepsInput} type="text" name="steps" onChange={handleStepsChange}/>
         <br />
         <label htmlFor='typeOfFood'>Type Of Food</label>
-        <input value={typeOfFoodInput} type="text" name="typeOfFood" onChange={handleTypeOfFoofChange}/>
+        <input value={typeOfFoodInput} type="text" name="typeOfFood" onChange={handleTypeOfFoodChange}/>
         <br />
         <label htmlFor='ingredients'>Ingredient</label>
         <input value={IngredientsInput} type="text" name="ingredients" onChange={handleIngredientsChange}/>
@@ -89,7 +89,7 @@ function RecipeAdd(props) {
             <br />
         
 
-      <button onClick={addNewRecipe}>Add new recipe</button>
+      <button onClick={addNewRecipe}>Create!</button>
       </form>
 
 
