@@ -43,7 +43,7 @@ function RecipeAdd(props) {
     }
     try {
       await createRecipeService(newRecipe)
-      props.addManyRecipes()
+      // props.addRecipe()
       
     } catch (error) {
       console.log(error)
