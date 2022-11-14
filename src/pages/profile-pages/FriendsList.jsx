@@ -1,11 +1,12 @@
 import React, { useContext }from 'react'
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import FriendAdd from '../../components/FriendAdd';
 import SearchFriend from '../../components/SearchFriend'
 import { AuthContext } from "../../context/auth.context"
 import { getProfilesListService } from "../../services/profile.services";
 
-function FindFriends() {
+function SearchFriends() {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext)
 
@@ -28,7 +29,9 @@ function FindFriends() {
       const response = await getProfilesListService();
       console.log("response data: ", response.data);
       setFriendList(response.data);
+      setFriendListToShow(response.data)
       setIsFetching(false);
+      
     } catch (error) {
       navigate("/error");
     }
@@ -55,7 +58,7 @@ function FindFriends() {
     <div>
       {isLoggedIn === true && (
         <div>
-          <button onClick={toggleForm}>Add recipe</button>
+          <button onClick={toggleForm}>Add friend</button>
           {formIsShowing === true ? (
             <FriendAdd getData={getData} hideForm={setFormIsShowing} />
           ) : null}
@@ -69,7 +72,7 @@ function FindFriends() {
 
         <br />
         <div>
-          {setFriendListToShow.map((eachFriend) => {
+          {friendListToShow.map((eachFriend) => {
             return (
               <div key={eachFriend._id}>
                 <Link to={`/profile/${eachFriend._id}/details`}>
@@ -78,7 +81,7 @@ function FindFriends() {
                     alt={eachFriend.name}
                     width={200}
                   />
-                  <p>{eachFriend.name}</p>
+                  <p>{eachFriend.username}</p>
                 </Link>
               </div>
             );
@@ -89,4 +92,4 @@ function FindFriends() {
   );
 }
 
-export default FindFriends;
+export default SearchFriends;

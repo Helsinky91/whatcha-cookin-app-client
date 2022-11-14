@@ -9,7 +9,7 @@ const getMyProfileService = () => {
 
 //for friend list
 const getProfilesListService = (id) => {
-    return service.get(`/profile/search-friend`)
+    return service.get(`/profile/search-friends`)
 }
 
 //for friend's profile
@@ -53,6 +53,5 @@ export {
     editProfileService,
     getProfilesListService,
     updateProfileService
-    
     
 }

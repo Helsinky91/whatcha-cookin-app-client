@@ -13,7 +13,7 @@ import RecipesList from './pages/Recipe-pages/RecipesList';
 import IsPrivate from './components/IsPrivate';
 import Footer from './components/Footer';
 import RecipeDetails from './pages/Recipe-pages/RecipeDetails';
-import FindFriends from './pages/profile-pages/FindFriends';
+import FriendsList from './pages/profile-pages/FriendsList';
 import ProfileEdit from './pages/profile-pages/ProfileEdit';
 
 function App() {
@@ -37,11 +37,11 @@ function App() {
 
           {/* private pages*/}
           <Route path='/profile/my-profile' element= { <IsPrivate> <MyProfile /> </IsPrivate> }/>
+          <Route path='/profile/search-friends' element= { <IsPrivate> <FriendsList /> </IsPrivate> }/>
           <Route path='/profile/:userId/details' element= { <IsPrivate> <Profile /> </IsPrivate> }/>
           <Route path='/profile/:userId/edit' element= { <IsPrivate> <ProfileEdit /> </IsPrivate> }/>
 
           
-          <Route path='/find-friends' element= { <IsPrivate> <FindFriends /> </IsPrivate> }/>
           
           {/* errors page*/}
           <Route path='/error' element= {<Error /> }/>
