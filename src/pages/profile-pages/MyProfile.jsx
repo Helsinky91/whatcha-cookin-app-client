@@ -44,20 +44,31 @@ function Profile() {
 
   return (
     <div>
-          {profileList.map((eachEl) => {
-            return (
+         
           <div>
-            <h1>Hola {eachEl.name}! </h1>
-            <img src={eachEl.photo} alt={eachEl.name} />
+            <h1>Hola {profileList.username}! </h1>
+            <img src={profileList.photo} alt={profileList.name} />
           </div>
-            )
-          })}
+          <div>
+            <Link to={`/profile/${profileList._id}/edit`}>
+              <button>Edit your profile</button>
+            </Link>
+
+          </div>
+          
 
 
         <div>
-            <p>Tus amigos</p>
-            <p>Tus recetas creadas</p>
-            <p>Tus recetas favoritas</p>
+            <div>
+              <p>Tus amigos</p>
+
+            </div>
+            <div>
+              <p>Tus recetas creadas</p>
+
+            </div>
+
+              <p>Tus recetas favoritas</p>
 
         </div>
     </div>

@@ -15,8 +15,8 @@ function RecipeAdd(props) {
   const [ stepsInput, setStepsInput ] = useState()
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
   const [ IngredientsInput, setIngredientsInput ] = useState()
-  const [formIsShowing, setFormIsShowing] = useState(false)
-  // 
+  const [ formIsShowing, setFormIsShowing ] = useState(false)
+  
   
   //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
