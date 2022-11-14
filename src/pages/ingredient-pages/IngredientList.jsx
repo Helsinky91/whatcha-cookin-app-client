@@ -91,6 +91,7 @@ function IngredientList() {
       <SearchIngredient filterList={filterList}/> 
     
       <br/>
+      </div>
       <div>
       {ingredientListToShow.map((eachIngredient) => {
         return (
@@ -105,10 +106,9 @@ function IngredientList() {
         )
       })}
 
+
+
       </div>
-
-
-
 
     </div>
   )

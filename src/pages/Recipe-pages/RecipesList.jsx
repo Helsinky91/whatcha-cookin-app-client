@@ -79,7 +79,7 @@ function RecipesList() {
       <div>
         <button onClick={toggleForm}>Add recipe</button> 
         {formIsShowing === true 
-          ? <RecipeAdd addManyRecipes={addRecipe}/>
+          ? <RecipeAdd addRecipe={addRecipe}/>
           : null }
       </div>
       }
