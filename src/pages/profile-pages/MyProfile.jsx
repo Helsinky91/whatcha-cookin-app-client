@@ -49,6 +49,7 @@ function Profile() {
             <h1>Hola {profileList.username}! </h1>
             <img src={profileList.photo} alt={profileList.name} />
           </div>
+          
           <div>
             <Link to={`/profile/${profileList._id}/edit`}>
               <button>Edit your profile</button>

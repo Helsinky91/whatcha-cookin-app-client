@@ -39,6 +39,10 @@ const editProfileService = (id) => {
     return service.patch(`/profile/${id}/edit`)
 }
 
+//update profile
+const updateProfileService = (id, profileChanges) => {
+    return service.patch(`/profile/${id}/details`, profileChanges)
+}
 
 export {
     getMyProfileService,
@@ -47,5 +51,8 @@ export {
     unFriendService,
     deleteProfileService,
     editProfileService,
-    getProfilesListService
+    getProfilesListService,
+    updateProfileService
+    
+    
 }

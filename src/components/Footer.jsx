@@ -9,7 +9,7 @@ function Footer() {
             <p> Developed by Yago and Helena @Ironhack 🚀</p>
         </div>
         <div>
-            <p><Link to={"https:/github.com/Helsinky91/whatcha-cookin-app-client"}><img src={githubLogo} alt="GithubLogo" width={25} /> </Link> </p>    
+            <p><Link to="https://github.com/Helsinky91/whatcha-cookin-app-client" target="_blank"><img src={githubLogo} alt="GithubLogo" width={25} /> </Link> </p>    
         </div>
     </div>
   )
