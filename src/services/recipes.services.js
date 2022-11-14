@@ -21,8 +21,8 @@ const editRecipeService = (id) => {
 }
 
 //creates new recipe
-const createRecipeService = () => {
-    return service.post("recipes/create")
+const createRecipeService = (newRecipe) => {
+    return service.post("recipes/create", newRecipe)
 }
 
 //delete a recipe
