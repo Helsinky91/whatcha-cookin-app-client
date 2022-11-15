@@ -31,13 +31,13 @@ const deleteRecipeService = (id) => {
 }
 
 //add a recipe to favourites
-const favRecipeService = (id) => {
-    return service.patch(`/recipes/${id}/fav-recipe`)
+const favRecipeService = (recipeId) => {
+    return service.patch(`/recipes/${recipeId}/fav-recipe`)
 }
 
 //remove recipe from favourites
-const deleteFavRecipeService = (id) => {
-    return service.get(`/recipe/${id}/delete-fav`)
+const deleteFavRecipeService = (recipeId) => {
+    return service.get(`/recipe/${recipeId}/delete-fav`)
 }
 
 //! BONUS PATCH "/api/recipes/:recipeId/likes"

@@ -40,7 +40,7 @@ function SearchFriends() {
   //for the search only by name
   const filterList = (filterQuery) => {
     const filterArr = friendList.filter((eachEl) => {
-      return eachEl.name.includes(filterQuery);
+      return eachEl.username.includes(filterQuery);
     });
     console.log(filterArr);
     setFriendListToShow(filterArr);

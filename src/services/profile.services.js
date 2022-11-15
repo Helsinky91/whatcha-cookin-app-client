@@ -19,7 +19,7 @@ const getProfileService = (id) => {
 
 //for add-friend button
 const addFriendService = (friendId, userId) => {
-    return service.patch(`/profile/${friendId}/add-friend`, userId )
+    return service.patch(`/profile/${userId}/add-friend`, friendId )
 }
 
 //!Profile.jsx changeAndUpdate que venga de friendId y userId 

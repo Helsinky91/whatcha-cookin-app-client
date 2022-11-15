@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Error from './pages/Error';
 import NotFound from './pages/NotFound';
-import Profile from './pages/profile-pages/Profile';
+import FriendProfile from './pages/profile-pages/FriendProfile';
 import MyProfile from './pages/profile-pages/MyProfile';
 import RecipesList from './pages/Recipe-pages/RecipesList';
 
@@ -38,7 +38,7 @@ function App() {
           {/* private pages*/}
           <Route path='/profile/my-profile' element= { <IsPrivate> <MyProfile /> </IsPrivate> }/>
           <Route path='/profile/search-friends' element= { <IsPrivate> <FriendsList /> </IsPrivate> }/>
-          <Route path='/profile/:userId/details' element= { <IsPrivate> <Profile /> </IsPrivate> }/>
+          <Route path='/profile/:userId/details' element= { <IsPrivate> <FriendProfile /> </IsPrivate> }/>
           <Route path='/profile/:userId/edit' element= { <IsPrivate> <ProfileEdit /> </IsPrivate> }/>
 
           

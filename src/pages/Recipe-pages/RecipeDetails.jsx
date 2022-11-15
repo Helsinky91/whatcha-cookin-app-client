@@ -1,8 +1,14 @@
-import React from 'react'
+import { getNextKeyDef } from '@testing-library/user-event/dist/keyboard/getNextKeyDef'
+import React, { useContext }from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import { favRecipeService, deleteFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
+import { AuthContext } from "../../context/auth.context"
+import { getMyProfileService } from '../../services/profile.services'
+
+
 //!only if it's admin -- acabar de configurar
 
   // const deleteFood = (ItemName) => {
@@ -14,19 +20,34 @@ import { deleteRecipeService, recipeDetailsService } from '../../services/recipe
 function RecipeDetails() {
 
   const navigate = useNavigate();
+  const { isLoggedIn } = useContext(AuthContext)
 
   const { recipeId } = useParams()
   const [ recipeDetails, setRecipeDetails] = useState(null)
   const [ isFetching, setIsFetching ] = useState(true)
+  const [ addDeleteFav, setAddDeleteFav ] = useState(true)
 
   
   useEffect(() => {
+    checkIfFav(recipeId)
     getData()
-}, [])
-
+  }, [])
+  
+  const checkIfFav = async () => {
+    try {
+      const response = await getMyProfileService()
+      if (response.data.favourites.includes(recipeId)) {
+        setAddDeleteFav(false)
+      } else {
+        setAddDeleteFav(true)
+      }
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
 const getData = async () => {
   try {
-      
       const response = await recipeDetailsService(recipeId)
       console.log(response)
       //3. actualizar el estado con la data
@@ -61,6 +82,24 @@ const handleDelete = async(event) => {
 
 }
 
+
+const addRecipeFav = async (recipeId) => {
+  try {
+    await favRecipeService(recipeId)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+const delRecipeFav = async () => {
+  try {
+    await deleteFavRecipeService(recipeId)
+    console.log("delete" )
+  } catch (error) {
+    console.log(error)
+  }
+}
   const { name, tag, description, steps, photo, typeOfFood, ingredients } = recipeDetails
 
   return (
@@ -76,9 +115,12 @@ const handleDelete = async(event) => {
     {typeOfFood !== undefined ? <h4>{`Tipo de receta: ${typeOfFood}`}</h4> : <h4>Tipo de receta: no especificado</h4> }
     {ingredients !== undefined ?   <h4>{`Ingredientes: ${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
     
-    
-    <button onClick={handleDelete}>Borrar</button>
+    {addDeleteFav === true 
+    ? <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
+    : <button onClick={delRecipeFav}>Quitar de Favoritos</button> }
     <Link to={`/recipes/${recipeDetails._id}/edit`}><button>Editar</button></Link>
+    <button onClick={handleDelete}>Borrar</button>
+
     
 
     </div>
