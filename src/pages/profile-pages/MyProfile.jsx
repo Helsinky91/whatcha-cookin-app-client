@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
 import {  getMyProfileService } from '../../services/profile.services'
-import { deleteFavRecipeService, favRecipeService } from '../../services/recipes.services';
 
 
 function Profile() {
@@ -60,7 +59,7 @@ function Profile() {
   if (isFetching === true) {
     return <h3>...buscando</h3>
   }
-
+  console.log("profilepic:" , profileList.image)
 
 
   return (
@@ -68,7 +67,19 @@ function Profile() {
          
           <div>
             <h1>Hola {profileList.username}! </h1>
-            <img src={profileList.photo} alt={profileList.username} />
+            <img src={profileList.image} alt={profileList.username} width={150}/>
+            <div>Me interesa: 
+            
+            {/* {profileList.map((eachEl)=> {
+                return (
+                  <li key={eachEl._id}>
+                  {eachEl.tag}
+                  {/* la intenció aquí es que ensenyi la llista de tags
+                  </li>
+                )
+            })} 
+            */}
+              </div>
           </div>
           
           <div>

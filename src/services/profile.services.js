@@ -8,7 +8,7 @@ const getMyProfileService = () => {
 }
 
 //for friend list
-const getProfilesListService = (id) => {
+const getProfilesListService = () => {
     return service.get(`/profile/search-friends`)
 }
 
@@ -34,9 +34,14 @@ const deleteProfileService = (id) => {
     return service.delete(`/profile/${id}/delete-profile`)
 }
 
-// //edit profile
-// const editProfileService = (id) => {
-//     return service.patch(`/profile/${id}/edit`)
+//edit profile
+const editProfileService = (userId, profileChanges) => {
+    return service.patch(`/profile/${userId}/edit`, profileChanges)
+}
+
+// //update profile
+// const updateProfileService = (id, profileChanges) => {
+//     return service.patch(`/profile/${id}/details`, profileChanges)
 // }
 
 //update profile
@@ -54,7 +59,7 @@ export {
     addFriendService,
     unFriendService,
     deleteProfileService,
-    // editProfileService,
+    editProfileService,
     getProfilesListService,
     updateProfileService,
     favouriteUserRecipesService

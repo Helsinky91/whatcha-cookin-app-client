@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getProfileService, updateProfileService, deleteProfileService } from '../../services/profile.services'
+import { getProfileService, editProfileService, deleteProfileService } from '../../services/profile.services'
 import { AuthContext } from "../../context/auth.context"
 import { uploadImageService } from '../../services/upload.services'
 
@@ -43,7 +43,7 @@ function ProfileEdit() {
 
     //to set the actual value on the fields
     setUsernameInput(response.data.username)
-    setProfileImgInput(response.data.photo)
+    setProfileImgInput(response.data.image)
     setTagInput(response.data.tag)
     setEmailInput(response.data.email)
 
@@ -66,7 +66,7 @@ function ProfileEdit() {
           }
 
         //llamamos al servicio de update pasando Id y data a actualizar
-        updateProfileService(userId, updatedProfile)
+        await editProfileService(userId, updatedProfile)
 
         //redirect
         navigate("/profile/my-profile")
