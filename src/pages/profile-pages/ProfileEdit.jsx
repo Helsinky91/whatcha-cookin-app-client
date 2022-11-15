@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getProfileService, updateProfileService, deleteProfileService } from '../../services/profile.services'
 import { AuthContext } from "../../context/auth.context"
-
+import { uploadImageService } from '../../services/upload.services'
 
 
 function ProfileEdit() {
@@ -19,6 +19,9 @@ function ProfileEdit() {
   const [ profileImgInput, setProfileImgInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
   const [ emailInput, setEmailInput ] = useState()
+  //state for the cloudinary img
+  const [ imageURL, setImageURL ] = useState("")
+  const [ isUploadingImage, setIsUploadingImage ] = useState(false)
 
   //hanglechanges 
   const handleNameChange = (event) => setUsernameInput(event.target.value)
@@ -72,6 +75,27 @@ function ProfileEdit() {
         navigate("/error")
     }
   }
+  const handleUploadImage = async (event) => {
+    setIsUploadingImage(true)
+    console.log(event.target.files[0])
+
+    // tengo que insertar la imagen en un objeto de JS capaz de transmitir archivos FE - BE
+    const formularioDeEnvio = new FormData()
+    formularioDeEnvio.append("image", event.target.files[0])
+    // "image" debe ser el mismo nombre de la ejecución del middleware uploader.single("image")
+    
+    try {
+      // contactar a cloudinary (por el BE, service) para subir la imagen y recibir el URL
+      const response = await uploadImageService(formularioDeEnvio)
+      // subir el url al estado para la creacion del ToDo
+      console.log(response.data.image)
+      setImageURL(response.data.image)
+      setIsUploadingImage(false)
+    } catch (error) {
+      navigate("/error")
+      
+    }
+  }
   
   //!si es admin > puede borrar el perfil
   //! si es tu propio perfil > puede borrar el perfil
@@ -108,11 +132,15 @@ function ProfileEdit() {
 
      <div>
      <form >
-        
-        {/* <label htmlFor="profilePicImage">Upload a profile pic:</label>
-        <input  type="file" name="profilePicImage" value={profileImgInput} onChange={handleImgChange} />  */}
-            {/* type="file" and class is  is used for Cloudinary */}
-        <br/>
+        {/* {isUploadingImage === true && <p>...subiendo imagen</p>}
+        {imageURL !== "" 
+        ? <img src={imageURL} atl="image" width={200}/> 
+        : <p>Seleccione imagen</p>
+        } 
+
+        <label htmlFor="image">Upload a profile pic:</label>
+        <input  type="file" name="image" value={profileImgInput} onChange={handleUploadImage} /> 
+        <br/> */}
         <label htmlFor="username">Username:</label>
         <input type="text" name="username" value={usernameInput} onChange={handleNameChange} />
         <br/>
