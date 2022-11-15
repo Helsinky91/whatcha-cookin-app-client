@@ -40,6 +40,12 @@ const deleteFavRecipeService = (recipeId) => {
     return service.patch(`/recipe/${recipeId}/delete-fav`)
 }
 
+//add a recipe to favourites
+const userFavRecipeService = (recipeId) => {
+    return service.get(`/recipes/${recipeId}/user-fav-recipe`)
+}
+
+
 //! BONUS PATCH "/api/recipes/:recipeId/likes"
 
 
@@ -51,6 +57,7 @@ export {
     createRecipeService,
     deleteRecipeService,
     favRecipeService,
-    deleteFavRecipeService
+    deleteFavRecipeService,
+    userFavRecipeService
 
 }

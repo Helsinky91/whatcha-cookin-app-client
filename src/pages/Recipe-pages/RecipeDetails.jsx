@@ -3,7 +3,7 @@ import React, { useContext }from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { favRecipeService, deleteFavRecipeService } from '../../services/recipes.services'
+import { favRecipeService, deleteFavRecipeService, userFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
 import { favouriteUserRecipesService, getMyProfileService } from '../../services/profile.services'
@@ -81,7 +81,8 @@ const handleDelete = async(event) => {
 
 const addRecipeFav = async () => {
   try {
-    await favRecipeService(recipeId)
+    const response = await userFavRecipeService()
+    console.log("response userfavs", response)
   } catch (error) {
     console.log(error)
   }
