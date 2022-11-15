@@ -16,8 +16,8 @@ const recipeDetailsService = (id) => {
 }
 
 //edit a recipe
-const editRecipeService = (id) => {
-    return service.patch(`/recipes/${id}/edit`)
+const editRecipeService = (recipeId, editRecipe) => {
+    return service.patch(`/recipes/${recipeId}/edit`, editRecipe)
 }
 
 //creates new recipe
@@ -26,8 +26,8 @@ const createRecipeService = (newRecipe) => {
 }
 
 //delete a recipe
-const deleteRecipeService = (id) => {
-    return service.delete(`/recipes/${id}/edit`)
+const deleteRecipeService = (recipeId) => {
+    return service.delete(`/recipes/${recipeId}/delete`)
 }
 
 //add a recipe to favourites
@@ -37,7 +37,7 @@ const favRecipeService = (recipeId) => {
 
 //remove recipe from favourites
 const deleteFavRecipeService = (recipeId) => {
-    return service.get(`/recipe/${recipeId}/delete-fav`)
+    return service.patch(`/recipe/${recipeId}/delete-fav`)
 }
 
 //! BONUS PATCH "/api/recipes/:recipeId/likes"

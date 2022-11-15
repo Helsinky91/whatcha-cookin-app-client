@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import RecipeDetails from './pages/Recipe-pages/RecipeDetails';
 import FriendsList from './pages/profile-pages/FriendsList';
 import ProfileEdit from './pages/profile-pages/ProfileEdit';
+import RecipeEdit from './pages/Recipe-pages/RecipeEdit';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/login' element= {<Login /> }/>
           <Route path='/recipes-list' element= { <RecipesList /> }/>
           <Route path='/recipes/:recipeId/details' element= { <RecipeDetails /> }/>
+          <Route path='/recipes/:recipeId/edit' element= { <RecipeEdit /> }/>
           
 
           {/* private pages*/}

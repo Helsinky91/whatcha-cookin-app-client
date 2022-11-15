@@ -8,7 +8,6 @@ import { deleteRecipeService, recipeDetailsService } from '../../services/recipe
 import { AuthContext } from "../../context/auth.context"
 import { getMyProfileService } from '../../services/profile.services'
 
-
 //!only if it's admin -- acabar de configurar
 
   // const deleteFood = (ItemName) => {
@@ -29,27 +28,12 @@ function RecipeDetails() {
 
   
   useEffect(() => {
-    checkIfFav(recipeId)
     getData()
   }, [])
   
-  const checkIfFav = async () => {
-    try {
-      const response = await getMyProfileService()
-      if (response.data.favourites.includes(recipeId)) {
-        setAddDeleteFav(false)
-      } else {
-        setAddDeleteFav(true)
-      }
-    } catch (error) {
-      console.log(error)
-      
-    }
-  }
 const getData = async () => {
   try {
       const response = await recipeDetailsService(recipeId)
-      console.log(response)
       //3. actualizar el estado con la data
       setRecipeDetails(response.data)
       setIsFetching(false)
@@ -66,9 +50,8 @@ if (isFetching === true) {
 const handleDelete = async(event) => {
 
   try {
-      event.preventDefault()
-      await deleteRecipeService(recipeId)
-      console.log("Elemento borrado")
+    // event.preventDefault()
+    await deleteRecipeService(recipeId)
 
       // 2. Redireccionar al usuario a la lista de ToDos, "/todos"
                   //useNavigate sirve para redireccionar al usuario
@@ -108,17 +91,17 @@ const delRecipeFav = async () => {
     <h4>{`Detalles de la receta ${name}`} </h4>
         <div>
     
-    <img src={`Tag: ${photo}`} />
+    {/* <img src={photo}/> */}
     {tag !== undefined ? <h4>{`Tag: ${tag}`}</h4> : <h4>Tag: no especificado</h4> }
     {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
     {steps !== undefined ? <h4>{`Paso a paso: ${steps}`}</h4> : <h4>Paso a paso: no especificado</h4> }
     {typeOfFood !== undefined ? <h4>{`Tipo de receta: ${typeOfFood}`}</h4> : <h4>Tipo de receta: no especificado</h4> }
     {ingredients !== undefined ?   <h4>{`Ingredientes: ${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
     
+    <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link>
     {addDeleteFav === true 
     ? <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
     : <button onClick={delRecipeFav}>Quitar de Favoritos</button> }
-    <Link to={`/recipes/${recipeDetails._id}/edit`}><button>Editar</button></Link>
     <button onClick={handleDelete}>Borrar</button>
 
     

@@ -31,7 +31,6 @@ function RecipesList() {
 
     try {
      const response = await getRecipesListService()
-     console.log("response data: " , response.data)
      setRecipeList(response.data)
      setRecipeListToShow(response.data)
      setIsFetching(false)
