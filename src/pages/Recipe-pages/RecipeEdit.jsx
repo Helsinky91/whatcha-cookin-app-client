@@ -80,8 +80,8 @@ const { name, photo, tag, description, steps, typeOfFood, ingredients } = respon
         <h1>Edita la receta</h1>
         <form>
         <label htmlFor="recipeImage">Ingredient's image</label>
-        <input value={recipeImgInput} type="file" name="recipeImage" onChange={handleImgChange} />
-            {/* type="file" and class is  is used for Cloudinary */}
+        <input type="file" name="recipeImage" onChange={handleImgChange} /> 
+            {/* type="file" and class is  is used for Cloudinary
         
             <br />
 
