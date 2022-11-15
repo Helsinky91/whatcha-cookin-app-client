@@ -16,7 +16,6 @@ function ProfileEdit() {
 
   //states 
   const [ usernameInput, setUsernameInput ] = useState()
-  const [ profileImgInput, setProfileImgInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
   const [ emailInput, setEmailInput ] = useState()
   //state for the cloudinary img
@@ -25,7 +24,7 @@ function ProfileEdit() {
 
   //hanglechanges 
   const handleNameChange = (event) => setUsernameInput(event.target.value)
-  const handleImgChange = (event) => setProfileImgInput(event.target.value)
+ 
   const handleTagChange = (event) => setTagInput(event.target.value)
   const handleEmailChange = (event) => setEmailInput(event.target.value)
  
@@ -43,7 +42,7 @@ function ProfileEdit() {
 
     //to set the actual value on the fields
     setUsernameInput(response.data.username)
-    setProfileImgInput(response.data.image)
+    setImageURL(response.data.image)
     setTagInput(response.data.tag)
     setEmailInput(response.data.email)
 
@@ -60,7 +59,7 @@ function ProfileEdit() {
         //recopilamos los valores a actualizar
         const updatedProfile = {
             username: usernameInput,
-            image: profileImgInput,
+            image: imageURL,
             tag: tagInput,
             email: emailInput,
           }

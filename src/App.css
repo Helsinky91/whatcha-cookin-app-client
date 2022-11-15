@@ -83,3 +83,13 @@
   flex-wrap: wrap;
   align-items: center;
 }
+.home-dashboard{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items:flex-start;
+}
+
+.home-dashboard div{
+  width: 500px;
+}
