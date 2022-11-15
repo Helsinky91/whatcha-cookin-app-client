@@ -6,7 +6,6 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { favRecipeService, deleteFavRecipeService, userFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
-import { favouriteUserRecipesService, getMyProfileService } from '../../services/profile.services'
 
 //!only if it's admin -- acabar de configurar
 
@@ -43,10 +42,17 @@ const getData = async () => {
   }
 }
 
+            //Intent per fer que al inici comprovi si la recepta esta a favoritos per canviar el boto de añadir
 // const checkFav = async () => {
 //   try {
-//     const response = await favouriteUserRecipesService(userId)
-    
+//     const response = await userFavRecipeService(recipeId)
+//     console.log("response id", response)
+//     if (response.data._id === recipeId){
+  
+//       setAddDeleteFav(true)
+//     } else {
+//       setAddDeleteFav(false)
+//     }
 //   } catch (error) {
     
 //   }
@@ -81,8 +87,8 @@ const handleDelete = async(event) => {
 
 const addRecipeFav = async () => {
   try {
-    const response = await userFavRecipeService()
-    console.log("response userfavs", response)
+    await favRecipeService(recipeId)
+    setAddDeleteFav(!addDeleteFav)
   } catch (error) {
     console.log(error)
   }
@@ -92,7 +98,7 @@ const addRecipeFav = async () => {
 const delRecipeFav = async () => {
   try {
     await deleteFavRecipeService(recipeId)
-    console.log("delete" )
+    setAddDeleteFav(!addDeleteFav)
   } catch (error) {
     console.log(error)
   }
@@ -113,9 +119,12 @@ const delRecipeFav = async () => {
     {ingredients !== undefined ?   <h4>{`Ingredientes: ${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
     
     <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link>
-    {addDeleteFav === true 
-    ? <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
-    : <button onClick={delRecipeFav}>Quitar de Favoritos</button> }
+   
+
+    <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
+  
+    <button onClick={delRecipeFav}>Quitar de Favoritos</button> 
+  
     <button onClick={handleDelete}>Borrar</button>
 
     

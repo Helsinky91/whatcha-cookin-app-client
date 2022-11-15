@@ -37,13 +37,13 @@ const favRecipeService = (recipeId) => {
 
 //remove recipe from favourites
 const deleteFavRecipeService = (recipeId) => {
-    return service.patch(`/recipe/${recipeId}/delete-fav`)
+    return service.patch(`/recipes/${recipeId}/delete-fav`)
 }
 
-//add a recipe to favourites
-const userFavRecipeService = (recipeId) => {
-    return service.get(`/recipes/${recipeId}/user-fav-recipe`)
-}
+//return user favourites recipes
+// const userFavRecipeService = (recipeId) => {
+//     return service.get(`/recipes/${recipeId}/user-fav-recipes`)
+// }
 
 
 //! BONUS PATCH "/api/recipes/:recipeId/likes"
@@ -58,6 +58,6 @@ export {
     deleteRecipeService,
     favRecipeService,
     deleteFavRecipeService,
-    userFavRecipeService
+    // userFavRecipeService
 
 }
