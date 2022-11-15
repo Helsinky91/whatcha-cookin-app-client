@@ -2,13 +2,16 @@ import React from 'react'
 import { createRecipeService } from '../services/recipes.services'
 import { useState } from 'react'
 import IngredientAdd from './IngredientAdd'
+import { uploadImageService } from '../services/upload.services'
+import { useNavigate } from 'react-router-dom'
 
 
 function RecipeAdd(props) {
   
+  const navigate = useNavigate()
+  
   //set up state for all form fields:
   const [ nameInput, setNameInput ] = useState()
-  const [ recipeImgInput, setRecipeImgInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
   const [ createdByInput, setCreatedByInput ] = useState()
   const [ desciptionInput, setDescriptionInput] = useState()
@@ -16,11 +19,12 @@ function RecipeAdd(props) {
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
   const [ IngredientsInput, setIngredientsInput ] = useState()
   const [ formIsShowing, setFormIsShowing ] = useState(false)
-  
+  //state for the cloudinary img
+  const [ imageURL, setImageURL ] = useState("")
+  const [ isUploadingImage, setIsUploadingImage ] = useState(false)
   
   //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
-  const handleImgChange = (event) => setRecipeImgInput(event.target.value)
   const handleTagChange = (event) => setTagInput(event.target.value)
   const handleCreatedByChange = (event) => setCreatedByInput(event.target.value)
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
@@ -37,7 +41,7 @@ function RecipeAdd(props) {
       createdBy: createdByInput,
       description: desciptionInput,
       steps: stepsInput,
-      image: recipeImgInput, //! req.file?.path,
+      image: imageURL, 
       typeOfFood: typeOfFoodInput,
       ingredients: IngredientsInput
     }
@@ -53,8 +57,23 @@ function RecipeAdd(props) {
   }
   //to hide the form unless pressing the button
   const toggleForm = () => setFormIsShowing(!formIsShowing)
-        //! error cuando se añade uno, no se rellenan los campos
   
+  const handleUploadImage = async (event) => {
+    setIsUploadingImage(true)
+
+    const sendForm = new FormData()
+    sendForm.append("image", event.target.files[0])
+    
+    try {
+      const response = await uploadImageService(sendForm)
+      setImageURL(response.data.image)
+      setIsUploadingImage(false)
+
+    } catch (error) {
+      navigate("/error")
+      
+    }
+  }
 
   return (
     <div>
@@ -65,9 +84,8 @@ function RecipeAdd(props) {
      : null }
     </div> 
       <form>
-        <label for="recipeImage">Ingredient's image</label>
-        <input value={recipeImgInput} type="file" name="recipeImage" onChange={handleImgChange} />
-            {/* type="file" and class is  is used for Cloudinary */}
+        <label for="image">Ingredient's image</label>
+        <input type="file" name="image" onChange={handleUploadImage} />
         
             <br />
 
@@ -96,7 +114,12 @@ function RecipeAdd(props) {
         <input value={IngredientsInput} type="text" name="ingredients" onChange={handleIngredientsChange}/>
         <br />
         <input hidden="true" value={createdByInput} type="text" name="steps" onChange={handleCreatedByChange}/>
-
+      
+        {isUploadingImage === true && <p>...subiendo imagen</p>}
+        {imageURL !== "" 
+        ? <img src={imageURL} atl="image" width={200}/> 
+        : <p>Seleccione imagen</p>
+        } 
             
             <br />
         
