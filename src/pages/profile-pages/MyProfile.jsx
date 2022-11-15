@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
-import {  favouriteUserRecipesService, getMyProfileService, myCreatedRecipesService, myFriendsService } from '../../services/profile.services'
+import {  favouriteUserRecipesService, getMyFavRecipes, getMyProfileService, myCreatedRecipesService, myFriendsService } from '../../services/profile.services'
 
 
 function Profile() {
@@ -31,17 +31,21 @@ function Profile() {
     try {
      const response = await getMyProfileService()
      //call my profile info
-     console.log(response.data)
      setProfileList(response.data)
      //call my recipes
-     const response2 = await myCreatedRecipesService()
-     setMyRecipes(response2.data)
+    //  const response2 = await myCreatedRecipesService()
+    //  setMyRecipes(response2.data)
+    //  console.log("response2.data", response2.data)
+
      //call my favourite recipes
-     const response3 = await favouriteUserRecipesService()
+     const response3 = await getMyFavRecipes()
      setMyFavRecipes(response3.data)
+     
+
      //call my friends list
-    //  const response4 = await myFriendsService(response.data._id)
+    //  const response4 = await myFriendsService()
     //  setMyFriends(response4.data)
+    //  console.log("response4.data", response4.data)
      setIsFetching(false)
     }catch (error) {
       navigate("/error")
@@ -61,7 +65,7 @@ function Profile() {
          
           <div>
             <h1>Hola {profileList.username}! </h1>
-            <img src={profileList.photo} alt={profileList.username} />
+            <img src={profileList.image} alt={profileList.username} width={150}/>
           </div>
           
           <div>
@@ -71,7 +75,7 @@ function Profile() {
 
           </div>
           
-
+          {console.log("response3.data", `${myFavRecipes}`)}
 
         <div>
             <div>

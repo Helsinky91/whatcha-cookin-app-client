@@ -17,6 +17,14 @@ const getProfileService = (id) => {
     return service.get(`/profile/${id}/details`)
 }
 
+const getFriendFavRecipes = (id) => {
+    return service.get(`/profile/${id}/fav-recipes`)
+}
+
+const getMyFavRecipes = () => {
+    return service.get(`profile/my-fav-recipes`)
+}
+
 //!Profile.jsx changeAndUpdate que venga de friendId y userId 
 //for add-friend button
 const addFriendService = (userId) => {
@@ -60,8 +68,8 @@ const favouriteUserRecipesService = () => {
 }
 
 // reciebe a populate list of user friends
-const myFriendsService = (userId) => {
-    return service.get(`/profile/${userId}/friends`)
+const myFriendsService = () => {
+    return service.get(`/profile/friends`)
 }
 export {
     getMyProfileService,
@@ -74,7 +82,9 @@ export {
     updateProfileService,
     favouriteUserRecipesService,
     myCreatedRecipesService,
-    myFriendsService
+    myFriendsService,
+    getFriendFavRecipes,
+    getMyFavRecipes
 
 }
 

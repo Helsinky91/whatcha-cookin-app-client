@@ -27,7 +27,6 @@ function SearchFriends() {
   const getData = async () => {
     try {
       const response = await getProfilesListService();
-      console.log("response data: ", response.data);
       setFriendList(response.data);
       setFriendListToShow(response.data)
       setIsFetching(false);

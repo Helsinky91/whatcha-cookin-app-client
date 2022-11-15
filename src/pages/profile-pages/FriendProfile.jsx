@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { addFriendService, getProfileService, unFriendService } from '../../services/profile.services'
-import { useNavigate, useParams } from 'react-router-dom'
+import { addFriendService, getFriendFavRecipes, getProfileService, unFriendService } from '../../services/profile.services'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 
@@ -13,6 +13,7 @@ function FriendProfile() {
 
     //states
   const [friendProfileList, setFriendProfileList] = useState([])
+  const [friendFavRecipes, setFriendFavRecipes] = useState([])
 
     //for loading time
   const [isFetching, setIsFetching] = useState(true)
@@ -25,11 +26,11 @@ function FriendProfile() {
 const getData = async () => {
 
   try {
-   const response = await getProfileService(userId)
-   console.log("favourites",response.data)
-   setFriendProfileList(response.data)
+    const response = await getProfileService(userId)
+    setFriendProfileList(response.data)
+    const response2 = await getFriendFavRecipes(userId)
+    setFriendFavRecipes(response2.data.favourites)
    setIsFetching(false)
-
   }catch (error) {
     navigate("/error")
   }
@@ -59,6 +60,8 @@ const delFriendFav = async () => {
 
 
 
+    
+
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>
@@ -74,8 +77,21 @@ const delFriendFav = async () => {
       </div>
       <div>
         <h4>Descripción: {description}</h4>
+        {friendFavRecipes.map((eachFav) => {
+          return (
+    
+            <Link to={`/recipes/${eachFav._id}/details`}>
+                  <img
+                    src={eachFav.image}
+                    alt={eachFav.name}
+                    width={200}
+                  />
+                  <p>{eachFav.name}</p>
+                </Link>
+          )
+          
+        })}
       </div>
-
 
       <button onClick={addFriendFav}>Añadir a Favoritos</button> 
   
