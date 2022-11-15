@@ -77,7 +77,7 @@ function SearchFriends() {
               <div key={eachFriend._id}>
                 <Link to={`/profile/${eachFriend._id}/details`}>
                   <img
-                    src={eachFriend.photo}
+                    src={eachFriend.image}
                     alt={eachFriend.name}
                     width={200}
                   />

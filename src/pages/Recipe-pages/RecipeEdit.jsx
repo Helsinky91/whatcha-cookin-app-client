@@ -38,10 +38,10 @@ function RecipeEdit() {
     
     const response = await recipeDetailsService(recipeId)
     console.log("response", response)
-const { name, photo, tag, description, steps, typeOfFood, ingredients } = response.data
+const { name, image, tag, description, steps, typeOfFood, ingredients } = response.data
     //to set the actual value on the fields
     setNameInput(name)
-    setRecipeImgInput(photo)
+    setRecipeImgInput(image)
     setTagInput(tag)
     setDescriptionInput(description)
     setStepsInput(steps)
@@ -64,7 +64,7 @@ const { name, photo, tag, description, steps, typeOfFood, ingredients } = respon
           tag: tagInput,
           description: desciptionInput,
           steps: stepsInput,
-          photo: recipeImgInput, //! req.file?.path,
+          image: recipeImgInput, //! req.file?.path,
           typeOfFood: typeOfFoodInput,
           ingredients: IngredientsInput
         }
