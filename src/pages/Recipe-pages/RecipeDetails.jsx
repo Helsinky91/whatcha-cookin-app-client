@@ -6,7 +6,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { favRecipeService, deleteFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
-import { getMyProfileService } from '../../services/profile.services'
+import { favouriteUserRecipesService, getMyProfileService } from '../../services/profile.services'
 
 //!only if it's admin -- acabar de configurar
 
@@ -17,9 +17,9 @@ import { getMyProfileService } from '../../services/profile.services'
 
 
 function RecipeDetails() {
-
+  const { authenticaUser } = useContext(AuthContext)
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext)
+
 
   const { recipeId } = useParams()
   const [ recipeDetails, setRecipeDetails] = useState(null)
@@ -42,6 +42,17 @@ const getData = async () => {
     navigate("/error")
   }
 }
+
+// const checkFav = async () => {
+//   try {
+//     const response = await favouriteUserRecipesService(userId)
+    
+//   } catch (error) {
+    
+//   }
+// }
+
+
 
 if (isFetching === true) {
   return <h3>...loading</h3>
@@ -66,7 +77,9 @@ const handleDelete = async(event) => {
 }
 
 
-const addRecipeFav = async (recipeId) => {
+
+
+const addRecipeFav = async () => {
   try {
     await favRecipeService(recipeId)
   } catch (error) {
