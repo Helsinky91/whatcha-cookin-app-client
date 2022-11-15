@@ -28,7 +28,7 @@ function ProfileEdit() {
   const handleImgChange = (event) => setProfileImgInput(event.target.value)
   const handleTagChange = (event) => setTagInput(event.target.value)
   const handleEmailChange = (event) => setEmailInput(event.target.value)
-  console.log("handlechangename: ",handleNameChange)
+ 
 
   useEffect(() => {
     getData()
@@ -60,7 +60,7 @@ function ProfileEdit() {
         //recopilamos los valores a actualizar
         const updatedProfile = {
             username: usernameInput,
-            photo: profileImgInput,
+            image: profileImgInput,
             tag: tagInput,
             email: emailInput,
           }
@@ -80,13 +80,13 @@ function ProfileEdit() {
     console.log(event.target.files[0])
 
     // tengo que insertar la imagen en un objeto de JS capaz de transmitir archivos FE - BE
-    const formularioDeEnvio = new FormData()
-    formularioDeEnvio.append("image", event.target.files[0])
+    const sendForm = new FormData()
+    sendForm.append("image", event.target.files[0])
     // "image" debe ser el mismo nombre de la ejecución del middleware uploader.single("image")
     
     try {
       // contactar a cloudinary (por el BE, service) para subir la imagen y recibir el URL
-      const response = await uploadImageService(formularioDeEnvio)
+      const response = await uploadImageService(sendForm)
       // subir el url al estado para la creacion del ToDo
       console.log(response.data.image)
       setImageURL(response.data.image)
@@ -131,24 +131,27 @@ function ProfileEdit() {
     <h1>Edit your profile</h1>
 
      <div>
-     <form >
-        {/* {isUploadingImage === true && <p>...subiendo imagen</p>}
+     <form > 
+     
+        {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 
         ? <img src={imageURL} atl="image" width={200}/> 
         : <p>Seleccione imagen</p>
         } 
 
         <label htmlFor="image">Upload a profile pic:</label>
-        <input  type="file" name="image" value={profileImgInput} onChange={handleUploadImage} /> 
-        <br/> */}
+        <input  type="file" name="image"  onChange={handleUploadImage} /> 
+        {/* con bootstrap nos dará un Id para la img */}
+        <br/>
+
         <label htmlFor="username">Username:</label>
         <input type="text" name="username" value={usernameInput} onChange={handleNameChange} />
         <br/>
         <label htmlFor="email">Email:</label>
-        <input type="text" name="email" value={emailInput} onChange={handleTagChange} />
+        <input type="text" name="email" value={emailInput} onChange={handleEmailChange} />
         <br/>
         <label htmlFor="tags">Tags:</label>
-        <input type="text" name="tags" value={tagInput} onChange={handleEmailChange} />
+        <input type="text" name="tags" value={tagInput} onChange={handleTagChange} />
     
         <br/>
         <button onClick={handleUpdate}>Submit changes</button>
