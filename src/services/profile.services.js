@@ -49,9 +49,19 @@ const updateProfileService = (id, profileChanges) => {
     return service.patch(`/profile/${id}/details`, profileChanges)
 }
 
+//recipes createds by user
+const myCreatedRecipesService = (userId) => {
+    return service.get(`/profile/${userId}/my-recipes`)
+}
+
 // reciebe the favourites recipes of user
 const favouriteUserRecipesService = (userId) => {
     return service.get(`/profile/${userId}/fav-recipes`)
+}
+
+// reciebe a populate list of user friends
+const myFriendsService = (userId) => {
+    return service.get(`/profile/${userId}/friends`)
 }
 export {
     getMyProfileService,
@@ -62,7 +72,9 @@ export {
     editProfileService,
     getProfilesListService,
     updateProfileService,
-    favouriteUserRecipesService
+    favouriteUserRecipesService,
+    myCreatedRecipesService,
+    myFriendsService
 
 }
 
