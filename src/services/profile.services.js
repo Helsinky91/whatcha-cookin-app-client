@@ -17,6 +17,7 @@ const getProfileService = (id) => {
     return service.get(`/profile/${id}/details`)
 }
 
+//!Profile.jsx changeAndUpdate que venga de friendId y userId 
 //for add-friend button
 const addFriendService = (friendId, userId) => {
     return service.patch(`/profile/${userId}/add-friend`, friendId )
@@ -28,16 +29,15 @@ const unFriendService = (friendId, userId) => {
     return service.patch(`/profile/${friendId}/un-friend`, userId )
 }
 
-//!Profile.jsx changeAndUpdate que venga de friendId y userId 
 //delete profile 
 const deleteProfileService = (id) => {
     return service.delete(`/profile/${id}/delete-profile`)
 }
 
-//edit profile
-const editProfileService = (id) => {
-    return service.patch(`/profile/${id}/edit`)
-}
+// //edit profile
+// const editProfileService = (id) => {
+//     return service.patch(`/profile/${id}/edit`)
+// }
 
 //update profile
 const updateProfileService = (id, profileChanges) => {
@@ -50,7 +50,7 @@ export {
     addFriendService,
     unFriendService,
     deleteProfileService,
-    editProfileService,
+    // editProfileService,
     getProfilesListService,
     updateProfileService
     

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
 import {  getMyProfileService } from '../../services/profile.services'
+import { deleteFavRecipeService, favRecipeService } from '../../services/recipes.services';
 
 
 function Profile() {
@@ -35,6 +36,26 @@ function Profile() {
     }
   }
 
+  const favRecipe = async (recipeId) => {
+    
+    try {
+      const response = await getMyProfileService()
+     //!CREAR EN EL BACK END RUTA POPULATE + SERVICIO 
+      
+    } catch (error) {
+      navigate("/error")
+    }
+     // crida al UserID con getMyProfileSevices
+     // populate de favorires
+     // qué nos da response.data
+     // .map 
+
+    //deleteFavRecipeService(recipeId)
+  }
+  
+
+
+
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>
@@ -59,7 +80,7 @@ function Profile() {
           
 
 
-        <div>
+        <div className="dashboard">
             <div>
               <p>Tus amigos</p>
 

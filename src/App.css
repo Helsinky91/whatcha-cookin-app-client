@@ -76,3 +76,10 @@
   /* margin-left: 10px */
   text-decoration: none;
 }
+
+.dashboard{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
