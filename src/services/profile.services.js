@@ -19,14 +19,14 @@ const getProfileService = (id) => {
 
 //!Profile.jsx changeAndUpdate que venga de friendId y userId 
 //for add-friend button
-const addFriendService = (friendId, userId) => {
-    return service.patch(`/profile/${userId}/add-friend`, friendId )
+const addFriendService = (userId) => {
+    return service.patch(`/profile/${userId}/add-friend`)
 }
 
 //!Profile.jsx changeAndUpdate que venga de friendId y userId 
 //for add-friend button
-const unFriendService = (friendId, userId) => {
-    return service.patch(`/profile/${friendId}/un-friend`, userId )
+const unFriendService = (userId) => {
+    return service.patch(`/profile/${ userId }/un-friend`)
 }
 
 //delete profile 
@@ -50,13 +50,13 @@ const updateProfileService = (id, profileChanges) => {
 }
 
 //recipes createds by user
-const myCreatedRecipesService = (userId) => {
-    return service.get(`/profile/${userId}/my-recipes`)
+const myCreatedRecipesService = () => {
+    return service.get(`/profile/my-recipes`)
 }
 
 // reciebe the favourites recipes of user
-const favouriteUserRecipesService = (userId) => {
-    return service.get(`/profile/${userId}/fav-recipes`)
+const favouriteUserRecipesService = () => {
+    return service.get(`/profile/fav-recipes`)
 }
 
 // reciebe a populate list of user friends

@@ -17,6 +17,7 @@ import { AuthContext } from "../../context/auth.context"
 
 function RecipeDetails() {
   const { authenticaUser } = useContext(AuthContext)
+  console.log(authenticaUser)
   const navigate = useNavigate();
 
 

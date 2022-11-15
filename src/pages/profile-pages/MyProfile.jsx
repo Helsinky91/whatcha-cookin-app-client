@@ -12,6 +12,7 @@ function Profile() {
   const navigate = useNavigate();
 
   //states
+  
   const [profileList, setProfileList] = useState([])
   const [myRecipes, setMyRecipes] = useState([])
   const [myFavRecipes, setMyFavRecipes] = useState([])
@@ -30,18 +31,18 @@ function Profile() {
     try {
      const response = await getMyProfileService()
      //call my profile info
+     console.log(response.data)
      setProfileList(response.data)
-     setIsFetching(false)
      //call my recipes
-     const response2 = await myCreatedRecipesService(profileList._id)
+     const response2 = await myCreatedRecipesService()
      setMyRecipes(response2.data)
      //call my favourite recipes
-     const response3 = await favouriteUserRecipesService(profileList._id)
+     const response3 = await favouriteUserRecipesService()
      setMyFavRecipes(response3.data)
-      //call my friends list
-    const response4 = await myFriendsService(profileList._id)
-    console.log("response4", response4)
-      setMyFriends(response4.data)
+     //call my friends list
+    //  const response4 = await myFriendsService(response.data._id)
+    //  setMyFriends(response4.data)
+     setIsFetching(false)
     }catch (error) {
       navigate("/error")
     }
@@ -74,20 +75,20 @@ function Profile() {
 
         <div>
             <div>
-              <h3>Tus amigos</h3>
-              {myFriends !== undefined
-              && myFriends.map((eachFriend) => {
-                return (
-                  <p>{eachFriend.username}</p>
-                )
-              })}
-            </div>
             <div>
               <h3>Tus recetas creadas</h3>
               {myRecipes.map((eachRecipe) => {
                 return (
                   <p>{eachRecipe.name}</p>
                   )
+              })}
+            </div>
+              <h3>Tus amigos</h3>
+              {myFriends !== null
+              && myFriends.map((eachFriend) => {
+                return (
+                  <p>{eachFriend.username}</p>
+                )
               })}
             </div>
 

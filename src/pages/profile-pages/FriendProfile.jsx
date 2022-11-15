@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getProfileService } from '../../services/profile.services'
+import { addFriendService, getProfileService, unFriendService } from '../../services/profile.services'
 import { useNavigate, useParams } from 'react-router-dom'
 
 
@@ -8,7 +8,7 @@ function FriendProfile() {
 
 
   const navigate = useNavigate();
-  const {userId} = useParams()
+  const { userId } = useParams()
  
 
     //states
@@ -35,6 +35,30 @@ const getData = async () => {
   }
 }
 
+
+
+const addFriendFav = async () => {
+  try {
+
+    console.log(userId)
+    await addFriendService(userId)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+const delFriendFav = async () => {
+  try {
+    await unFriendService(userId)
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>
@@ -52,6 +76,10 @@ const getData = async () => {
         <h4>Descripción: {description}</h4>
       </div>
 
+
+      <button onClick={addFriendFav}>Añadir a Favoritos</button> 
+  
+       <button onClick={delFriendFav}>Quitar de Favoritos</button> 
 
 
     </div>
