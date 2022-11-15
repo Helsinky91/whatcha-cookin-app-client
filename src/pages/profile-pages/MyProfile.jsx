@@ -61,7 +61,7 @@ function Profile() {
          
           <div>
             <h1>Hola {profileList.username}! </h1>
-            <img src={profileList.photo} alt={profileList.username} />
+            <img src={profileList.image} alt={profileList.username} />
           </div>
           
           <div>

@@ -24,7 +24,6 @@ function ProfileEdit() {
 
   //hanglechanges 
   const handleNameChange = (event) => setUsernameInput(event.target.value)
- 
   const handleTagChange = (event) => setTagInput(event.target.value)
   const handleEmailChange = (event) => setEmailInput(event.target.value)
  

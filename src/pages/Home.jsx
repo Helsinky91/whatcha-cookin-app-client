@@ -17,7 +17,6 @@ function Home() {
     </div>
     <div className="home-dashboard">
       <div>
-      <h2>Mira esta receta:</h2>
         <RandomRecipe/>
 
       </div>
