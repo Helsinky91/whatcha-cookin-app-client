@@ -36,7 +36,7 @@ function Home() {
       </div>
       <div>
         <h2>Buscadores</h2>
-        <ul>
+        <ul className='home-btn'>
        
         <li> <Link to={"/recipes-list"} ><button> Busca una receta </button> </Link> </li>
         <li> <Link to={"/recipes-list"} ><button>Encuentra tu amigo </button> </Link>  </li>

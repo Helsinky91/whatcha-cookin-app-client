@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mali:wght@300&family=Marhey:wght@300&family=Neucha&family=Poor+Story&family=Rubik+Bubbles&family=Russo+One&family=Sigmar+One&family=Source+Code+Pro:wght@300&family=VT323&family=Viga&display=swap');
 .App {
   text-align: center;
   /* background-image: url(""); */
@@ -13,6 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
  
 }
 
@@ -24,22 +26,42 @@
 
 .nav-active button {
   background-color: orange;
-  padding: 10px
+  padding: 10px;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
 }
 
 .nav-inactive button {
   background-color: rgba(255, 166, 0, 0.661);
-  padding: 8px
+  padding: 8px;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+
 }
 .nav-logout button {
   background-color: rgba(255, 77, 0, 0.661);
-  padding: 8px
+  padding: 8px;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+
 }
 
-/* .nav-btn {
-  background-color: orange;
-  padding: 10px
-} */
+.home-btn button{
+  background-color: rgba(255, 166, 0, 0.661);
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.home-btn li{
+  list-style-type: none
+}
+
+.home-btn button:hover {
+  background-color: rgba(255, 136, 0, 0.661);
+  font-size: 20px;
+}
 
 .auth-page {
   background-color: rgba(16, 53, 40, 0.374);
@@ -67,8 +89,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
-  font-size: 12px;
-
+  font-family: 'VT323', monospace;
 }
 
 .footer div > a {
@@ -93,3 +114,4 @@
 .home-dashboard div{
   width: 500px;
 }
+
