@@ -87,7 +87,7 @@ function IngredientList() {
         return (
           <div key={eachIngredient._id}>
             <Link to={`/ingredient/${eachIngredient._id}/details`}>
-              <img src={eachIngredient.photo} alt={eachIngredient.name} width={200} />
+              <img src={eachIngredient.image} alt={eachIngredient.name} width={200} />
               <p>{eachIngredient.name}</p>
               
             </Link>

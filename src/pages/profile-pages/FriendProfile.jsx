@@ -40,13 +40,13 @@ const getData = async () => {
     return <h3>...buscando</h3>
   }
 
-  const { username, photo, description } = friendProfileList
+  const { username, image, description } = friendProfileList
 
   return (
     <div>
       <div>
         <h1>Bienvenido al perfil de {username}</h1>
-        <img src={photo} alt={username} />
+        <img src={image} alt={username} />
       </div>
       <div>
         <h4>Descripción: {description}</h4>

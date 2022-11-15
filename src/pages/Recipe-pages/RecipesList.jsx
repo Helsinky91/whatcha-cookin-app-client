@@ -83,7 +83,7 @@ function RecipesList() {
         return (
           <div key={eachRecipe._id}>
             <Link to={`/recipes/${eachRecipe._id}/details`}>
-              <img src={eachRecipe.photo} alt={eachRecipe.name} width={200} />
+              <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
               <p>{eachRecipe.name}</p>
             </Link>
           </div>

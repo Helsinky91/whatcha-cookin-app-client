@@ -37,7 +37,7 @@ function RecipeAdd(props) {
       createdBy: createdByInput,
       description: desciptionInput,
       steps: stepsInput,
-      photo: recipeImgInput, //! req.file?.path,
+      image: recipeImgInput, //! req.file?.path,
       typeOfFood: typeOfFoodInput,
       ingredients: IngredientsInput
     }

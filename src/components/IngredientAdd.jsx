@@ -29,7 +29,7 @@ function IngredientAdd(props) {
         name: nameInput,
         tag: tagInput,
         comment: commentInput, 
-        photo: ingredientImgInput, //! o req.file?.path,
+        image: ingredientImgInput, //! o req.file?.path,
         category: categoryInput
     }
     

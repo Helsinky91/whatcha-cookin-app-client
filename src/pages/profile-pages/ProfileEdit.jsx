@@ -133,11 +133,6 @@ function ProfileEdit() {
      <div>
      <form > 
      
-        {isUploadingImage === true && <p>...subiendo imagen</p>}
-        {imageURL !== "" 
-        ? <img src={imageURL} atl="image" width={200}/> 
-        : <p>Seleccione imagen</p>
-        } 
 
         <label htmlFor="image">Upload a profile pic:</label>
         <input  type="file" name="image"  onChange={handleUploadImage} /> 
@@ -153,6 +148,11 @@ function ProfileEdit() {
         <label htmlFor="tags">Tags:</label>
         <input type="text" name="tags" value={tagInput} onChange={handleTagChange} />
     
+        {isUploadingImage === true && <p>...subiendo imagen</p>}
+        {imageURL !== "" 
+        ? <img src={imageURL} atl="image" width={200}/> 
+        : <p>Seleccione imagen</p>
+        } 
         <br/>
         <button onClick={handleUpdate}>Submit changes</button>
 
