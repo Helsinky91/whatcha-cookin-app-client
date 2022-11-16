@@ -6,7 +6,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { favRecipeService, deleteFavRecipeService, userFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
-import { createCommentService, getCommentService } from '../../services/comment.services'
+import { createCommentService, deleteCommentService, getCommentService } from '../../services/comment.services'
 
 //!only if it's admin -- acabar de configurar
 
@@ -27,11 +27,11 @@ function RecipeDetails() {
   const [ recipeComments, setRecipeComments] = useState(null)
   const [ isFetching, setIsFetching ] = useState(true)
   const [ addDeleteFav, setAddDeleteFav ] = useState(true)
-  const [ newCommentInput, setNewCommentInput ] = useState("")
+  const [ newComment, setNewComment ] = useState("")
 
   
 
-  const handleCommentChange = (event) => setNewCommentInput(event.target.value)
+  const handleCommentChange = (event) => setNewComment(event.target.value)
 
   useEffect(() => {
     getData()
@@ -42,10 +42,10 @@ const getData = async () => {
       const response = await recipeDetailsService(recipeId)
       //3. actualizar el estado con la data
       setRecipeDetails(response.data)
-      setIsFetching(false)
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
       console.log("response2", response2.data)
+      setIsFetching(false)
 
   } catch (error) {
     console.log(error)
@@ -91,6 +91,7 @@ const handleDelete = async(event) => {
 }
 
 const addRecipeFav = async () => {
+
   try {
     await favRecipeService(recipeId)
     setAddDeleteFav(!addDeleteFav)
@@ -108,23 +109,34 @@ const delRecipeFav = async () => {
     console.log(error)
   }
 }
-  
-  
-  const addComment = async (event) => {
+
+const { name, tag, description, steps, image, typeOfFood, ingredients } = recipeDetails
+
+const addComment = async (event) => {
   event.preventDefault();
-  
-  const newComment = {
-    comment: newCommentInput
+  console.log("newcomment", newComment )
+  const comment = {
+    comment: newComment
   }
   try {
-    await createCommentService(newComment)
+    await createCommentService(recipeId, comment)
   } catch (error) {
     console.log(error)
   }
 }
 
+const deleteComment = async(commentId) => {
+  try {
+ 
+    await deleteCommentService(commentId)
 
-const { name, tag, description, steps, image, typeOfFood, ingredients } = recipeDetails
+      navigate("/recipes-list")
+
+  } catch (error) {
+      console.log(error)
+      navigate("/error")
+  }
+}
   return (
     <div>
     
@@ -144,22 +156,26 @@ const { name, tag, description, steps, image, typeOfFood, ingredients } = recipe
     <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
   
     <button onClick={delRecipeFav}>Quitar de Favoritos</button> 
-    
+    <button onClick={handleDelete}>Borrar la receta</button>
 
     <h3>Deja tu comentario</h3>
     <form>
-    <label htmlFor="name"></label>
-     <input id="name" type="text" value={handleCommentChange}/>
-     <button onClick={addComment}>Añádelo!</button>
-    </form> createCommentService
+    <label htmlFor="comment"></label>
+     <input name="comment" type="text" value={newComment}  onChange={handleCommentChange}/>
+     <button onClick={addComment}>Comentar</button>
+     deleteCommentService
+    </form> 
     
 <h3>Comentarios sobre esta receta</h3>
   {recipeComments.map((eachComment) => {
     return (
-      <h3>{`${eachComment.comment}`}</h3>
+      <div>
+      <h3>{`${eachComment.username.username}`} dice "{`${eachComment.comment}`}"</h3>
+     <button onClick={() => deleteComment(eachComment._id)}>Borrar comentario</button>
+     </div>    
     )
   })}
-    <button onClick={handleDelete}>Borrar</button>
+
 
     
 
@@ -170,6 +186,7 @@ const { name, tag, description, steps, image, typeOfFood, ingredients } = recipe
     </div>
   )
 }
+
 
 
 export default RecipeDetails
