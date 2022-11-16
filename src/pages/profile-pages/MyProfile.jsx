@@ -57,7 +57,7 @@ function Profile() {
     return <h3>...buscando</h3>
   }
 
- 
+ console.log("MyProfile tag", profileList.tag )
 
   return (
     <div>
@@ -66,13 +66,13 @@ function Profile() {
             <h1>Hola {profileList.username}! </h1>
             <img src={profileList.image} alt={profileList.username} width={150}/>
             
-            <p>Me interesa:</p>
+            <span>Me interesa:
             {profileList.tag.map((eachTag, index) => {
               return (
                <p key={index}>{eachTag}</p>
               )
             })}
-            
+            </span>
           </div>
           
           <div>
