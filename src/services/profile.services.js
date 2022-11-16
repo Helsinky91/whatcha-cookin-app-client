@@ -66,6 +66,13 @@ const myCreatedRecipesService = () => {
 const myFriendsService = () => {
     return service.get(`/profile/friends`)
 }
+
+//send information of utils "tags" from BE
+const tagProfileInfoService = () => {
+    return service.get("/profile/tag")
+}
+
+
 export {
     getMyProfileService,
     getProfileService,
@@ -78,7 +85,8 @@ export {
     myCreatedRecipesService,
     myFriendsService,
     getFriendFavRecipes,
-    getMyFavRecipesService
+    getMyFavRecipesService,
+    tagProfileInfoService
 
 }
 

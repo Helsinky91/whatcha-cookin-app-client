@@ -22,7 +22,7 @@ function RecipeEdit() {
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
-  const [isFetching, setIsFetching] = useState(true)
+  const [ isFetching, setIsFetching ] = useState(true)
 
 
     //set up handlechanges for all the fields:
@@ -31,6 +31,7 @@ function RecipeEdit() {
 
   // const handleTagChange = (event) => setTagInput() //array.from(event.target del selected option)
   //constante que sera option.constante +  y actualizas la constante 
+
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
   const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
@@ -40,7 +41,6 @@ function RecipeEdit() {
 
   useEffect(() => {
     getData()
-    // tagData()
   }, [])
   
   const getData = async (event) => {
@@ -74,7 +74,7 @@ function RecipeEdit() {
     return <h3>...buscando</h3>
   }
       
-   console.log("allTags:", allTags)
+   
   const updateRecipe = async (event) => {
     event.preventDefault();
 
@@ -125,14 +125,12 @@ function RecipeEdit() {
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
         
           <br />
-        {/* <label htmlFor='tag'>Tag:</label>
-        <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/> */} 
-               
-         <label htmlFor='tag'>Tag:
-          <select name="tag" onChange={handleTagChange} >
-            {allTags.map((eachEl) =>{
+                       
+        <label htmlFor='tag'>Tag:
+          <select name="tag" multiple="true" onChange={handleTagChange} >
+            {allTags.map((eachEl, index) =>{
               return(
-              <option value={eachEl}>{eachEl}</option>
+              <option key={index} value={eachEl}>{eachEl}</option>
               )
             })}
           </select>

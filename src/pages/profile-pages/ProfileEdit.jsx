@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getProfileService, editProfileService, deleteProfileService } from '../../services/profile.services'
+import { getProfileService, editProfileService, deleteProfileService, tagProfileInfoService } from '../../services/profile.services'
 import { AuthContext } from "../../context/auth.context"
 import { uploadImageService } from '../../services/upload.services'
+import { tagInfoService } from '../../services/recipes.services'
 
 
 function ProfileEdit() {
@@ -17,14 +18,23 @@ function ProfileEdit() {
   //states 
   const [ usernameInput, setUsernameInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
+  const [ allTags, setAllTags ] = useState()
+
   const [ emailInput, setEmailInput ] = useState()
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
 
+  const [ isFetching, setIsFetching ] = useState(true)
+
+
   //hanglechanges 
   const handleNameChange = (event) => setUsernameInput(event.target.value)
-  const handleTagChange = (event) => setTagInput(event.target.value)
+  const handleTagChange = (event) => {
+    let value = Array.from(event.target.selectedOptions, option => option.value)
+    setTagInput(value)
+  console.log("value" , value) 
+}
   const handleEmailChange = (event) => setEmailInput(event.target.value)
  
 
@@ -37,14 +47,18 @@ function ProfileEdit() {
     try {
     
     const response = await getProfileService(userId)
-    console.log( "get profile service :", response.data)
+    // console.log( "get profile service :", response.data)
 
     //to set the actual value on the fields
     setUsernameInput(response.data.username)
     setImageURL(response.data.image)
     setTagInput(response.data.tag)
     setEmailInput(response.data.email)
-
+      
+    const tagData = await tagProfileInfoService()
+      setIsFetching(false)
+      console.log("response ", tagData.data)
+      setAllTags(tagData.data)
 
     } catch(err) {
         navigate("/error")
@@ -54,6 +68,10 @@ function ProfileEdit() {
 
   const handleUpdate = async (event) => {
     event.preventDefault()
+    
+   
+    
+
     try {
         //recopilamos los valores a actualizar
         const updatedProfile = {
@@ -70,7 +88,7 @@ function ProfileEdit() {
         navigate("/profile/my-profile")
 
     } catch (error) {
-        navigate("/error")
+        navigate("/error")                  
     }
   }
   const handleUploadImage = async (event) => {
@@ -89,6 +107,7 @@ function ProfileEdit() {
       console.log(response.data.image)
       setImageURL(response.data.image)
       setIsUploadingImage(false)
+
     } catch (error) {
       navigate("/error")
       
@@ -117,12 +136,15 @@ function ProfileEdit() {
     navigate("/")
    }catch(error) {
     navigate("/error")
-   }
-   
-    
+   } 
   } 
-
-
+ 
+  //! change to loading SPINNER
+  if (isFetching === true) {
+    return <h3>...buscando</h3>
+  }
+  
+  console.log("allTag", allTags)
   return (
     <div>
 
@@ -143,9 +165,16 @@ function ProfileEdit() {
         <label htmlFor="email">Email:</label>
         <input type="text" name="email" value={emailInput} onChange={handleEmailChange} />
         <br/>
-        <label htmlFor="tags">Tags:</label>
-        <input type="text" name="tags" value={tagInput} onChange={handleTagChange} />
-    
+        <label htmlFor='tag'>Tag:
+          <select name="tag" multiple onChange={handleTagChange} >
+            {allTags.map((eachEl, index) =>{
+              return(
+              <option key={index} value={eachEl}>{eachEl}</option>
+              )
+            })}
+          </select>
+        </label> 
+        <br />
         {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 
         ? <img src={imageURL} atl="image" width={200}/> 
@@ -156,10 +185,8 @@ function ProfileEdit() {
 
     </form>
 
-        {/* functionality */}
     
       <button onClick={deleteUser}>Delete profile</button>
-      {/* <Button type="danger" onClick={() => toDelete(props.eachItem.name)}> Delete </Button> */}
       
      </div>
 

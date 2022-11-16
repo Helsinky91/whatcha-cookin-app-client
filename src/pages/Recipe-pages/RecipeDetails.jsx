@@ -107,16 +107,15 @@ const delRecipeFav = async () => {
   } catch (error) {
     console.log(error)
   }
-  const { name, tag, description, steps, image, typeOfFood, ingredients } = recipeDetails
-
-
+}
   
-const addComment = async (event) => {
+  
+  const addComment = async (event) => {
   event.preventDefault();
-
+  
   const newComment = {
     comment: newCommentInput
-}
+  }
   try {
     await createCommentService(newComment)
   } catch (error) {
@@ -125,6 +124,7 @@ const addComment = async (event) => {
 }
 
 
+const { name, tag, description, steps, image, typeOfFood, ingredients } = recipeDetails
   return (
     <div>
     
@@ -170,6 +170,6 @@ const addComment = async (event) => {
     </div>
   )
 }
-}
+
 
 export default RecipeDetails
