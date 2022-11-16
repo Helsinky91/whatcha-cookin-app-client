@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../context/auth.context"
 import { editRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { uploadImageService } from '../../services/upload.services'
+import Select from 'react-select';
 
 
 function RecipeEdit() {
@@ -21,6 +22,8 @@ function RecipeEdit() {
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
+
+  const [selectedOption, setSelectedOption] = useState(null);
 
     //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
@@ -109,10 +112,25 @@ function RecipeEdit() {
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
         
           <br />
-        <label htmlFor='tag'>Tag:</label>
-        <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/>
+        {/* <label htmlFor='tag'>Tag:</label>
+        <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/> */} 
+        {/*        
+        <label htmlFor='tag'>Tag:
+          <select value={tagInput} name="tag" onChange={handleTagChange} >
+            {tagInput.map((eachEl) =>{
+              return(
+              <option value={eachEl}>{eachEl}</option>
+              )
+            })}
+          </select>
+        </label> */}
+        {/* <label htmlFor='tag'>Tag: </label>
+        <Select
+        defaultValue={tagInput}
+        onChange={handleTagChange}
+        options={tagInput}
+      /> */}
 
-        {/* OR SELECT OPTION */}
            <br />
 
         <label htmlFor='description'>Description</label>
