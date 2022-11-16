@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
-import {  favouriteUserRecipesService, getMyFavRecipes, getMyProfileService, myCreatedRecipesService, myFriendsService } from '../../services/profile.services'
+import {  getMyFavRecipesService, getMyProfileService, myCreatedRecipesService, myFriendsService } from '../../services/profile.services'
 
 
 function Profile() {
@@ -33,19 +33,18 @@ function Profile() {
      //call my profile info
      setProfileList(response.data)
      //call my recipes
-    //  const response2 = await myCreatedRecipesService()
-    //  setMyRecipes(response2.data)
-    //  console.log("response2.data", response2.data)
+     const response2 = await myCreatedRecipesService()
+     setMyRecipes(response2.data)
 
      //call my favourite recipes
-     const response3 = await getMyFavRecipes()
+     const response3 = await getMyFavRecipesService()
+     console.log("response3", response3)
      setMyFavRecipes(response3.data)
      
 
      //call my friends list
-    //  const response4 = await myFriendsService()
-    //  setMyFriends(response4.data)
-    //  console.log("response4.data", response4.data)
+     const response4 = await myFriendsService()
+     setMyFriends(response4.data)
      setIsFetching(false)
     }catch (error) {
       navigate("/error")
@@ -75,31 +74,37 @@ function Profile() {
 
           </div>
           
+          {/* <Link to={`/recipes/${eachRecipe._id}/details`}>
+              <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
+              <p>{eachRecipe.name}</p>
+            </Link> */}
 
         <div>
             <div>
             <div>
               <h3>Tus recetas creadas</h3>
-              {myRecipes.map((eachRecipe) => {
+              {myRecipes !== null
+              && myRecipes.map((eachRecipe) => {
                 return (
-                  <p>{eachRecipe.name}</p>
+                  <Link to={`/recipes/${eachRecipe._id}/details`}><p>{eachRecipe.name}</p></Link>
                   )
               })}
             </div>
               <h3>Tus amigos</h3>
               {myFriends !== null
-              && myFriends.map((eachFriend) => {
+              && myFriends.friends.map((eachFriend) => {
                 return (
-                  <p>{eachFriend.username}</p>
+                 <Link to={`/profile/${eachFriend._id}/details`}><p>{eachFriend.username}</p></Link> 
                 )
               })}
             </div>
 
               <h3>Tus recetas favoritas</h3>
               {myFavRecipes !== null
-              && myFavRecipes.map((eachFavRecipe) => {
+              && myFavRecipes.favourites.map((eachFavRecipe) => {
                 return (
-                  <p>{eachFavRecipe.name}</p>
+                  <Link to={`/recipes/${eachFavRecipe._id}/details`}><p>{eachFavRecipe.name}</p></Link>
+                 
                 )
               })}
         </div>

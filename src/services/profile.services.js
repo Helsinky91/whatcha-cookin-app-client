@@ -21,11 +21,13 @@ const getFriendFavRecipes = (id) => {
     return service.get(`/profile/${id}/fav-recipes`)
 }
 
-const getMyFavRecipes = () => {
+
+//get user's favourites recipes
+const getMyFavRecipesService = () => {
     return service.get(`profile/my-fav-recipes`)
 }
 
-//!Profile.jsx changeAndUpdate que venga de friendId y userId 
+//!Profile.jsx changeAndUpdate que venga de friendId y userId
 //for add-friend button
 const addFriendService = (userId) => {
     return service.patch(`/profile/${userId}/add-friend`)
@@ -47,10 +49,6 @@ const editProfileService = (userId, profileChanges) => {
     return service.patch(`/profile/${userId}/edit`, profileChanges)
 }
 
-// //update profile
-// const updateProfileService = (id, profileChanges) => {
-//     return service.patch(`/profile/${id}/details`, profileChanges)
-// }
 
 //update profile
 const updateProfileService = (id, profileChanges) => {
@@ -62,10 +60,7 @@ const myCreatedRecipesService = () => {
     return service.get(`/profile/my-recipes`)
 }
 
-// reciebe the favourites recipes of user
-const favouriteUserRecipesService = () => {
-    return service.get(`/profile/fav-recipes`)
-}
+
 
 // reciebe a populate list of user friends
 const myFriendsService = () => {
@@ -80,11 +75,10 @@ export {
     editProfileService,
     getProfilesListService,
     updateProfileService,
-    favouriteUserRecipesService,
     myCreatedRecipesService,
     myFriendsService,
     getFriendFavRecipes,
-    getMyFavRecipes
+    getMyFavRecipesService
 
 }
 
