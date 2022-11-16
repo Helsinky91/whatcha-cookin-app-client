@@ -7,6 +7,7 @@ import { favRecipeService, deleteFavRecipeService, userFavRecipeService } from '
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
 import { createCommentService, deleteCommentService, getCommentService } from '../../services/comment.services'
+import RecipeComment from '../../components/RecipeComment'
 
 //!only if it's admin -- acabar de configurar
 
@@ -120,29 +121,17 @@ const addComment = async (event) => {
   }
   try {
     await createCommentService(recipeId, comment)
+    getData()
   } catch (error) {
     console.log(error)
   }
 }
 
-const deleteComment = async(commentId) => {
-  try {
- 
-    await deleteCommentService(commentId)
-
-      navigate("/recipes-list")
-
-  } catch (error) {
-      console.log(error)
-      navigate("/error")
-  }
-}
   return (
     <div>
     
     <h4>{`Detalles de la receta ${name}`} </h4>
         <div>
-    
      <img src={image} alt={name} width={150}/> 
     {tag !== undefined ? <h4>{`Tag: ${tag}`}</h4> : <h4>Tag: no especificado</h4> }
     {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
@@ -163,22 +152,11 @@ const deleteComment = async(commentId) => {
     <label htmlFor="comment"></label>
      <input name="comment" type="text" value={newComment}  onChange={handleCommentChange}/>
      <button onClick={addComment}>Comentar</button>
-     deleteCommentService
     </form> 
     
 <h3>Comentarios sobre esta receta</h3>
-  {recipeComments.map((eachComment) => {
-    return (
-      <div>
-      <h3>{`${eachComment.username.username}`} dice "{`${eachComment.comment}`}"</h3>
-     <button onClick={() => deleteComment(eachComment._id)}>Borrar comentario</button>
-     </div>    
-    )
-  })}
-
-
-    
-
+  <RecipeComment recipeComments={recipeComments} updateComments={getData}/>
+  
     </div>
     
     
