@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { getRecipesListService, searchByIngredientService } from '../../services/recipes.services'
 import { Link , useNavigate} from 'react-router-dom'
 import SearchRecipe from '../../components/SearchRecipe'
-
-
+// getRecipesListService
+// searchByIngredientService
 function IngredientsFind() {    
 
     const navigate = useNavigate();
@@ -57,7 +57,13 @@ function IngredientsFind() {
 
   return (
     <div>
-        <h1>Busca por ingrediente!</h1>
+      <h1>¿Qué tienes en la nevera?</h1>
+      <h3>Elije 1, 2 o 3 ingredientes y encuentra la receta perfecta</h3>
+
+
+
+
+        {/* <h1>Busca por ingrediente!</h1>
         <SearchRecipe filterList={filterList} />
         <br />
         <div>
@@ -75,7 +81,7 @@ function IngredientsFind() {
 
       </div>
 
-
+ */}
 
 
     </div>
