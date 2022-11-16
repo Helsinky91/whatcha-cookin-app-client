@@ -16,6 +16,7 @@ import RecipeDetails from './pages/Recipe-pages/RecipeDetails';
 import FriendsList from './pages/profile-pages/FriendsList';
 import ProfileEdit from './pages/profile-pages/ProfileEdit';
 import RecipeEdit from './pages/Recipe-pages/RecipeEdit';
+import IngredientsFind from './pages/Recipe-pages/IngredientsFind';
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
           <Route path='/recipes-list' element= { <RecipesList /> }/>
           <Route path='/recipes/:recipeId/details' element= { <RecipeDetails /> }/>
           <Route path='/recipes/:recipeId/edit' element= { <RecipeEdit /> }/>
-          
+          <Route path='/recipes/ingredients-find' element= { <IngredientsFind /> }/>
 
           {/* private pages*/}
           <Route path='/profile/my-profile' element= { <IsPrivate> <MyProfile /> </IsPrivate> }/>

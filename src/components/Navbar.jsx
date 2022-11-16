@@ -45,13 +45,14 @@ function Navbar() {
           <NavLink to="/profile/search-friends" className={assignClassName}>
             <button >Friends</button>
           </NavLink>
+          <NavLink to="/recipes/ingredients-find" className={assignClassName}>
+            <button >Ingredients</button>
+          </NavLink>
           
           <NavLink to="/profile/my-profile" className={assignClassName}>
             <button >My Profile</button>
           </NavLink>
           
-
-
           <span className="nav-logout">
             <button  onClick={handleLogout}>Log out</button>
           </span>

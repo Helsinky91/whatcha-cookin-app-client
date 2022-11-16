@@ -50,6 +50,10 @@ const tagInfoService = () => {
     return service.get("/recipes/tag")
 }
 
+const searchByIngredientService = () => {
+    return service.get("/recipes/ingredients-list")
+}
+
 //! BONUS PATCH "/api/recipes/:recipeId/likes"
 
 
@@ -63,6 +67,7 @@ export {
     favRecipeService,
     deleteFavRecipeService,
     // userFavRecipeService
-    tagInfoService
+    tagInfoService,
+    searchByIngredientService
 
 }
