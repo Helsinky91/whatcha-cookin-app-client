@@ -3,10 +3,10 @@ import React, { useContext }from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { favRecipeService, deleteFavRecipeService, userFavRecipeService } from '../../services/recipes.services'
+import { favRecipeService, deleteFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
-import { createCommentService, deleteCommentService, getCommentService } from '../../services/comment.services'
+import { createCommentService, getCommentService } from '../../services/comment.services'
 import RecipeComment from '../../components/RecipeComment'
 
 //!only if it's admin -- acabar de configurar
@@ -41,7 +41,6 @@ function RecipeDetails() {
   const getData = async () => {
   try {
       const response = await recipeDetailsService(recipeId)
-      //3. actualizar el estado con la data
       setRecipeDetails(response.data)
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
@@ -77,11 +76,10 @@ if (isFetching === true) {
 }
 
 const handleDelete = async(event) => {
-
+  event.preventDefault()
   try {
-    // event.preventDefault()
     await deleteRecipeService(recipeId)
-
+    console.log("borrando", recipeId)
       navigate("/recipes-list")
 
   } catch (error) {

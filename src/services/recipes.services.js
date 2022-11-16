@@ -40,10 +40,6 @@ const deleteFavRecipeService = (recipeId) => {
     return service.patch(`/recipes/${recipeId}/delete-fav`)
 }
 
-//return user favourites recipes
-// const userFavRecipeService = (recipeId) => {
-//     return service.get(`/recipes/${recipeId}/user-fav-recipes`)
-// }
 
 //send information of utils "tags" from BE
 const tagInfoService = () => {
@@ -62,7 +58,6 @@ export {
     deleteRecipeService,
     favRecipeService,
     deleteFavRecipeService,
-    // userFavRecipeService
     tagInfoService
 
 }
