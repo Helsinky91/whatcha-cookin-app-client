@@ -75,7 +75,6 @@ function Profile() {
 
           </div>
           
-          {console.log("response3.data", `${myFavRecipes}`)}
 
         <div>
             <div>
