@@ -39,7 +39,18 @@ function RandomRecipe() {
   }
 
   return (
+    <div>
+    {!randomRecipe._id ? (
     <div className='home-btn'>
+
+      <h2>Mira esta receta:</h2>
+      <p>Vaya! Parece que no hay ninguna receta creada ahora mismo!</p>
+      <p>Añade una nueva <Link to={"/recipes-list"}>aquí</Link></p>
+      
+    </div>
+      ) :  (
+    <div className='home-btn'>
+
       <h2>Mira esta receta:</h2>
       <Link to={`/recipes/${randomRecipe._id}/details`}>
       <img src={randomRecipe.image} alt={randomRecipe.name} width={200}/>
@@ -47,6 +58,8 @@ function RandomRecipe() {
       <p>{randomRecipe.description} </p>
       </Link>
       <button  onClick={refresh}>Mira otra receta</button>
+    </div>
+      )}
     </div>
   )
 }
