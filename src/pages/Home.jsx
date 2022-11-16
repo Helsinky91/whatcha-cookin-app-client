@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import RandomRecipe from '../components/RandomRecipe'
 
 
 function Home() {
 
-  
+  const [ randomIsShowing, setRandomIsShowing ] = useState(true)
+  const refresh = () => {
+    if (randomIsShowing === true) {
+      setRandomIsShowing(!randomIsShowing)
+    console.log("2", randomIsShowing)
+    }
+    setTimeout(() => {
+       
+      setRandomIsShowing(true)
+      console.log("2", randomIsShowing)
 
+    }, 2000);
+   
+    
+  }
+  
 
 
   return (
@@ -17,7 +31,13 @@ function Home() {
     </div>
     <div className="home-dashboard">
       <div>
-        <RandomRecipe/>
+      {randomIsShowing === true 
+      ? <div> 
+        <RandomRecipe /> 
+        <button  onClick={refresh}>Mira otra receta</button>
+        </div>
+      : <h2>Preparándote otra receta</h2>
+      }
 
       </div>
       <div>
