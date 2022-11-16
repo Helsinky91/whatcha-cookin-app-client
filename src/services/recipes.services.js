@@ -46,6 +46,7 @@ const tagInfoService = () => {
     return service.get("/recipes/tag")
 }
 
+//select ingredient for all recipes
 const searchByIngredientService = () => {
     return service.get("/recipes/ingredients-list")
 }
@@ -67,7 +68,6 @@ export {
     deleteRecipeService,
     favRecipeService,
     deleteFavRecipeService,
-    // userFavRecipeService
     tagInfoService,
     searchByIngredientService,
     typeOfFoodInfoService
