@@ -27,11 +27,10 @@ function RecipeEdit() {
 
     //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
-  const handleTagChange = (event) => setTagInput(event.target.value)
-
-  // const handleTagChange = (event) => setTagInput() //array.from(event.target del selected option)
-  //constante que sera option.constante +  y actualizas la constante 
-
+  const handleTagChange = (event) => {
+    let value = Array.from(event.target.selectedOptions, option => option.value)
+    setTagInput(value)
+  }
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
   const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
@@ -61,7 +60,7 @@ function RecipeEdit() {
      
     const tagData = await tagInfoService()
     setIsFetching(false)
-    console.log("response ", tagData.data)
+    // console.log("response ", tagData.data)
     setAllTags(tagData.data)
   } catch(err) {
     navigate("/error")
@@ -127,10 +126,10 @@ function RecipeEdit() {
           <br />
                        
         <label htmlFor='tag'>Tag:
-          <select name="tag" multiple="true" onChange={handleTagChange} >
+          <select name="tag" multiple onChange={handleTagChange} >
             {allTags.map((eachEl, index) =>{
               return(
-              <option key={index} value={eachEl}>{eachEl}</option>
+              <option selected={tagInput.includes(eachEl) ? true : false}  key={index} value={eachEl}>{eachEl}</option>
               )
             })}
           </select>

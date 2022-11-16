@@ -68,9 +68,6 @@ function ProfileEdit() {
 
   const handleUpdate = async (event) => {
     event.preventDefault()
-    
-   
-    
 
     try {
         //recopilamos los valores a actualizar
@@ -165,15 +162,17 @@ function ProfileEdit() {
         <label htmlFor="email">Email:</label>
         <input type="text" name="email" value={emailInput} onChange={handleEmailChange} />
         <br/>
+      
         <label htmlFor='tag'>Tag:
           <select name="tag" multiple onChange={handleTagChange} >
             {allTags.map((eachEl, index) =>{
               return(
-              <option key={index} value={eachEl}>{eachEl}</option>
+              <option selected={tagInput.includes(eachEl) ? true : false} key={index} value={eachEl}>{eachEl}</option>
               )
             })}
           </select>
         </label> 
+
         <br />
         {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 
