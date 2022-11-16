@@ -39,14 +39,14 @@ function RandomRecipe() {
   }
 
   return (
-    <div>
+    <div className='home-btn'>
       <h2>Mira esta receta:</h2>
       <Link to={`/recipes/${randomRecipe._id}/details`}>
       <img src={randomRecipe.image} alt={randomRecipe.name} width={200}/>
       <p>{randomRecipe.name}</p>
       <p>{randomRecipe.description} </p>
       </Link>
-      <button onClick={refresh}>Mira otra receta</button>
+      <button  onClick={refresh}>Mira otra receta</button>
     </div>
   )
 }

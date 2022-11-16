@@ -112,7 +112,7 @@ const delRecipeFav = async () => {
     <h4>{`Detalles de la receta ${name}`} </h4>
         <div>
     
-    {/* <img src={image}/> */}
+     <img src={image} alt={name} width={150}/> 
     {tag !== undefined ? <h4>{`Tag: ${tag}`}</h4> : <h4>Tag: no especificado</h4> }
     {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
     {steps !== undefined ? <h4>{`Paso a paso: ${steps}`}</h4> : <h4>Paso a paso: no especificado</h4> }
