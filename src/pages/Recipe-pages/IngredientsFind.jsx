@@ -36,7 +36,7 @@ function IngredientsFind() {
     //for the search button only by name
   const filterList = (filterQuery) => { 
         
-    // const ingredients = searchByIngredientService()
+     const ingredients = searchByIngredientService()
 
     
     const filterArr = ingredients.filter((eachEl) => {

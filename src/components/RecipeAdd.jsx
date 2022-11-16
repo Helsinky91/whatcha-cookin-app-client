@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { createRecipeService, tagInfoService } from '../services/recipes.services'
+import { createRecipeService, tagInfoService, typeOfFoodInfoService } from '../services/recipes.services'
 import { useState } from 'react'
 import IngredientAdd from './IngredientAdd'
 import { uploadImageService } from '../services/upload.services'
@@ -17,6 +17,7 @@ function RecipeAdd(props) {
   const [ createdByInput, setCreatedByInput ] = useState()
   const [ desciptionInput, setDescriptionInput] = useState()
   const [ stepsInput, setStepsInput ] = useState()
+  const [ allTypeOfFood, setallTypeOfFoofd ] = useState()
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
   const [ IngredientsInput, setIngredientsInput ] = useState()
   const [ formIsShowing, setFormIsShowing ] = useState(false)
@@ -35,7 +36,10 @@ function RecipeAdd(props) {
   const handleCreatedByChange = (event) => setCreatedByInput(event.target.value)
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
-  const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
+  const handleTypeOfFoodChange = (event) => {
+    let value = Array.from(event.target.selectedOptions, option => option.value)
+    setTypeOfFoofdInput(value)
+  }  
   const handleIngredientsChange = (event) => setIngredientsInput(event.target.value)
 
 
@@ -47,14 +51,18 @@ function RecipeAdd(props) {
     
     try {
       const tagData = await tagInfoService()
-      setIsFetching(false)
+      // setIsFetching(false)
+      
       console.log("response ", tagData.data)
       setAllTags(tagData.data)
+
+      const typeOfFoodData = await typeOfFoodInfoService()
+      setIsFetching(false)
+      console.log("typeOfFoodData ", typeOfFoodData.data)
+      setallTypeOfFoofd(typeOfFoodData.data)
     } catch(err) {
       navigate("/error")
     }
-
-
   }
 
 
@@ -115,8 +123,7 @@ function RecipeAdd(props) {
       <form>
         <label htmlFor="image">Ingredient's image</label>
         <input type="file" name="image" onChange={handleUploadImage} />
-        
-            <br />
+        <br />
 
         <label htmlFor='name'>Name</label>
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
@@ -141,8 +148,15 @@ function RecipeAdd(props) {
         <label htmlFor='steps'>Steps</label>
         <input value={stepsInput} type="text" name="steps" onChange={handleStepsChange}/>
         <br />
-        <label htmlFor='typeOfFood'>Type Of Food</label>
-        <input value={typeOfFoodInput} type="text" name="typeOfFood" onChange={handleTypeOfFoodChange}/>
+        <label htmlFor='typeOfFood'>Type Of Food:
+          <select name="typeOfFood" multiple onChange={handleTypeOfFoodChange} >
+            {allTypeOfFood.map((eachEl, index) =>{
+              return(
+              <option key={index} value={eachEl}>{eachEl}</option>
+              )
+            })}
+          </select>
+        </label> 
         <br />
         <label htmlFor='ingredients'>Ingredient</label>
         <input value={IngredientsInput} type="text" name="ingredients" onChange={handleIngredientsChange}/>
