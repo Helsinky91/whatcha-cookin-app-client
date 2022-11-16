@@ -17,19 +17,16 @@ function Home() {
       console.log("2", randomIsShowing)
 
     }, 2000);
-   
-    
+       
   }
   
-
-
   return (
     <div>
     <div>
 
       <h1>Whatcha cookin'</h1>
     </div>
-    <div className="home-dashboard">
+    <div className="home-dashboard home-btn">
       <div>
       {randomIsShowing === true 
       ? <div> 
@@ -57,14 +54,13 @@ function Home() {
       <div>
         <h2>Buscadores</h2>
         <div  className='home-btn'>
-          <Link to={"/recipes-list"} ><button> Busca una receta </button> </Link> 
-          <Link to={"/recipes-list"} ><button>Encuentra tu amigo </button> </Link> 
+          <Link to={"/recipes-list"}><button>Busca una receta</button></Link>
+          <br />
+          <Link to={"/profile/search-friends"}><button>Encuentra tu amigo</button></Link> 
+          <br />
+          <Link to={"/recipes/ingredients-find"} ><button>Qué tienes en tu nevera</button> </Link> 
         </div>
         
-       
-
-      
-      
       </div> 
       </div>
     </div>

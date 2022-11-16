@@ -46,6 +46,10 @@ const tagInfoService = () => {
     return service.get("/recipes/tag")
 }
 
+const searchByIngredientService = () => {
+    return service.get("/recipes/ingredients-list")
+}
+
 //! BONUS PATCH "/api/recipes/:recipeId/likes"
 
 
@@ -58,6 +62,12 @@ export {
     deleteRecipeService,
     favRecipeService,
     deleteFavRecipeService,
+<<<<<<< HEAD
     tagInfoService
+=======
+    // userFavRecipeService
+    tagInfoService,
+    searchByIngredientService
+>>>>>>> 662ae1c806f541be0cdebea2a25dcf001abf1250
 
 }

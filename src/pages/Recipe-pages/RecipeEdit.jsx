@@ -36,8 +36,7 @@ function RecipeEdit() {
   const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
   const handleIngredientsChange = (event) => setIngredientsInput(event.target.value)
  
-
-
+  
   useEffect(() => {
     getData()
   }, [])

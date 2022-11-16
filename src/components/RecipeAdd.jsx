@@ -1,5 +1,5 @@
-import React from 'react'
-import { createRecipeService } from '../services/recipes.services'
+import React, { useEffect } from 'react'
+import { createRecipeService, tagInfoService } from '../services/recipes.services'
 import { useState } from 'react'
 import IngredientAdd from './IngredientAdd'
 import { uploadImageService } from '../services/upload.services'
@@ -13,6 +13,7 @@ function RecipeAdd(props) {
   //set up state for all form fields:
   const [ nameInput, setNameInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
+  const [ allTags, setAllTags ] = useState()
   const [ createdByInput, setCreatedByInput ] = useState()
   const [ desciptionInput, setDescriptionInput] = useState()
   const [ stepsInput, setStepsInput ] = useState()
@@ -22,16 +23,40 @@ function RecipeAdd(props) {
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
+  const [ isFetching, setIsFetching ] = useState(true)
 
   
   //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
-  const handleTagChange = (event) => setTagInput(event.target.value)
+  const handleTagChange = (event) => {
+    let value = Array.from(event.target.selectedOptions, option => option.value)
+    setTagInput(value)
+  }
   const handleCreatedByChange = (event) => setCreatedByInput(event.target.value)
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
   const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
   const handleIngredientsChange = (event) => setIngredientsInput(event.target.value)
+
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = async (event) => {
+    
+    try {
+      const tagData = await tagInfoService()
+      setIsFetching(false)
+      console.log("response ", tagData.data)
+      setAllTags(tagData.data)
+    } catch(err) {
+      navigate("/error")
+    }
+
+
+  }
+
 
   const addNewRecipe = async (event) => {
     event.preventDefault();
@@ -50,7 +75,7 @@ function RecipeAdd(props) {
       await createRecipeService(newRecipe)
       props.getData()
       props.hideForm()
-      
+         
     } catch (error) {
       console.log(error)
     }
@@ -74,7 +99,11 @@ function RecipeAdd(props) {
       
     }
   }
-  
+   //! change to loading SPINNER
+   if (isFetching === true) {
+    return <h3>...buscando</h3>
+  }
+
   return (
     <div>
       <div>
@@ -84,19 +113,24 @@ function RecipeAdd(props) {
      : null }
     </div> 
       <form>
-        <label for="image">Ingredient's image</label>
+        <label htmlFor="image">Ingredient's image</label>
         <input type="file" name="image" onChange={handleUploadImage} />
         
             <br />
 
         <label htmlFor='name'>Name</label>
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
-{/*         
+     
           <br />
-        <label htmlFor='tag'>Tag:</label>
-        <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/>
-
-        OR SELECT OPTION */}
+          <label>
+          <select name="tag" multiple onChange={handleTagChange} >
+            {allTags.map((eachEl, index) =>{
+              return(
+              <option key={index} value={eachEl}>{eachEl}</option>
+              )
+            })}
+          </select>
+        </label> 
         
            <br />
 
