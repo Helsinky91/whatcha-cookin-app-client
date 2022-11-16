@@ -28,15 +28,6 @@ function RandomRecipe() {
     return <h3>...buscando</h3>
   }
 
-  //! funcionalidad refresh
-  const refresh = async () => {
-    try{
-      navigate("/") //Claramente no funciona
-    }catch(error){
-      console.log(error)
-    }
-
-  }
 
   return (
     <div>
@@ -57,7 +48,7 @@ function RandomRecipe() {
       <p>{randomRecipe.name}</p>
       <p>{randomRecipe.description} </p>
       </Link>
-      <button  onClick={refresh}>Mira otra receta</button>
+      
     </div>
       )}
     </div>

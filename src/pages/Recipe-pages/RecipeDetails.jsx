@@ -6,6 +6,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { favRecipeService, deleteFavRecipeService, userFavRecipeService } from '../../services/recipes.services'
 import { deleteRecipeService, recipeDetailsService } from '../../services/recipes.services'
 import { AuthContext } from "../../context/auth.context"
+import { createCommentService, getCommentService } from '../../services/comment.services'
 
 //!only if it's admin -- acabar de configurar
 
@@ -23,10 +24,15 @@ function RecipeDetails() {
 
   const { recipeId } = useParams()
   const [ recipeDetails, setRecipeDetails] = useState(null)
+  const [ recipeComments, setRecipeComments] = useState(null)
   const [ isFetching, setIsFetching ] = useState(true)
   const [ addDeleteFav, setAddDeleteFav ] = useState(true)
+  const [ newCommentInput, setNewCommentInput ] = useState("")
 
   
+
+  const handleCommentChange = (event) => setNewCommentInput(event.target.value)
+
   useEffect(() => {
     getData()
   }, [])
@@ -37,6 +43,10 @@ const getData = async () => {
       //3. actualizar el estado con la data
       setRecipeDetails(response.data)
       setIsFetching(false)
+      const response2 = await getCommentService(recipeId)
+      setRecipeComments(response2.data)
+      console.log("response2", response2.data)
+
   } catch (error) {
     console.log(error)
     navigate("/error")
@@ -83,9 +93,6 @@ const handleDelete = async(event) => {
 
 }
 
-
-
-
 const addRecipeFav = async () => {
   try {
     await favRecipeService(recipeId)
@@ -103,8 +110,23 @@ const delRecipeFav = async () => {
   } catch (error) {
     console.log(error)
   }
-}
   const { name, tag, description, steps, image, typeOfFood, ingredients } = recipeDetails
+
+
+  
+const addComment = async (event) => {
+  event.preventDefault();
+
+  const newComment = {
+    comment: newCommentInput
+}
+  try {
+    await createCommentService(newComment)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 
   return (
     <div>
@@ -125,7 +147,21 @@ const delRecipeFav = async () => {
     <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
   
     <button onClick={delRecipeFav}>Quitar de Favoritos</button> 
-  
+    
+
+    <h3>Deja tu comentario</h3>
+    <form>
+    <label htmlFor="name"></label>
+     <input id="name" type="text" value={handleCommentChange}/>
+     <button onClick={addComment}>Añádelo!</button>
+    </form> createCommentService
+    
+<h3>Comentarios sobre esta receta</h3>
+  {recipeComments.map((eachComment) => {
+    return (
+      <h3>{`${eachComment.comment}`}</h3>
+    )
+  })}
     <button onClick={handleDelete}>Borrar</button>
 
     
@@ -136,6 +172,7 @@ const delRecipeFav = async () => {
     
     </div>
   )
+}
 }
 
 export default RecipeDetails
