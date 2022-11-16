@@ -22,6 +22,7 @@ function RecipeAdd(props) {
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
+
   
   //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
@@ -50,7 +51,6 @@ function RecipeAdd(props) {
       props.getData()
       props.hideForm()
       
-      
     } catch (error) {
       console.log(error)
     }
@@ -59,8 +59,9 @@ function RecipeAdd(props) {
   const toggleForm = () => setFormIsShowing(!formIsShowing)
   
   const handleUploadImage = async (event) => {
+    
     setIsUploadingImage(true)
-
+    
     const sendForm = new FormData()
     sendForm.append("image", event.target.files[0])
     
@@ -68,13 +69,12 @@ function RecipeAdd(props) {
       const response = await uploadImageService(sendForm)
       setImageURL(response.data.image)
       setIsUploadingImage(false)
-
     } catch (error) {
       navigate("/error")
       
     }
   }
-
+  
   return (
     <div>
       <div>
@@ -91,12 +91,12 @@ function RecipeAdd(props) {
 
         <label htmlFor='name'>Name</label>
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
-        
+{/*         
           <br />
         <label htmlFor='tag'>Tag:</label>
         <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/>
 
-        {/* OR SELECT OPTION */}
+        OR SELECT OPTION */}
         
            <br />
 
@@ -118,7 +118,9 @@ function RecipeAdd(props) {
         {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 
         ? <img src={imageURL} atl="image" width={200}/> 
-        : <p>Seleccione imagen</p>
+        : <p>
+        {/* <img src={"https://res.cloudinary.com/ddzhdj4yd/image/upload/v1668514029/whatcha-cookin/RecetaDefault_lxygod.png"} alt="default pic" /> */}
+          select a picture</p>
         } 
             
             <br />

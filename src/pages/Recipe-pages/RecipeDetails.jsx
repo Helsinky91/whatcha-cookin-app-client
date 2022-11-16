@@ -17,7 +17,7 @@ import { AuthContext } from "../../context/auth.context"
 
 function RecipeDetails() {
   const { authenticaUser } = useContext(AuthContext)
-  console.log(authenticaUser)
+  // console.log(authenticaUser)
   const navigate = useNavigate();
 
 
@@ -71,13 +71,10 @@ const handleDelete = async(event) => {
     // event.preventDefault()
     await deleteRecipeService(recipeId)
 
-      // 2. Redireccionar al usuario a la lista de ToDos, "/todos"
-                  //useNavigate sirve para redireccionar al usuario
       navigate("/recipes-list")
 
   } catch (error) {
       console.log(error)
-      //cada vez que tenemos un catch(error) (un error de desarrollo, o algun problema), navegamos a una pagina de error 500
       navigate("/error")
   }
 

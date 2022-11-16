@@ -79,8 +79,8 @@ function IngredientAdd(props) {
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
         
           <br />
-        <label htmlFor='tag'>Tag:</label>
-        <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/>
+        {/* <label htmlFor='tag'>Tag:</label>
+        <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/> */}
 
         {/* OR SELECT OPTION */}
         

@@ -45,6 +45,10 @@ const deleteFavRecipeService = (recipeId) => {
 //     return service.get(`/recipes/${recipeId}/user-fav-recipes`)
 // }
 
+//send information of utils "tags" from BE
+const tagInfoService = () => {
+    return service.get("/recipes/tag")
+}
 
 //! BONUS PATCH "/api/recipes/:recipeId/likes"
 
@@ -59,5 +63,6 @@ export {
     favRecipeService,
     deleteFavRecipeService,
     // userFavRecipeService
+    tagInfoService
 
 }

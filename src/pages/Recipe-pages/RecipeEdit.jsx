@@ -2,9 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../context/auth.context"
-import { editRecipeService, recipeDetailsService } from '../../services/recipes.services'
+import { editRecipeService, recipeDetailsService, tagInfoService } from '../../services/recipes.services'
 import { uploadImageService } from '../../services/upload.services'
-import Select from 'react-select';
 
 
 function RecipeEdit() {
@@ -15,6 +14,7 @@ function RecipeEdit() {
   //set up state for all form fields:
   const [ nameInput, setNameInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
+  const [ allTags, setAllTags ] = useState()
   const [ desciptionInput, setDescriptionInput] = useState()
   const [ stepsInput, setStepsInput ] = useState()
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
@@ -22,12 +22,15 @@ function RecipeEdit() {
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
+  const [isFetching, setIsFetching] = useState(true)
 
-  const [selectedOption, setSelectedOption] = useState(null);
 
     //set up handlechanges for all the fields:
   const handleNameChange = (event) => setNameInput(event.target.value)
   const handleTagChange = (event) => setTagInput(event.target.value)
+
+  // const handleTagChange = (event) => setTagInput() //array.from(event.target del selected option)
+  //constante que sera option.constante +  y actualizas la constante 
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
   const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
@@ -37,16 +40,17 @@ function RecipeEdit() {
 
   useEffect(() => {
     getData()
+    // tagData()
   }, [])
-
+  
   const getData = async (event) => {
     
     try {
-    
-    const response = await recipeDetailsService(recipeId)
-    console.log("response", response)
-    const { name, image, tag, description, steps, typeOfFood, ingredients } = response.data
-    //to set the actual value on the fields
+      
+      const response = await recipeDetailsService(recipeId)
+      // console.log("response", response)
+      const { name, image, tag, description, steps, typeOfFood, ingredients } = response.data
+      //to set the actual value on the fields
     setNameInput(name)
     setImageURL(image)
     setTagInput(tag)
@@ -54,14 +58,23 @@ function RecipeEdit() {
     setStepsInput(steps)
     setTypeOfFoofdInput(typeOfFood)
     setIngredientsInput(ingredients)
-
-
-    } catch(err) {
-        navigate("/error")
-    }
-
+     
+    const tagData = await tagInfoService()
+    setIsFetching(false)
+    console.log("response ", tagData.data)
+    setAllTags(tagData.data)
+  } catch(err) {
+    navigate("/error")
   }
+  
+}
 
+  //! change to loading SPINNER
+  if (isFetching === true) {
+    return <h3>...buscando</h3>
+  }
+      
+   console.log("allTags:", allTags)
   const updateRecipe = async (event) => {
     event.preventDefault();
 
@@ -114,22 +127,18 @@ function RecipeEdit() {
           <br />
         {/* <label htmlFor='tag'>Tag:</label>
         <input value={tagInput} type="text" name="tag" onChange={handleTagChange}/> */} 
-        {/*        
-        <label htmlFor='tag'>Tag:
-          <select value={tagInput} name="tag" onChange={handleTagChange} >
-            {tagInput.map((eachEl) =>{
+               
+         <label htmlFor='tag'>Tag:
+          <select name="tag" onChange={handleTagChange} >
+            {allTags.map((eachEl) =>{
               return(
               <option value={eachEl}>{eachEl}</option>
               )
             })}
           </select>
-        </label> */}
-        {/* <label htmlFor='tag'>Tag: </label>
-        <Select
-        defaultValue={tagInput}
-        onChange={handleTagChange}
-        options={tagInput}
-      /> */}
+        </label> 
+
+   
 
            <br />
 
