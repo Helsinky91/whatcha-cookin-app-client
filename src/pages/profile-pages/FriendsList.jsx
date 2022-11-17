@@ -52,6 +52,7 @@ function SearchFriends() {
   const deleteUser = async (userId) => {
     try {
       await deleteProfileService(userId) 
+      
       navigate("/profile/search-friends")
       getData()
      }catch(error) {
