@@ -1,7 +1,8 @@
 import React from 'react'
+import {useState} from 'react';
 import { getIngredientList } from '../services/ingredient.service'
 
-function SearchIngredient() {
+function SearchIngredient(props) {
   //! mirar lab-react-ironnutrition > App.js
     //1. creamos estado de list + listToShow
     //2. const filterList
@@ -15,8 +16,24 @@ function SearchIngredient() {
 
     */
   
+    const [searchOneIngredient, setSearchOneIngredient] = useState("")
+
+    const handleChange = (event) => {
+        setSearchOneIngredient(event.target.value)
+  
+        props.filterList(event.target.value)
+    }
+  
+
     return (
-    <div>SearchIngredient</div>
+    <div>
+    <hr/>
+      <label>Primer ingrediente</label>
+      <input value={searchOneIngredient} type="text" onChange={handleChange} />
+
+
+
+    </div>
   )
 }
 
