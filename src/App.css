@@ -162,6 +162,121 @@ h1 {
   border-radius: 50%;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-label{
+  margin-right: 3vh;
+}
+
+.recipeBoxCard {
+  display: flex;
+  flex-wrap: wrap;
+ justify-content: center;
+}
+
+.recipeFormCard {
+  display: flex;
+  flex-wrap: wrap;
+ justify-content: center;
+ margin: 2vh
+}
+
+.recipeFormCard input{
+  border-color: orange
+}
+.recipeFormCard input:hover {
+  border-color: rgb(252, 194, 86);
+height: 10vh
+}
+
+.recipeBoxCard div {
+  margin: 1vh;
+}
+
+
+.recipeBoxCard input {
+  border-color: orange
+  
+
+}
+
+.profileDetails {
+  display: flex;
+  flex-wrap: wrap;
+}
+.profileDetails h4{
+ margin: 10vh
+}
+
 .bottom-padding img{
   padding-bottom: 10px;
   /* margin-bottom: 10px */

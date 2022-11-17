@@ -25,15 +25,10 @@ function SearchIngredient(props) {
   
 
     return (
-    <div>
-    <hr/>
-  
-      <label>Primer ingrediente</label>
-      <input value={searchOneIngredient} type="text" onChange={handleChange} />
-
-
-
+    <div class="ingredientForm">
+      <input  class="shadow p-3 mb-5 bg-body rounded" value={searchOneIngredient} id="formFile" type="text" onChange={handleChange} placeholder="Primer ingrediente" />
     </div>
+
   )
 }
 

@@ -71,7 +71,7 @@ function RecipesList() {
       {/* only to show if you are logged in  */}
       {isLoggedIn === true &&  
       <div>
-        <button onClick={toggleForm}>Add recipe</button> 
+        <button onClick={toggleForm} class="btn">Add recipe</button> 
         {formIsShowing === true 
           ? <RecipeAdd getData={getData} hideForm={setFormIsShowing} />
           : null }
@@ -80,14 +80,14 @@ function RecipesList() {
 
     <div>
        <h1>¿Qué quieres cocinar hoy?</h1>
-    
+      <div class="recipeFormCard">
       <SearchRecipe filterList={filterList} /> 
-    
-      <br/>
-      <div>
+    </div>
+      <hr/>
+      <div  class="recipeBoxCard">
       {recipeListToShow.map((eachRecipe) => {
         return (
-          <div key={eachRecipe._id}>
+          <div key={eachRecipe._id} class="shadow-lg p-3 mb-5 bg-body rounded recipeCard">
             <Link to={`/recipes/${eachRecipe._id}/details`}>
               <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
               <p>{eachRecipe.name}</p>
