@@ -60,8 +60,6 @@ const delFriendFav = async () => {
 
 
 
-    
-
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>

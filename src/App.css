@@ -116,3 +116,9 @@
   width: 500px;
 }
 
+.delete-btn {
+  background-color: rgba(255, 0, 0, 0.429);
+  border: solid 1px red;
+  padding: 10px;
+  border-radius: 50%;
+}
