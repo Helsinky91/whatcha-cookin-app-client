@@ -1,6 +1,7 @@
 import React , { useEffect, useState }from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { randomRecipeService } from '../services/recipes.services'
+import { randomRecipeService } from '../services/recipes.services';
+// import FadeLoader from "react-spinners/FadeLoader";
 
 function RandomRecipe() {
 
@@ -31,7 +32,7 @@ function RandomRecipe() {
 
   return (
     <div>
-    {!randomRecipe._id ? (
+    {!randomRecipe ? (
     <div className='home-btn'>
 
       <h2>Mira esta receta:</h2>

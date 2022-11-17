@@ -143,7 +143,7 @@ const addComment = async (event) => {
          )}) }
         </h4>
      : <h4>Tag: no especificado</h4> } */}
-     {tag !== undefined ? <h4> {`Tag: ${tag}`} </h4>  : <h4>Tag: no especificado</h4> }
+    {tag !== undefined ? <h4> {`Tag: ${tag}`} </h4>  : <h4>Tag: no especificado</h4> }
 
     {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
     {steps !== undefined ? <h4>{`Paso a paso: ${steps}`}</h4> : <h4>Paso a paso: no especificado</h4> }
@@ -165,7 +165,7 @@ const addComment = async (event) => {
      <button onClick={addComment}>Comentar</button>
     </form> 
     
-<h3>Comentarios sobre esta receta</h3>
+  <h3>Comentarios sobre esta receta</h3>
   <RecipeComment recipeComments={recipeComments} updateComments={getData}/>
   
     </div>

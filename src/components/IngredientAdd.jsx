@@ -70,7 +70,7 @@ function IngredientAdd(props) {
     <div>
 
       <form>
-        <label for="image">Ingredient's image</label>
+        <label htmlFor="image">Ingredient's image</label>
         <input type="file" name="image" onChange={handleUploadImage} />
         
             <br />
