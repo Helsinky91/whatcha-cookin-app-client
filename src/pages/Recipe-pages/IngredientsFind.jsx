@@ -85,19 +85,21 @@ function IngredientsFind() {
   return (
     <div>
       <h1>¿Qué tienes en la nevera?</h1>
-      <h3>Elije 1, 2 o 3 ingredientes y encuentra la receta perfecta</h3>
-      <form></form>
 
-      <h1>Busca por ingrediente!</h1>
+          <hr />
+      <h3>Busca la receta perfecta con los ingredientes que quieras</h3>
+
+      <div class="recipeFormCard">
       <SearchIngredient filterList={filterList} />
       <SearchIngredientTwo filterList={filterListTwo} />
       <SearchIngredientThree filterList={filterListThree} />
-
-      <br />
-      <div>
+      </div>
+          <hr />
+            <h3>Recetas encontradas</h3>
+      <div class="recipeBoxCard bottom-padding">
         {ingredientSearch.map((eachRecipe) => {
           return (
-            <div key={eachRecipe._id}>
+            <div key={eachRecipe._id} class="shadow-lg p-3 mb-5 bg-body rounded recipeCard" >
               <Link to={`/recipes/${eachRecipe._id}/details`}>
                 <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
                 <p>{eachRecipe.name}</p>

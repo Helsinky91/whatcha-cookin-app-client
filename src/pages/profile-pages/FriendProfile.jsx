@@ -81,7 +81,7 @@ const delFriendFav = async () => {
   const { username, image, description, tag } = friendProfileList
 
   return (
-    <div>
+    <div class="btn">
       <div>
         <h1>Bienvenido al perfil de {username}</h1>
         <img src={image} alt={username} width={200}/>
@@ -91,14 +91,15 @@ const delFriendFav = async () => {
   
       : <button onClick={addFriendFav}>Añadir a Mis Amigos</button> 
       }
+      <div class="profileDetails">
+        <h4 ><b>Descripción</b> {description}</h4>
+        {tag !== undefined ? <h4><b>Me interesa</b>{`${tag}`} </h4> : <p>Intereses no especificados</p> }
+      </div>
       <div>
-        <h4>Descripción: <span>{description}</span></h4>
-        {tag !== undefined ? <h4><b>Me interesa: </b>{`${tag}`} </h4> : <p>Intereses no especificados</p> }
-
-        <h4>Mis platos preferidos</h4>
+        <h4><b>Mis platos preferidos</b></h4>
         {friendFavRecipes.map((eachFav) => {
           return (
-            <div key={eachFav._id}>
+            <div key={eachFav._id} >
             <Link to={`/recipes/${eachFav._id}/details`}>
                   <img
                     src={eachFav.image}

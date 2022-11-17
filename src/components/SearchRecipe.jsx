@@ -14,11 +14,7 @@ function SearchRecipe(props) {
 
   return (
     <div>
-
-      <hr/>
-      <label>Search:</label>
-      <input value={searchItem} type="text" onChange={handleChange} />
-
+      <input value={searchItem} type="text" onChange={handleChange} placeholder="Busca una receta"/>
     </div>
   )
 }
