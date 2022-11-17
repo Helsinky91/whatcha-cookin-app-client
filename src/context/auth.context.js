@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import {verifyService} from "../services/auth.services";
+import ClockLoader from "react-spinners/ClockLoader";
+
 
 const AuthContext = createContext()
 
@@ -52,13 +54,12 @@ function AuthWrapper(props) {
         authenticaUser
     }
 
-    //!CREAR SPINNER
     if (isFetching === true) {
         return (
-            <div className="App">
-               <p>..validando al user</p>
-            </div>
-        )
+            <div className="spinner">
+              <ClockLoader color="#d68736" size={200}/>
+            </div> 
+           )
     }
 
     return (

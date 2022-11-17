@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchIngredient from "../../components/SearchIngredient";
 import SearchIngredientTwo from "../../components/SearchIngredientTwo";
 import SearchIngredientThree from "../../components/SearchIngredientThree";
+import ClockLoader from "react-spinners/ClockLoader";
+
 // getRecipesListService
 // searchByIngredientService
 function IngredientsFind() {
@@ -70,9 +72,14 @@ function IngredientsFind() {
 
 
 
-  //! change to loading SPINNERs
+
   if (isFetching === true) {
-    return <h3>...buscando</h3>;
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
+
   }
 
   return (

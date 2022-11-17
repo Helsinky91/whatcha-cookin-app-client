@@ -3,7 +3,7 @@ import { createRecipeService, tagInfoService, typeOfFoodInfoService } from '../s
 import { useState } from 'react'
 import { uploadImageService } from '../services/upload.services'
 import { useNavigate } from 'react-router-dom'
-
+import ClockLoader from "react-spinners/ClockLoader";
 
 function RecipeAdd(props) {
   
@@ -104,9 +104,14 @@ function RecipeAdd(props) {
       
     }
   }
-   //! change to loading SPINNER
+ 
    if (isFetching === true) {
-    return <h3>...buscando</h3>
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
+
   }
 
   return (

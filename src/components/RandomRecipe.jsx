@@ -1,7 +1,7 @@
 import React , { useEffect, useState }from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { randomRecipeService } from '../services/recipes.services';
-// import FadeLoader from "react-spinners/FadeLoader";
+import ClockLoader from "react-spinners/ClockLoader";
 
 function RandomRecipe() {
 
@@ -24,9 +24,13 @@ function RandomRecipe() {
       navigate("/error")
     }
   }
-  //! change to loading SPINNER
+  
   if (isFetching === true) {
-    return <h3>...buscando</h3>
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
   }
 
 

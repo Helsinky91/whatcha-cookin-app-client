@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
 import IsAdmin from '../../components/IsAdmin';
 import {  getMyFavRecipesService, getMyProfileService, myCreatedRecipesService, myFriendsService } from '../../services/profile.services'
+import ClockLoader from "react-spinners/ClockLoader";
 
 
 function Profile() {
@@ -50,9 +51,13 @@ function Profile() {
   }
   
   
-  //! change to loading SPINNER
-  if (isFetching === true) {
-    return <h3>...buscando</h3>
+   if (isFetching === true) {
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
+
   }
 
 

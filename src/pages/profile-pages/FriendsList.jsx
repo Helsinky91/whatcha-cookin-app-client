@@ -5,10 +5,12 @@ import IsAdmin from '../../components/IsAdmin';
 import SearchFriend from '../../components/SearchFriend'
 import { AuthContext } from "../../context/auth.context"
 import { deleteProfileService, getProfilesListService } from "../../services/profile.services";
+import ClockLoader from "react-spinners/ClockLoader";
+
 
 function SearchFriends() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, user } = useContext(AuthContext)
 
 
   //states
@@ -44,8 +46,8 @@ function SearchFriends() {
     setFriendListToShow(filterArr);
   };
 
-  //to hide the form unless pressing the button
-  const toggleForm = () => setFormIsShowing(!formIsShowing);
+  // //to hide the form unless pressing the button
+  // const toggleForm = () => setFormIsShowing(!formIsShowing);
   
   const deleteUser = async (userId) => {
     try {
@@ -59,9 +61,12 @@ function SearchFriends() {
        
   }
 
-  //! change to loading SPINNER
   if (isFetching === true) {
-    return <h3>...buscando</h3>;
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
   }
 
   return (
@@ -77,15 +82,15 @@ function SearchFriends() {
           {friendListToShow.map((eachFriend) => {
             return (
               <div key={eachFriend._id}>
-                <Link to={`/profile/${eachFriend._id}/details`}>
-                  <img
-                    src={eachFriend.image}
-                    alt={eachFriend.username}
-                    width={200}
-                  />
-                  <p>{eachFriend.username}</p>
-                </Link>
-                <IsAdmin><button className="delete-btn" onClick={() => deleteUser(eachFriend._id)} >Delete User</button></IsAdmin>
+              {eachFriend._id !== user._id 
+                ?  (
+                <div> <Link to={`/profile/${eachFriend._id}/details`}>
+                  <img src={eachFriend.image} alt={eachFriend.username} width={200}/>
+                  <p>{eachFriend.username}</p> 
+                  </Link>
+                  <IsAdmin><button className="delete-btn" onClick={() => deleteUser(eachFriend._id)} >Delete User</button></IsAdmin> 
+                </div> )
+                : <></> }
               </div>
             );
           })}

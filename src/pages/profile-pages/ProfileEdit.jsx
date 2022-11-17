@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getProfileService, editProfileService, deleteProfileService, tagProfileInfoService } from '../../services/profile.services'
 import { AuthContext } from "../../context/auth.context"
 import { uploadImageService } from '../../services/upload.services'
+import ClockLoader from "react-spinners/ClockLoader";
 
 
 function ProfileEdit() {
@@ -25,6 +26,7 @@ function ProfileEdit() {
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
+  const [ errorMessage, setErrorMessage ] = useState("");
 
   const [ isFetching, setIsFetching ] = useState(true)
 
@@ -86,8 +88,13 @@ function ProfileEdit() {
         navigate("/profile/my-profile")
 
     } catch (error) {
+      if(error.response && error.response.status === 400) {
+        //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
+        setErrorMessage(error.response.data.errorMessage)
+      } else {
         navigate("/error")                  
-    }
+      }
+  }
   }
   const handleUploadImage = async (event) => {
     setIsUploadingImage(true)
@@ -120,7 +127,6 @@ function ProfileEdit() {
   const deleteUser = () => {
    try {
     deleteProfileService(userId) 
-    //!si eres admin > navigate lista profiles/amigos, sino log out y a home.
     handleLogout()
     navigate("/")
    }catch(error) {
@@ -128,9 +134,12 @@ function ProfileEdit() {
    } 
   } 
  
-  //! change to loading SPINNER
   if (isFetching === true) {
-    return <h3>...buscando</h3>
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
   }
   
 
@@ -164,6 +173,7 @@ function ProfileEdit() {
             })}
           </select>
         </label> 
+        <br />
         <label htmlFor="description">Sobre mí:</label>
         <input type="text" name="description" value={descriptionInput} onChange={handleDescriptionChange} />
 
@@ -175,6 +185,7 @@ function ProfileEdit() {
         } 
         <br/>
         <button onClick={handleUpdate}>Submit changes</button>
+        {errorMessage !== "" && <p className='error-message'>{errorMessage}</p>}
 
     </form>
 
@@ -187,5 +198,6 @@ function ProfileEdit() {
     </div>
   )
 }
+
 
 export default ProfileEdit

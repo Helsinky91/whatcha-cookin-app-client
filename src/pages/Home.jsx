@@ -30,7 +30,11 @@ function Home() {
         <RandomRecipe /> 
         <button  onClick={refresh}>Mira otra receta</button>
         </div>
-      : <h2>Preparándote otra receta</h2>
+      : <div>
+        <h2>Preparándote otra receta</h2>
+        {/* <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.greenpan.es%2Fcolecciones%2Fbarcelona%2Fsart%25C3%25A9n-para-pescado-antiadherente-barcelona%2FCW002277-002.html&psig=AOvVaw0Q3jk_pNNoh8cDnw7bFfRa&ust=1668782708383000&source=images&cd=vfe&ved=2ahUKEwi3-8uVurX7AhUEgc4BHb7qBXsQjRx6BAgAEAo" alt="" /> */}
+        </div>
+        
       }
 
       </div>
