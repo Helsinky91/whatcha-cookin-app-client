@@ -45,7 +45,9 @@ function RecipesList() {
   const filterList = (filterQuery) => { 
         
     const filterArr = recipeList.filter((eachEl) => {
-      return eachEl.name.includes(filterQuery)
+      return (eachEl.name.includes(filterQuery) 
+      || eachEl.name.toLowerCase().includes(filterQuery)) 
+      || eachEl.name.includes(filterQuery.toLowerCase()) 
     })
     console.log(filterArr)
     setRecipeListToShow(filterArr)

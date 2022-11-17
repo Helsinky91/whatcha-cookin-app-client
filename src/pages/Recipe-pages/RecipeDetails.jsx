@@ -53,24 +53,6 @@ function RecipeDetails() {
     navigate("/error")
   }
 }
-
-            //Intent per fer que al inici comprovi si la recepta esta a favoritos per canviar el boto de añadir
-// const checkFav = async () => {
-//   try {
-//     const response = await userFavRecipeService(recipeId)
-//     console.log("response id", response)
-//     if (response.data._id === recipeId){
-  
-//       setAddDeleteFav(true)
-//     } else {
-//       setAddDeleteFav(false)
-//     }
-//   } catch (error) {
-    
-//   }
-// }
-
-
   //! change to loading SPINNER
 if (isFetching === true) {
   return <h3>...loading</h3>

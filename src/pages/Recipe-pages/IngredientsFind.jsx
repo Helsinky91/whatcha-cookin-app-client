@@ -17,6 +17,8 @@ function IngredientsFind() {
   const [ingredientListToShow, setIngredientListToShow] = useState([]);
       const [ ingredientListToShowTwo, setIngredientListToShowTwo] = useState([])
       const [ ingredientListToShowThree, setIngredientListToShowThree] = useState([])
+      const [ ingredientSearch, setIngredientSearch] = useState([])
+
 
   const [isFetching, setIsFetching] = useState(true);
 
@@ -30,27 +32,49 @@ function IngredientsFind() {
       const response = await getRecipesListService();
       setIngredientList(response.data);
       console.log("response from ingr", response.data);
-      setIngredientListToShow(response.data);
-         setIngredientListToShowTwo(response.data)
-         setIngredientListToShowThree(response.data)
+      setIngredientSearch(response.data);
       setIsFetching(false);
     } catch (error) {
       navigate("/error");
     }
   };
-
   //for the search button only by name
   const filterList = (filterQuery) => {
-    const filterArr = ingredientListToShowTwo.filter((eachEl) => {
-      if (eachEl.ingredients?.indexOf(filterQuery) !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    const filterArr = ingredientList.filter((eachEl) => {
+     return (eachEl.ingredients.includes(filterQuery) 
+     || eachEl.ingredients.toLowerCase().includes(filterQuery)) 
+     || eachEl.ingredients.includes(filterQuery.toLowerCase()) 
+   })
 
-    return setIngredientListToShow(filterArr);
+
+    return (setIngredientListToShow(filterArr), setIngredientSearch(filterArr))
   };
+  const filterListTwo = (filterQuery) => {
+    const filterArr = ingredientListToShow.filter((eachEl) => {
+     return (eachEl.ingredients.includes(filterQuery) 
+     || eachEl.ingredients.toLowerCase().includes(filterQuery)) 
+     || eachEl.ingredients.includes(filterQuery.toLowerCase()) 
+   })
+
+    return (setIngredientListToShowTwo(filterArr), setIngredientSearch(filterArr) );
+  };
+
+  const filterListThree = (filterQuery) => {
+    const filterArr = ingredientListToShowTwo.filter((eachEl) => {
+     return (eachEl.ingredients.includes(filterQuery) 
+     || eachEl.ingredients.toLowerCase().includes(filterQuery)) 
+     || eachEl.ingredients.includes(filterQuery.toLowerCase()) 
+   })
+
+    return (setIngredientListToShowThree(filterArr), setIngredientSearch(filterArr) );
+  };
+
+
+
+  //! change to loading SPINNERs
+  if (isFetching === true) {
+    return <h3>...buscando</h3>;
+  }
 
   return (
     <div>
@@ -60,12 +84,12 @@ function IngredientsFind() {
 
       <h1>Busca por ingrediente!</h1>
       <SearchIngredient filterList={filterList} />
-      <SearchIngredientTwo filterList={filterList} />
-      <SearchIngredientThree filterList={filterList} />
+      <SearchIngredientTwo filterList={filterListTwo} />
+      <SearchIngredientThree filterList={filterListThree} />
 
       <br />
       <div>
-        {ingredientListToShow.map((eachRecipe) => {
+        {ingredientSearch.map((eachRecipe) => {
           return (
             <div key={eachRecipe._id}>
               <Link to={`/recipes/${eachRecipe._id}/details`}>
