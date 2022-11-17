@@ -9,20 +9,14 @@ import { AuthContext } from "../../context/auth.context"
 import { createCommentService, getCommentService } from '../../services/comment.services'
 import RecipeComment from '../../components/RecipeComment'
 import IsAdmin from '../../components/IsAdmin'
-
-//!only if it's admin -- acabar de configurar
-
-  // const deleteFood = (ItemName) => {
-  //   const filteredList = recipeListToShow.filter((eachEl) => (eachEl.name === ItemName) ? false : true)
-  //   setRecipeListToShow(filteredList);
- //acabar config ironnutricion lab
-
+import userEvent from '@testing-library/user-event'
 
 function RecipeDetails() {
-  const { authenticaUser } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   // console.log(authenticaUser)
   const navigate = useNavigate();
 
+  
 
   const { recipeId } = useParams()
   const [ recipeDetails, setRecipeDetails] = useState(null)
@@ -87,7 +81,6 @@ const handleDelete = async(event) => {
       console.log(error)
       navigate("/error")
   }
-
 }
 
 const addRecipeFav = async () => {
@@ -110,8 +103,8 @@ const delRecipeFav = async () => {
   }
 }
 
-const { name, tag, description, steps, image, typeOfFood, ingredients } = recipeDetails
-console.log("recipe details tag", tag)
+const { name, tag, description, steps, image, typeOfFood, ingredients, createdBy } = recipeDetails
+
 
 const addComment = async (event) => {
   event.preventDefault();
@@ -126,6 +119,7 @@ const addComment = async (event) => {
     console.log(error)
   }
 }
+console.log("createdBy" , createdBy)
 
   return (
     <div>
@@ -141,7 +135,21 @@ const addComment = async (event) => {
     {typeOfFood !== undefined ? <h4>{`Tipo de receta: ${typeOfFood} `}</h4> : <h4>Tipo de receta: no especificado</h4> }
     {ingredients !== undefined ?   <h4>{`Ingredientes: ${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
     
-    <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link>
+    {createdBy.username !== undefined 
+    ? <p>Created by: 
+      {createdBy._id === user._id 
+    ? <Link to={"/profile/my-profile"}> {`${createdBy.username}`} </Link>
+    : <Link to={`/profile/${createdBy._id}/details`}> {`${createdBy.username}`} </Link> 
+      } </p>
+    : <p>Este usuario ya no está registrado en nuestra app</p>
+    }
+    
+
+
+    { user._id === recipeDetails.createdBy 
+    ? <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link> 
+    : <></>} 
+ 
    
 
     <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
@@ -160,9 +168,6 @@ const addComment = async (event) => {
   <RecipeComment recipeComments={recipeComments} updateComments={getData}/>
   
     </div>
-    
-    
-    
     </div>
   )
 }

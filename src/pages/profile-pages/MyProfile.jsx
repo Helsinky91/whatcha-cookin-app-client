@@ -7,8 +7,6 @@ import {  getMyFavRecipesService, getMyProfileService, myCreatedRecipesService, 
 
 function Profile() {
   
-//!Profile.jsx changeAndUpdate que venga de friendId y userId 
-//unFriend, addFriend 
   
   const navigate = useNavigate();
 

@@ -137,7 +137,7 @@ function ProfileEdit() {
     return <h3>...buscando</h3>
   }
   
-  console.log("allTag", allTags)
+
   return (
     <div>
 

@@ -2,9 +2,10 @@ import React, { useContext }from 'react'
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FriendAdd from '../../components/FriendAdd';
+import IsAdmin from '../../components/IsAdmin';
 import SearchFriend from '../../components/SearchFriend'
 import { AuthContext } from "../../context/auth.context"
-import { getProfilesListService } from "../../services/profile.services";
+import { deleteProfileService, getProfilesListService } from "../../services/profile.services";
 
 function SearchFriends() {
   const navigate = useNavigate();
@@ -47,6 +48,19 @@ function SearchFriends() {
 
   //to hide the form unless pressing the button
   const toggleForm = () => setFormIsShowing(!formIsShowing);
+  
+  const deleteUser = async (userId) => {
+    try {
+      await deleteProfileService(userId) 
+      navigate("/profile/search-friends")
+      getData()
+     }catch(error) {
+      navigate("/error")
+     } 
+    
+    
+   
+  }
 
   //! change to loading SPINNER
   if (isFetching === true) {
@@ -77,11 +91,12 @@ function SearchFriends() {
                 <Link to={`/profile/${eachFriend._id}/details`}>
                   <img
                     src={eachFriend.image}
-                    alt={eachFriend.name}
+                    alt={eachFriend.username}
                     width={200}
                   />
                   <p>{eachFriend.username}</p>
                 </Link>
+                <IsAdmin><button className="delete-btn" onClick={() => deleteUser(eachFriend._id)} >Delete User</button></IsAdmin>
               </div>
             );
           })}
