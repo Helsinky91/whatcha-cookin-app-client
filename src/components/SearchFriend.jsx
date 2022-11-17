@@ -15,10 +15,11 @@ function SearchFriend(props) {
   return (
     <div>
 
+     
+      <div className="ingredientForm mb-3">
+        <input className="shadow p-3 mb-5 bg-body rounded" value={searchItem} type="text" onChange={handleChange} placeholder="Introduce un nombre" />
+      </div>
       <hr/>
-      <label>Search:</label>
-      <input value={searchItem} type="text" onChange={handleChange} />
-
     </div>
   )
 }

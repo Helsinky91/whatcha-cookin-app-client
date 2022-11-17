@@ -25,8 +25,8 @@ function SearchIngredientTwo(props) {
   
 
     return (
-    <div class="ingredientForm, mb-3">
-   <input class="shadow p-3 mb-5 bg-body rounded" value={searchOneIngredient} type="text" onChange={handleChange} placeholder="Segundo ingrediente"/>
+    <div className="ingredientForm mb-3">
+   <input className="shadow p-3 mb-5 bg-body rounded" value={searchOneIngredient} type="text" onChange={handleChange} placeholder="Segundo ingrediente"/>
     </div>
   )
 }
