@@ -62,22 +62,27 @@ function Profile() {
   return (
     <div>
          
-          <div>
+          <div className="my-profile bottom-padding" >
             <h1>Hola {profileList.username}! </h1>
+            <div>
             <img src={profileList.image} alt={profileList.username} width={150}/>
+
+            </div>
+            <div>
+
             {profileList.tag !== undefined ? <p><b>Me interesa: </b>{`${profileList.tag}`} </p> : <p>Intereses no especificados</p> }
             <h3>Sobre mí: </h3>
             <p>{profileList.description}</p>
+            </div>
           </div>
          
-          <div>
+          <div className='btn'>
             <Link to={`/profile/${profileList._id}/edit`}>
               <button>Edit your profile</button>
             </Link>
           </div>
           
-        <div>
-            <div>
+        <div className='dashboard'>
             <div>
               <h3>Tus recetas creadas</h3>
               {myRecipes !== null
@@ -89,6 +94,7 @@ function Profile() {
                   )
               })}
             </div>
+            <div>
               <h3>Tus amigos</h3>
               {myFriends !== null
               && myFriends.friends.map((eachFriend, index) => {
@@ -101,6 +107,7 @@ function Profile() {
                 )
               })}
             </div>
+            <div>
 
               <h3>Tus recetas favoritas</h3>
               {myFavRecipes !== null
@@ -111,6 +118,7 @@ function Profile() {
                   </div>
                 )
               })}
+            </div>
         </div>
     </div>
   )
