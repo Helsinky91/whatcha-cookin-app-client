@@ -81,7 +81,7 @@ const delFriendFav = async () => {
   const { username, image, description, tag } = friendProfileList
 
   return (
-    <div class="btn">
+    <div class="btn bottom-padding">
       <div>
         <h1>Bienvenido al perfil de {username}</h1>
         <img src={image} alt={username} width={200}/>
