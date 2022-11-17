@@ -10,7 +10,7 @@ function IngredientsFind() {
 
     //states
     const [ ingredientList, setIngredientList ] = useState([]);
-    const [ recipeListToShow, setRecipeListToShow] = useState([])
+    const [ ingredientListToShow, setIngredientListToShow] = useState([])
 
     const [isFetching, setIsFetching] = useState(true)
     
@@ -25,7 +25,7 @@ function IngredientsFind() {
         const response = await getRecipesListService()
         setIngredientList(response.data)
         console.log("response from ingr",  response.data)
-        setRecipeListToShow(response.data)
+        setIngredientListToShow(response.data)
         setIsFetching(false)
 
         }catch (error) {
@@ -36,16 +36,22 @@ function IngredientsFind() {
     //for the search button only by name
   const filterList = (filterQuery) => { 
         
-     const ingredients = searchByIngredientService()
+     // const ingredients = searchByIngredientService()
 
     
-    const filterArr = ingredients.filter((eachEl) => {
+    const filterArr = ingredientListToShow.filter((eachEl) => {
         console.log("eachEl.ingr" ,eachEl)
-      return eachEl.includes(filterQuery)
-
+        console.log("filterQuery", filterQuery) //lega bien lo que se escribe en el input
+        console.log("each ingredients",eachEl.ingredients )
+      if (eachEl.ingredients?.indexOf(filterQuery) !== -1){
+          return true
+      } else {
+          return false
+      }
+      
     })
     console.log("filterArr", filterArr)
-    setRecipeListToShow(filterArr)
+    return setIngredientListToShow(filterArr)
   }
 
 
@@ -59,15 +65,18 @@ function IngredientsFind() {
     <div>
       <h1>¿Qué tienes en la nevera?</h1>
       <h3>Elije 1, 2 o 3 ingredientes y encuentra la receta perfecta</h3>
+      <form>
+        
+      </form>
 
 
 
 
-        {/* <h1>Busca por ingrediente!</h1>
+        <h1>Busca por ingrediente!</h1>
         <SearchRecipe filterList={filterList} />
         <br />
         <div>
-      {recipeListToShow.map((eachRecipe) => {
+      {ingredientListToShow.map((eachRecipe) => {
         return (
           <div key={eachRecipe._id}>
             <Link to={`/recipes/${eachRecipe._id}/details`}>
@@ -81,7 +90,7 @@ function IngredientsFind() {
 
       </div>
 
- */}
+
 
 
     </div>
