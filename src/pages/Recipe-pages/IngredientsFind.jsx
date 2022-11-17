@@ -75,7 +75,7 @@ function IngredientsFind() {
 
   if (isFetching === true) {
     return (
-      <div className="App">
+      <div className="spinner">
         <ClockLoader color="#d68736" size={100}/>
       </div> 
      )

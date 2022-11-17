@@ -1,9 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mali:wght@300&family=Marhey:wght@300&family=Neucha&family=Poor+Story&family=Rubik+Bubbles&family=Russo+One&family=Sigmar+One&family=Source+Code+Pro:wght@300&family=VT323&family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Source+Code+Pro&family=Syne+Mono&family=VT323&family=Viga&display=swap');
 .App {
   text-align: center;
   background-color: rgba(16, 53, 40, 0.374);
   min-height: 100vh;
+  padding-bottom: 7%;
+  font-family: 'Syne Mono', monospace;
+  justify-content: center;
 }
+
+.App a {
+  text-decoration: none;
+  color:rgb(121, 60, 13)
+}
+.App a:hover {
+  font-weight: bold;
+}
+
 .spinner {
   display: flex;
   justify-content: center;
@@ -12,11 +24,32 @@
   background-color: rgba(16, 53, 40, 0.374);
 
 }
+.spinner-random-recipe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: "#d68736"
+}
+h1 {
+  font-family: 'Viga', sans-serif;
+  padding-bottom: 20px
+}
+
+.app-title {
+  padding-top: 30px;
+  padding-bottom: 10px
+}
+.app-title h1{
+  font-family: 'Bungee Spice', cursive;
+  font-size: 85px;
+}
+
 .navbar{
   background-color: rgba(7, 7, 7, 0.700);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .navbar > div {
@@ -45,14 +78,18 @@
   font-size: 20px;
 }
 
-.home-btn button{
+.btn button{
   background-color: rgba(255, 166, 0, 0.661);
   padding: 8px;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 10px;
   margin-bottom: 10px;
+  font-family: 'VT323', monospace;
 }
 
+.btn li{
+  list-style-type: none
+}
 .error-message {
   color: rgba(255, 0, 43, 0.94);
   font-weight: bold;
@@ -60,13 +97,10 @@
   align-items: center;
 }
 
-.home-btn li{
-  list-style-type: none
-}
 
-.home-btn button:hover {
+.btn button:hover {
   background-color: rgba(255, 136, 0, 0.661);
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .auth-page {
@@ -113,11 +147,14 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items:flex-start;
+  padding-top: 50px;
 }
 
+
 .home-dashboard div{
-  width: 500px;
+  width: 500px;  
 }
+
 
 .delete-btn {
   background-color: rgba(255, 0, 0, 0.429);
@@ -126,7 +163,10 @@
   border-radius: 50%;
 }
 
-
+.bottom-padding img{
+  padding-bottom: 10px;
+  /* margin-bottom: 10px */
+}
 
 
 
@@ -230,6 +270,7 @@ height: 10vh
 .recipeBoxCard input {
   border-color: orange
   
+
 }
 
 .profileDetails {
@@ -239,3 +280,76 @@ height: 10vh
 .profileDetails h4{
  margin: 10vh
 }
+
+.bottom-padding img{
+  padding-bottom: 10px;
+  /* margin-bottom: 10px */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------- */
+
