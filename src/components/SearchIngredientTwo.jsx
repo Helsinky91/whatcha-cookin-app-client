@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react';
 
-function SearchIngredient(props) {
+function SearchIngredientTwo(props) {
   //! mirar lab-react-ironnutrition > App.js
     //1. creamos estado de list + listToShow
     //2. const filterList
@@ -27,8 +27,7 @@ function SearchIngredient(props) {
     return (
     <div>
     <hr/>
-  
-      <label>Primer ingrediente</label>
+      <label>Segundo ingrediente</label>
       <input value={searchOneIngredient} type="text" onChange={handleChange} />
 
 
@@ -37,4 +36,4 @@ function SearchIngredient(props) {
   )
 }
 
-export default SearchIngredient
+export default SearchIngredientTwo
