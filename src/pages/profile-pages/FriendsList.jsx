@@ -1,7 +1,6 @@
 import React, { useContext }from 'react'
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FriendAdd from '../../components/FriendAdd';
 import IsAdmin from '../../components/IsAdmin';
 import SearchFriend from '../../components/SearchFriend'
 import { AuthContext } from "../../context/auth.context"
@@ -58,9 +57,7 @@ function SearchFriends() {
      }catch(error) {
       navigate("/error")
      } 
-    
-    
-   
+       
   }
 
   //! change to loading SPINNER
@@ -70,15 +67,7 @@ function SearchFriends() {
 
   return (
     <div>
-      {isLoggedIn === true && (
-        <div>
-          <button onClick={toggleForm}>Add friend</button>
-          {formIsShowing === true ? (
-            <FriendAdd getData={getData} hideForm={setFormIsShowing} />
-          ) : null}
-        </div>
-      )}
-
+    
       <div>
         <h1>Posibles amigos</h1>
 

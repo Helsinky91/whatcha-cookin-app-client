@@ -1,4 +1,3 @@
-import { getNextKeyDef } from '@testing-library/user-event/dist/keyboard/getNextKeyDef'
 import React, { useContext }from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -9,7 +8,7 @@ import { AuthContext } from "../../context/auth.context"
 import { createCommentService, getCommentService } from '../../services/comment.services'
 import RecipeComment from '../../components/RecipeComment'
 import IsAdmin from '../../components/IsAdmin'
-import userEvent from '@testing-library/user-event'
+
 
 function RecipeDetails() {
   const { user } = useContext(AuthContext)
@@ -128,7 +127,7 @@ console.log("createdBy" , createdBy)
     
 
 
-    { user._id === recipeDetails.createdBy 
+    { user._id === createdBy._id 
     ? <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link> 
     : <></>} 
  
