@@ -8,7 +8,6 @@ import SearchIngredient from "../../components/SearchIngredient";
 import SearchIngredientTwo from "../../components/SearchIngredientTwo";
 import SearchIngredientThree from "../../components/SearchIngredientThree";
 import ClockLoader from "react-spinners/ClockLoader";
-
 // getRecipesListService
 // searchByIngredientService
 function IngredientsFind() {
@@ -47,6 +46,7 @@ function IngredientsFind() {
      || eachEl.ingredients.includes(filterQuery.toLowerCase()) 
    })
 
+   console.log("1",filterArr)
 
     return (setIngredientListToShow(filterArr), setIngredientSearch(filterArr))
   };
@@ -56,7 +56,7 @@ function IngredientsFind() {
      || eachEl.ingredients.toLowerCase().includes(filterQuery)) 
      || eachEl.ingredients.includes(filterQuery.toLowerCase()) 
    })
-
+    console.log("2",filterArr)
     return (setIngredientListToShowTwo(filterArr), setIngredientSearch(filterArr) );
   };
 
@@ -66,6 +66,7 @@ function IngredientsFind() {
      || eachEl.ingredients.toLowerCase().includes(filterQuery)) 
      || eachEl.ingredients.includes(filterQuery.toLowerCase()) 
    })
+   console.log("2",filterArr)
 
     return (setIngredientListToShowThree(filterArr), setIngredientSearch(filterArr) );
   };
@@ -89,17 +90,17 @@ function IngredientsFind() {
           <hr />
       <h3>Busca la receta perfecta con los ingredientes que quieras</h3>
 
-      <div class="recipeFormCard">
+      <div className="recipeFormCard">
       <SearchIngredient filterList={filterList} />
       <SearchIngredientTwo filterList={filterListTwo} />
       <SearchIngredientThree filterList={filterListThree} />
       </div>
           <hr />
             <h3>Recetas encontradas</h3>
-      <div class="recipeBoxCard bottom-padding">
+      <div className="recipeBoxCard bottom-padding">
         {ingredientSearch.map((eachRecipe) => {
           return (
-            <div key={eachRecipe._id} class="shadow-lg p-3 mb-5 bg-body rounded recipeCard" >
+            <div key={eachRecipe._id} className="shadow-lg p-3 mb-5 bg-body rounded recipeCard" >
               <Link to={`/recipes/${eachRecipe._id}/details`}>
                 <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
                 <p>{eachRecipe.name}</p>
