@@ -28,6 +28,7 @@ function RecipeAdd(props) {
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
   const [ isFetching, setIsFetching ] = useState(true)
+  const [ errorMessage, setErrorMessage ] = useState("");
 
   
   //set up handlechanges for all the fields:
@@ -84,7 +85,13 @@ function RecipeAdd(props) {
       props.hideForm()
          
     } catch (error) {
-      console.log(error)
+      if(error.response && error.response.status === 400) {
+        //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
+        setErrorMessage(error.response.data.errorMessage)
+      } else {
+        console.log(error)
+        // navigate("/error")                  
+      }
     }
   }
   
@@ -117,59 +124,36 @@ function RecipeAdd(props) {
   return (
     <div className="btn bottom-padding">
      
-     <Row className="g-4">
-      <Col md>
-        <FloatingLabel controlId="floatingInputGrid" label="name">
+    <form className="">
+
+      {/* <Row className="g-2">
+      <Col md> */}
+     <div>
+      <label htmlFor="image" class="form-label"></label>
+      <input class="form-control" type="file" id="formFile" name="image" onChange={handleUploadImage}/>
+    </div>
+    <br />
+      {/* </Col>
+      <Col md> */}
+    <FloatingLabel controlId="floatingInputGrid" label="name" className="mb-3">
           <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
-        </FloatingLabel>
-      </Col>
-      <Col md>
-      <FloatingLabel controlId="floatingInputGrid" label="name">
-          <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
-        </FloatingLabel>
-      </Col>
-      <Col md>
-      <FloatingLabel controlId="floatingInputGrid" label="name">
-          <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
-        </FloatingLabel>
-      </Col>
-     </Row>
-   
-         
-     
-
-
-      <form className="">
-
-      {/* <form className="formRecipe"> */}
-
-        <label htmlFor="image">Ingredient's image</label>
-        <input type="file" name="image" onChange={handleUploadImage} />
-        <br />
-
+     </FloatingLabel>
+     {/* </Col>
+     <Col md> */}
         {/* <label htmlFor='name'>Name</label>
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} /> */}
      
-          <br />
-          {/* <label htmlFor="tag">Tag</label>            
-         <select name="tag" multiple  onChange={handleTagChange} >
+        <label htmlFor="tag">Tag: </label>            
+          <select name="tag" multiple  onChange={handleTagChange} >
             {allTags.map((eachEl, index) =>{
               return(
               <option key={index} value={eachEl}>{eachEl}</option>
               )
             })}
-          </select> */}
-                   
-        <br />
-
-        <label htmlFor='description'>Description</label>
-        <input value={desciptionInput} type="text" name="description" onChange={handleDescriptionChange}/>
-        
-           <br />
-        <label htmlFor='steps'>Steps</label>
-        <input value={stepsInput} type="text" name="steps" onChange={handleStepsChange}/>
-        <br />
-        <label htmlFor='typeOfFood'>Type Of Food:
+          </select> 
+          {/* </Col>
+      <Col md> */}
+        <label htmlFor='typeOfFood'>Type Of Food:</label> 
           <select name="typeOfFood" multiple onChange={handleTypeOfFoodChange} >
             {allTypeOfFood.map((eachEl, index) =>{
               return(
@@ -177,11 +161,27 @@ function RecipeAdd(props) {
               )
             })}
           </select>
-        </label> 
-        <br />
-        <label htmlFor='ingredients'>Ingredient</label>
-        <input value={IngredientsInput} type="text" name="ingredients" onChange={handleIngredientsChange}/>
-        <br />
+          {/* </Col>
+      </Row> */}
+      <br />
+      {/* <Row className="g-2">
+      <Col md> */}
+     <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="description" value={desciptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
+      </FloatingLabel>
+      {/* </Col>
+      <Col md> */}
+      <FloatingLabel controlId="floatingTextarea2" label="steps" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="steps" value={stepsInput} onChange={handleStepsChange} style={{ height: '100px' }} />
+      </FloatingLabel>
+{/* // </Col>
+//       <Col md> */}
+      
+      <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="ingredients" value={IngredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
+      </FloatingLabel>
+{/* // </Col> */}
+      
         <input hidden="true" value={createdByInput} type="text" name="steps" onChange={handleCreatedByChange}/>
       
         {isUploadingImage === true && <p>...subiendo imagen</p>}
@@ -193,10 +193,11 @@ function RecipeAdd(props) {
         } 
             
             <br />
+    {errorMessage !== "" && <p className='error-message'>{errorMessage}</p>}
         
 
       <button onClick={addNewRecipe}>Añádelo!</button>
-      
+{/* // </Row>       */}
       </form>
 
 
