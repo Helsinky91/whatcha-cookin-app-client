@@ -87,12 +87,18 @@ function RecipesList() {
       {recipeListToShow.map((eachRecipe) => {
         return (
           <div key={eachRecipe._id} class="shadow-lg p-3 mb-5 bg-body rounded recipeCard">
-            <Link to={`/recipes/${eachRecipe._id}/details`}>
+            {!isLoggedIn
+            ? <div>
+                <Link to={`/login`}>
+                <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
+                <p>{eachRecipe.name}</p></Link>
+                </div>
+            : <Link to={`/recipes/${eachRecipe._id}/details`}>
               <img src={eachRecipe.image} alt={eachRecipe.name} width={200} />
               <p>{eachRecipe.name}</p>
             </Link>
+            }
           </div>
-      
         )
       })}
 

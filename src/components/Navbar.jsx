@@ -45,7 +45,7 @@ function Navbar() {
             <button >Friends</button>
           </NavLink>
           <NavLink to="/recipes/ingredients-find" className={assignClassName}>
-            <button >Ingredients</button>
+            <button >¿Qué cocino?</button>
           </NavLink>
           
           <NavLink to="/profile/my-profile" className={assignClassName}>

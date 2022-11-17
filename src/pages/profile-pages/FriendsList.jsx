@@ -72,29 +72,28 @@ function SearchFriends() {
   return (
     <div>
     
+      <div className="recipeFormCard">
       <div>
-        <h1>Posibles amigos</h1>
-
+        <h1>¿A quién buscas?</h1>
         <SearchFriend filterList={filterList} />
-
-        <br />
         <div>
           {friendListToShow.map((eachFriend) => {
             return (
-              <div key={eachFriend._id}>
+              <div key={eachFriend._id} class="recipeBoxCard">
               {eachFriend._id !== user._id 
                 ?  (
                 <div> <Link to={`/profile/${eachFriend._id}/details`}>
                   <img src={eachFriend.image} alt={eachFriend.username} width={200}/>
                   <p>{eachFriend.username}</p> 
                   </Link>
-                  <IsAdmin><button className="delete-btn" onClick={() => deleteUser(eachFriend._id)} >Delete User</button></IsAdmin> 
+                  <IsAdmin><button className="btndelete" onClick={() => deleteUser(eachFriend._id)} >Borrar useario</button></IsAdmin> 
                 </div> )
                 : <></> }
               </div>
             );
           })}
         </div>
+      </div>
       </div>
     </div>
   );
