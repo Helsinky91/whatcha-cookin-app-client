@@ -19,7 +19,7 @@ function RandomRecipe() {
     try {
       const response = await randomRecipeService()
       setRandomRecipe(response.data)
-      setIsFetching(false)
+       setIsFetching(false)
     } catch (error) {
       navigate("/error")
     }
@@ -27,7 +27,7 @@ function RandomRecipe() {
   
   if (isFetching === true) {
     return (
-      <div className="App">
+      <div className="spinner">
         <ClockLoader color="#d68736" size={100}/>
       </div> 
      )
@@ -37,21 +37,22 @@ function RandomRecipe() {
   return (
     <div>
     {!randomRecipe ? (
-    <div className='home-btn'>
+    <div className='btn bottom-padding'>
 
-      <h2>Mira esta receta:</h2>
+      <h1>Mira esta receta:</h1>
       <p>Vaya! Parece que no hay ninguna receta creada ahora mismo!</p>
       <p>Añade una nueva <Link to={"/recipes-list"}>aquí</Link></p>
       
     </div>
       ) :  (
-    <div className='home-btn'>
+    <div className='btn bottom-padding'>
 
-      <h2>Mira esta receta:</h2>
+      <h1>Mira esta receta:</h1>
       <Link to={`/recipes/${randomRecipe._id}/details`}>
       <img src={randomRecipe.image} alt={randomRecipe.name} width={200}/>
-      <p>{randomRecipe.name}</p>
-      <p>{randomRecipe.description} </p>
+      
+      <h4>{randomRecipe.name}</h4>
+      
       </Link>
       
     </div>

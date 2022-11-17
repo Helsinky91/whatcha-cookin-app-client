@@ -7,13 +7,11 @@ import ClockLoader from "react-spinners/ClockLoader";
 
 
 function Profile() {
-  
-  
+    
   const navigate = useNavigate();
 
   //states
-  
-  const [profileList, setProfileList] = useState([])
+    const [profileList, setProfileList] = useState([])
   const [myRecipes, setMyRecipes] = useState([])
   const [myFavRecipes, setMyFavRecipes] = useState([])
   const [myFriends, setMyFriends] = useState([])
@@ -53,7 +51,7 @@ function Profile() {
   
    if (isFetching === true) {
     return (
-      <div className="App">
+      <div className="spinner">
         <ClockLoader color="#d68736" size={100}/>
       </div> 
      )
