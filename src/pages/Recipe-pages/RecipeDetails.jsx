@@ -8,6 +8,7 @@ import { deleteRecipeService, recipeDetailsService } from '../../services/recipe
 import { AuthContext } from "../../context/auth.context"
 import { createCommentService, getCommentService } from '../../services/comment.services'
 import RecipeComment from '../../components/RecipeComment'
+import IsAdmin from '../../components/IsAdmin'
 
 //!only if it's admin -- acabar de configurar
 
@@ -132,17 +133,7 @@ const addComment = async (event) => {
     <h4>{`Detalles de la receta ${name}`} </h4>
         <div>
      <img src={image} alt={name} width={150}/> 
-    {/* {tag !== undefined ? <h4>{`Tag: ${tag}`}</h4> : <h4>Tag: no especificado</h4> } */}
-
-    {/* {tag !== undefined ? 
-    <h4>Tag:  
     
-    {tag.map((eachTag, index) => {
-      return (
-        <p key={index}>{eachTag} </p>
-         )}) }
-        </h4>
-     : <h4>Tag: no especificado</h4> } */}
     {tag !== undefined ? <h4> {`Tag: ${tag}`} </h4>  : <h4>Tag: no especificado</h4> }
 
     {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
@@ -156,7 +147,7 @@ const addComment = async (event) => {
     <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
   
     <button onClick={delRecipeFav}>Quitar de Favoritos</button> 
-    <button onClick={handleDelete}>Borrar la receta</button>
+    <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
 
     <h3>Deja tu comentario</h3>
     <form>

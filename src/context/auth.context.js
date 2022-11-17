@@ -6,10 +6,10 @@ const AuthContext = createContext()
 function AuthWrapper(props) {
   //all global states and functions
 
-    //state to know if user is logged in
+    //state to know if user is logged in. returns a Boolean
     const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
-    //state to know the info of the active user
+    //state to know the info of the active logged user
     const [ user, setUser ] = useState(null) 
 
     //state for loagind page
@@ -33,6 +33,8 @@ function AuthWrapper(props) {
             setIsLoggedIn(true)
             setUser(response.data)
             setIsFetching(false)
+            // const userRole = response.data.role   
+            // return userRole
 
         } catch (err) {
             //if there's an error, don't change the States

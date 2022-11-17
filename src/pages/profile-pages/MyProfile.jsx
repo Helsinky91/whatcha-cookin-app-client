@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
+import IsAdmin from '../../components/IsAdmin';
 import {  getMyFavRecipesService, getMyProfileService, myCreatedRecipesService, myFriendsService } from '../../services/profile.services'
 
 
@@ -50,8 +51,8 @@ function Profile() {
       navigate("/error")
     }
   }
-
-
+  
+  
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>
@@ -65,8 +66,10 @@ function Profile() {
             <h1>Hola {profileList.username}! </h1>
             <img src={profileList.image} alt={profileList.username} width={150}/>
             {profileList.tag !== undefined ? <p><b>Me interesa: </b>{`${profileList.tag}`} </p> : <p>Intereses no especificados</p> }
+            <h3>Sobre mí: </h3>
+            <p>{profileList.description}</p>
           </div>
-          
+         
           <div>
             <Link to={`/profile/${profileList._id}/edit`}>
               <button>Edit your profile</button>
