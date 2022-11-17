@@ -17,9 +17,9 @@ function Navbar() {
   const assignClassName = (navInfo) => {
     // console.log(navInfo.isActive)
     if(navInfo.isActive === true) {
-      return "nav-active" //!la creamos en App.css
+      return "nav-active" 
     } else {
-      return "nav-inactive" //!la creamos en App.css
+      return "nav-inactive" 
     }
   }
 

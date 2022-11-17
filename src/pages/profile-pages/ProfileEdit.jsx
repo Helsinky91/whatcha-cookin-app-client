@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getProfileService, editProfileService, deleteProfileService, tagProfileInfoService } from '../../services/profile.services'
 import { AuthContext } from "../../context/auth.context"
 import { uploadImageService } from '../../services/upload.services'
-import { tagInfoService } from '../../services/recipes.services'
 
 
 function ProfileEdit() {
@@ -19,8 +18,10 @@ function ProfileEdit() {
   const [ usernameInput, setUsernameInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
   const [ allTags, setAllTags ] = useState()
-
   const [ emailInput, setEmailInput ] = useState()
+  const [ descriptionInput, setDescriptionInput ] = useState()
+
+
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
@@ -33,9 +34,10 @@ function ProfileEdit() {
   const handleTagChange = (event) => {
     let value = Array.from(event.target.selectedOptions, option => option.value)
     setTagInput(value)
-  console.log("value" , value) 
-}
+  }
   const handleEmailChange = (event) => setEmailInput(event.target.value)
+  const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
+
  
 
   useEffect(() => {
@@ -76,6 +78,7 @@ function ProfileEdit() {
             image: imageURL,
             tag: tagInput,
             email: emailInput,
+            description: descriptionInput,
           }
 
         //llamamos al servicio de update pasando Id y data a actualizar
@@ -111,13 +114,6 @@ function ProfileEdit() {
     }
   }
   
-  //!si es admin > puede borrar el perfil
-  //! si es tu propio perfil > puede borrar el perfil
-
-  // const deleteUser= (ItemName) => {
-  //   const profileList = listToShow.filter((eachEl) => (eachEl.name === ItemName) ? false : true)
-  //   setListToShow(filteredList);
-  // }
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")
@@ -172,6 +168,8 @@ function ProfileEdit() {
             })}
           </select>
         </label> 
+        <label htmlFor="description">Sobre mí:</label>
+        <input type="text" name="description" value={descriptionInput} onChange={handleDescriptionChange} />
 
         <br />
         {isUploadingImage === true && <p>...subiendo imagen</p>}
