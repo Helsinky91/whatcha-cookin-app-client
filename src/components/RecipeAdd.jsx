@@ -4,6 +4,11 @@ import { useState } from 'react'
 import { uploadImageService } from '../services/upload.services'
 import { useNavigate } from 'react-router-dom'
 import ClockLoader from "react-spinners/ClockLoader";
+import Select from 'react-select'
+import Col from 'react-bootstrap/Col';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 function RecipeAdd(props) {
   
@@ -19,7 +24,6 @@ function RecipeAdd(props) {
   const [ allTypeOfFood, setallTypeOfFoofd ] = useState()
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
   const [ IngredientsInput, setIngredientsInput ] = useState()
-  const [ formIsShowing, setFormIsShowing ] = useState(false)
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
@@ -50,18 +54,16 @@ function RecipeAdd(props) {
     
     try {
       const tagData = await tagInfoService()
-      // setIsFetching(false)
-    
       setAllTags(tagData.data)
 
       const typeOfFoodData = await typeOfFoodInfoService()
       setIsFetching(false)
       setallTypeOfFoofd(typeOfFoodData.data)
+
     } catch(err) {
       navigate("/error")
     }
   }
-
 
   const addNewRecipe = async (event) => {
     event.preventDefault();
@@ -113,27 +115,52 @@ function RecipeAdd(props) {
   }
 
   return (
-    <div class="btn bottom-padding">
-      <form class="formRecipe">
+    <div className="btn bottom-padding">
+     
+     <Row className="g-4">
+      <Col md>
+        <FloatingLabel controlId="floatingInputGrid" label="name">
+          <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
+        </FloatingLabel>
+      </Col>
+      <Col md>
+      <FloatingLabel controlId="floatingInputGrid" label="name">
+          <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
+        </FloatingLabel>
+      </Col>
+      <Col md>
+      <FloatingLabel controlId="floatingInputGrid" label="name">
+          <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
+        </FloatingLabel>
+      </Col>
+     </Row>
+   
+         
+     
+
+
+      <form className="">
+
+      {/* <form className="formRecipe"> */}
+
         <label htmlFor="image">Ingredient's image</label>
         <input type="file" name="image" onChange={handleUploadImage} />
         <br />
 
-        <label htmlFor='name'>Name</label>
-        <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
+        {/* <label htmlFor='name'>Name</label>
+        <input value={nameInput} type="text" name="name" onChange={handleNameChange} /> */}
      
           <br />
-          <label>
-          <select name="tag" multiple onChange={handleTagChange} >
+          {/* <label htmlFor="tag">Tag</label>            
+         <select name="tag" multiple  onChange={handleTagChange} >
             {allTags.map((eachEl, index) =>{
               return(
               <option key={index} value={eachEl}>{eachEl}</option>
               )
             })}
-          </select>
-        </label> 
-        
-           <br />
+          </select> */}
+                   
+        <br />
 
         <label htmlFor='description'>Description</label>
         <input value={desciptionInput} type="text" name="description" onChange={handleDescriptionChange}/>
@@ -169,6 +196,7 @@ function RecipeAdd(props) {
         
 
       <button onClick={addNewRecipe}>Añádelo!</button>
+      
       </form>
 
 

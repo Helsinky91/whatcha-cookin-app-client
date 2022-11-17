@@ -137,13 +137,13 @@ h1 {
  text-decoration: none;
 }
 
-.dashboard{
+/* .dashboard{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
-}
-.home-dashboard{
+} */
+.dashboard{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -152,10 +152,16 @@ h1 {
 }
 
 
-.home-dashboard div{
+.dashboard div{
   width: 500px;  
 }
 
+.dashboard-profile-friends {
+  font-size: 18px
+}
+.dashboard-profile-friends img{
+ border-radius: 50%;
+}
 
 .delete-btn {
   background-color: rgba(255, 0, 0, 0.429);
@@ -175,12 +181,27 @@ h1 {
   justify-content: flex-start;
 }
 
+.my-profile {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 30%;
+  padding-right: 30%;
+  text-align: left;
+}
 
+.one-row {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 30%;
+  padding-top: 10px;
+}
 
-
-
-
-
+.hr-profile {
+  margin-left: 20%;
+  margin-right: 20%;
+}
 
 
 

@@ -24,7 +24,7 @@ function Home() {
       <h1>Whatcha cookin'</h1>
     </div>
 
-    <div className="home-dashboard btn">
+    <div className="dashboard btn">
       <div>
       {randomIsShowing === true 
       ? <div> 

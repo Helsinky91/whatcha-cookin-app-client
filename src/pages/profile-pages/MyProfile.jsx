@@ -11,7 +11,7 @@ function Profile() {
   const navigate = useNavigate();
 
   //states
-    const [profileList, setProfileList] = useState([])
+  const [profileList, setProfileList] = useState([])
   const [myRecipes, setMyRecipes] = useState([])
   const [myFavRecipes, setMyFavRecipes] = useState([])
   const [myFriends, setMyFriends] = useState([])
@@ -62,25 +62,31 @@ function Profile() {
   return (
     <div>
          
-          <div className="my-profile bottom-padding" >
+        <div className="bottom-padding" >
+            <div className="one-row">
             <h1>Hola {profileList.username}! </h1>
-            <div>
-            <img src={profileList.image} alt={profileList.username} width={150}/>
-
-            </div>
-            <div>
-
-            {profileList.tag !== undefined ? <p><b>Me interesa: </b>{`${profileList.tag}`} </p> : <p>Intereses no especificados</p> }
-            <h3>Sobre mí: </h3>
-            <p>{profileList.description}</p>
-            </div>
-          </div>
-         
-          <div className='btn'>
+            
+            <div className='btn'>
             <Link to={`/profile/${profileList._id}/edit`}>
               <button>Edit your profile</button>
             </Link>
-          </div>
+            </div>   
+           </div>
+          
+            
+            <div className="my-profile" >
+              <div>
+                <img src={profileList.image} alt={profileList.username} width={150}/>
+              </div>
+              <div className="left-margin">
+                <h3>Sobre mí: </h3>
+                <p>{profileList.description}</p>
+                {profileList.tag !== undefined ? <p><b>Me interesa: </b>{`${profileList.tag}`} </p> : <p>Intereses no especificados</p> }
+              </div>
+            </div>
+          
+         <hr className='hr-profile'/>
+         </div>
           
         <div className='dashboard'>
             <div>
@@ -99,10 +105,12 @@ function Profile() {
               {myFriends !== null
               && myFriends.friends.map((eachFriend, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} >
                   {eachFriend !== undefined
-                  && <Link to={`/profile/${eachFriend._id}/details`}><p>{eachFriend.username}</p></Link>
-                  }
+                  &&  ( <div className="dashboard-profile-friends">
+                  <Link to={`/profile/${eachFriend._id}/details`}><p>
+                  <img src={eachFriend.image} alt={eachFriend.name} width={45} />{eachFriend.username}</p></Link>
+                  </div> ) }
                  </div>
                 )
               })}
