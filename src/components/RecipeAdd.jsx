@@ -115,13 +115,7 @@ function RecipeAdd(props) {
   }
 
   return (
-    <div>
-      {/* <div>
-     <button onClick={toggleForm}>Add Ingredient</button> 
-     {formIsShowing === true 
-    ? <IngredientAdd hideForm={setFormIsShowing}/>
-     : null }
-    </div>  */}
+    <div class="btn bottom-padding">
       <form>
         <label htmlFor="image">Ingredient's image</label>
         <input type="file" name="image" onChange={handleUploadImage} />
