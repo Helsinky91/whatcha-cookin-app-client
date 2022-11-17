@@ -134,7 +134,7 @@ const addComment = async (event) => {
      <img src={image} alt={name} width={150}/> 
     {/* {tag !== undefined ? <h4>{`Tag: ${tag}`}</h4> : <h4>Tag: no especificado</h4> } */}
 
-    {tag !== undefined ? 
+    {/* {tag !== undefined ? 
     <h4>Tag:  
     
     {tag.map((eachTag, index) => {
@@ -142,11 +142,12 @@ const addComment = async (event) => {
         <p key={index}>{eachTag} </p>
          )}) }
         </h4>
-     : <h4>Tag: no especificado</h4> }
+     : <h4>Tag: no especificado</h4> } */}
+     {tag !== undefined ? <h4> {`Tag: ${tag}`} </h4>  : <h4>Tag: no especificado</h4> }
 
     {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
     {steps !== undefined ? <h4>{`Paso a paso: ${steps}`}</h4> : <h4>Paso a paso: no especificado</h4> }
-    {typeOfFood !== undefined ? <h4>{`Tipo de receta: ${typeOfFood}`}</h4> : <h4>Tipo de receta: no especificado</h4> }
+    {typeOfFood !== undefined ? <h4>{`Tipo de receta: ${typeOfFood} `}</h4> : <h4>Tipo de receta: no especificado</h4> }
     {ingredients !== undefined ?   <h4>{`Ingredientes: ${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
     
     <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link>

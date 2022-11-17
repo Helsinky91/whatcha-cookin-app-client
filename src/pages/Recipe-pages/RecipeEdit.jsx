@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../context/auth.context"
-import { editRecipeService, recipeDetailsService, tagInfoService } from '../../services/recipes.services'
+import { editRecipeService, recipeDetailsService, tagInfoService, typeOfFoodInfoService } from '../../services/recipes.services'
 import { uploadImageService } from '../../services/upload.services'
 
 
@@ -17,7 +17,8 @@ function RecipeEdit() {
   const [ allTags, setAllTags ] = useState()
   const [ desciptionInput, setDescriptionInput] = useState()
   const [ stepsInput, setStepsInput ] = useState()
-  const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
+  const [ allTypeOfFood, setAllTypeOfFood ] = useState()
+  const [ typeOfFoodInput, setTypeOfFoodInput ] = useState()
   const [ IngredientsInput, setIngredientsInput ] = useState()
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
@@ -33,12 +34,16 @@ function RecipeEdit() {
   }
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
   const handleStepsChange = (event) => setStepsInput(event.target.value)
-  const handleTypeOfFoodChange = (event) => setTypeOfFoofdInput(event.target.value)
+  const handleTypeOfFoodChange = (event) => {
+    let value = Array.from(event.target.selectedOptions, option => option.value)
+    setTypeOfFoodInput(value)
+  }  
   const handleIngredientsChange = (event) => setIngredientsInput(event.target.value)
  
   
   useEffect(() => {
     getData()
+    
   }, [])
   
   const getData = async (event) => {
@@ -54,24 +59,31 @@ function RecipeEdit() {
     setTagInput(tag)
     setDescriptionInput(description)
     setStepsInput(steps)
-    setTypeOfFoofdInput(typeOfFood)
+    setTypeOfFoodInput(typeOfFood)
     setIngredientsInput(ingredients)
      
     const tagData = await tagInfoService()
-    setIsFetching(false)
+    // setIsFetching(false)
     // console.log("response ", tagData.data)
     setAllTags(tagData.data)
+    
+    const typeOfFoodData = await typeOfFoodInfoService()
+    setIsFetching(false) 
+       // console.log("typeOfFoodData ", typeOfFoodData.data)
+     setAllTypeOfFood(typeOfFoodData.data)
+
+
+
   } catch(err) {
     navigate("/error")
   }
-  
-}
+  }
+
 
   //! change to loading SPINNER
   if (isFetching === true) {
     return <h3>...buscando</h3>
   }
-      
    
   const updateRecipe = async (event) => {
     event.preventDefault();
@@ -109,6 +121,8 @@ function RecipeEdit() {
       
     }
   }
+  console.log("allTypeOfFood after fetching",  allTypeOfFood)
+  console.log("allTags ", allTags)
 
   return (
     <div>
@@ -134,8 +148,6 @@ function RecipeEdit() {
           </select>
         </label> 
 
-   
-
            <br />
 
         <label htmlFor='description'>Description</label>
@@ -145,8 +157,17 @@ function RecipeEdit() {
         <label htmlFor='steps'>Steps</label>
         <input value={stepsInput} type="text" name="steps" onChange={handleStepsChange}/>
         <br />
-        <label htmlFor='typeOfFood'>Type Of Food</label>
-        <input value={typeOfFoodInput} type="text" name="typeOfFood" onChange={handleTypeOfFoodChange}/>
+                
+        <label htmlFor='typeOfFood'>Type Of Food:
+          <select name="typeOfFood" multiple onChange={handleTypeOfFoodChange} >
+            {allTypeOfFood.map((eachEl, index) =>{
+              return(
+              <option selected={typeOfFoodInput.includes(eachEl) ? true : false}  key={index} value={eachEl}>{eachEl}</option>
+              )
+            })}
+          </select>
+        </label> 
+
         <br />
         <label htmlFor='ingredients'>Ingredient</label>
         <input value={IngredientsInput} type="text" name="ingredients" onChange={handleIngredientsChange}/>

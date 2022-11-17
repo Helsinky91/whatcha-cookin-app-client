@@ -51,6 +51,11 @@ const searchByIngredientService = () => {
     return service.get("/recipes/ingredients-list")
 }
 
+//send information of utils "typeOfFood" from BE
+const typeOfFoodInfoService = () => {
+    return service.get("/recipes/type-of-food")
+}
+
 //! BONUS PATCH "/api/recipes/:recipeId/likes"
 
 
@@ -64,6 +69,7 @@ export {
     favRecipeService,
     deleteFavRecipeService,
     tagInfoService,
-    searchByIngredientService
+    searchByIngredientService,
+    typeOfFoodInfoService
 
 }
