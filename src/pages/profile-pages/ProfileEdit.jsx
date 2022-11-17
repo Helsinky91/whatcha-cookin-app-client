@@ -49,7 +49,6 @@ function ProfileEdit() {
     try {
     
     const response = await getProfileService(userId)
-    // console.log( "get profile service :", response.data)
 
     //to set the actual value on the fields
     setUsernameInput(response.data.username)
@@ -59,7 +58,6 @@ function ProfileEdit() {
       
     const tagData = await tagProfileInfoService()
       setIsFetching(false)
-      console.log("response ", tagData.data)
       setAllTags(tagData.data)
 
     } catch(err) {
@@ -93,7 +91,6 @@ function ProfileEdit() {
   }
   const handleUploadImage = async (event) => {
     setIsUploadingImage(true)
-    console.log(event.target.files[0])
 
     // tengo que insertar la imagen en un objeto de JS capaz de transmitir archivos FE - BE
     const sendForm = new FormData()
@@ -104,7 +101,6 @@ function ProfileEdit() {
       // contactar a cloudinary (por el BE, service) para subir la imagen y recibir el URL
       const response = await uploadImageService(sendForm)
       // subir el url al estado para la creacion del ToDo
-      console.log(response.data.image)
       setImageURL(response.data.image)
       setIsUploadingImage(false)
 

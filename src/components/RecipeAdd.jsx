@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { createRecipeService, tagInfoService, typeOfFoodInfoService } from '../services/recipes.services'
 import { useState } from 'react'
-import IngredientAdd from './IngredientAdd'
 import { uploadImageService } from '../services/upload.services'
 import { useNavigate } from 'react-router-dom'
 
@@ -52,13 +51,11 @@ function RecipeAdd(props) {
     try {
       const tagData = await tagInfoService()
       // setIsFetching(false)
-      
-      console.log("response ", tagData.data)
+    
       setAllTags(tagData.data)
 
       const typeOfFoodData = await typeOfFoodInfoService()
       setIsFetching(false)
-      console.log("typeOfFoodData ", typeOfFoodData.data)
       setallTypeOfFoofd(typeOfFoodData.data)
     } catch(err) {
       navigate("/error")

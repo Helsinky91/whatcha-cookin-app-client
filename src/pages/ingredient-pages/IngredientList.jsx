@@ -31,7 +31,6 @@ function IngredientList() {
 
     try {
      const response = await getIngredientListService()
-     console.log("response data: " , response.data)
      setIngredientList(response.data)
      setIngredientListToShow(response.data)
 

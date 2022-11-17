@@ -12,10 +12,10 @@ const deleteComment = async(event, commentId) => {
   try {
  
     await deleteCommentService(commentId)
-    console.log("borrando")
     updateComments()
   } catch (error) {
-      console.log(error)
+    navigate("/error")
+
     
   } 
 }
@@ -25,7 +25,6 @@ const deleteComment = async(event, commentId) => {
       return (
         <div>
         <h3><Link to={`/profile/${eachComment.username._id}/details`}>{`${eachComment.username.username}`}</Link> dice "{`${eachComment.comment}`}"</h3>
-        {console.log("eachComment._id", eachComment._id)}{console.log("eachComment.username._id", eachComment.username._id)}
        {eachComment._id === eachComment.username._id && <button onClick={(event) => deleteComment(event, eachComment._id)}>Borrar comentario</button>}
        </div>    
       )

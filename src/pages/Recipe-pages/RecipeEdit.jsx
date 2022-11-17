@@ -51,7 +51,6 @@ function RecipeEdit() {
     try {
       
       const response = await recipeDetailsService(recipeId)
-      // console.log("response", response)
       const { name, image, tag, description, steps, typeOfFood, ingredients } = response.data
       //to set the actual value on the fields
     setNameInput(name)
@@ -64,12 +63,10 @@ function RecipeEdit() {
      
     const tagData = await tagInfoService()
     // setIsFetching(false)
-    // console.log("response ", tagData.data)
     setAllTags(tagData.data)
     
     const typeOfFoodData = await typeOfFoodInfoService()
     setIsFetching(false) 
-       // console.log("typeOfFoodData ", typeOfFoodData.data)
      setAllTypeOfFood(typeOfFoodData.data)
 
 
@@ -101,7 +98,8 @@ function RecipeEdit() {
       await editRecipeService(recipeId, editRecipe)
         navigate("/recipes-list")
     } catch (error) {
-      console.log(error)
+      navigate("/error")
+
     }
   }
 
@@ -121,9 +119,6 @@ function RecipeEdit() {
       
     }
   }
-  console.log("allTypeOfFood after fetching",  allTypeOfFood)
-  console.log("allTags ", allTags)
-
   return (
     <div>
         <h1>Edita la receta</h1>

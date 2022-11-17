@@ -41,7 +41,6 @@ function SearchFriends() {
     const filterArr = friendList.filter((eachEl) => {
       return eachEl.username.includes(filterQuery);
     });
-    console.log(filterArr);
     setFriendListToShow(filterArr);
   };
 

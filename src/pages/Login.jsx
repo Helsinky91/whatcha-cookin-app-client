@@ -33,7 +33,6 @@ function Login() {
     try {
       //validate with BE with auth.services.js
       const response = await loginService(userCredentials)
-      console.log(response);
 
       //get the Token and store it in "authToken"
       localStorage.setItem("authToken", response.data.authToken)

@@ -12,7 +12,6 @@ import IsAdmin from '../../components/IsAdmin'
 
 function RecipeDetails() {
   const { user } = useContext(AuthContext)
-  // console.log(authenticaUser)
   const navigate = useNavigate();
 
   
@@ -38,11 +37,9 @@ function RecipeDetails() {
       setRecipeDetails(response.data)
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
-      console.log("response2", response2.data)
       setIsFetching(false)
 
   } catch (error) {
-    console.log(error)
     navigate("/error")
   }
 }
@@ -55,11 +52,9 @@ const handleDelete = async(event) => {
   event.preventDefault()
   try {
     await deleteRecipeService(recipeId)
-    console.log("borrando", recipeId)
       navigate("/recipes-list")
 
   } catch (error) {
-      console.log(error)
       navigate("/error")
   }
 }
@@ -70,7 +65,8 @@ const addRecipeFav = async () => {
     await favRecipeService(recipeId)
     setAddDeleteFav(!addDeleteFav)
   } catch (error) {
-    console.log(error)
+    navigate("/error")
+
   }
 }
 
@@ -80,7 +76,8 @@ const delRecipeFav = async () => {
     await deleteFavRecipeService(recipeId)
     setAddDeleteFav(!addDeleteFav)
   } catch (error) {
-    console.log(error)
+    navigate("/error")
+
   }
 }
 
@@ -89,7 +86,6 @@ const { name, tag, description, steps, image, typeOfFood, ingredients, createdBy
 
 const addComment = async (event) => {
   event.preventDefault();
-  console.log("newcomment", newComment )
   const comment = {
     comment: newComment
   }
@@ -97,10 +93,10 @@ const addComment = async (event) => {
     await createCommentService(recipeId, comment)
     getData()
   } catch (error) {
-    console.log(error)
+    navigate("/error")
+
   }
 }
-console.log("createdBy" , createdBy)
 
   return (
     <div>

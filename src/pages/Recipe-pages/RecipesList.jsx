@@ -49,7 +49,6 @@ function RecipesList() {
       || eachEl.name.toLowerCase().includes(filterQuery)) 
       || eachEl.name.includes(filterQuery.toLowerCase()) 
     })
-    console.log(filterArr)
     setRecipeListToShow(filterArr)
   }
 

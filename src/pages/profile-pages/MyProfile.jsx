@@ -37,7 +37,6 @@ function Profile() {
 
      //call my favourite recipes
      const response3 = await getMyFavRecipesService()
-    //  console.log("response3", response3)
      setMyFavRecipes(response3.data)
      
 

@@ -21,7 +21,7 @@ function RandomRecipe() {
       setRandomRecipe(response.data)
       setIsFetching(false)
     } catch (error) {
-      console.log(error)
+      navigate("/error")
     }
   }
   //! change to loading SPINNER

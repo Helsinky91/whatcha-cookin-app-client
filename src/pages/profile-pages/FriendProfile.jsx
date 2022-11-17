@@ -41,10 +41,11 @@ const getData = async () => {
 const addFriendFav = async () => {
   try {
 
-    console.log(userId)
+
     await addFriendService(userId)
   } catch (error) {
-    console.log(error)
+    navigate("/error")
+
   }
 }
 
@@ -54,7 +55,8 @@ const delFriendFav = async () => {
     await unFriendService(userId)
 
   } catch (error) {
-    console.log(error)
+    navigate("/error")
+
   }
 }
 

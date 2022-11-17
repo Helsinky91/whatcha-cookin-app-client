@@ -9,13 +9,10 @@ function Home() {
   const refresh = () => {
     if (randomIsShowing === true) {
       setRandomIsShowing(!randomIsShowing)
-    console.log("2", randomIsShowing)
     }
     setTimeout(() => {
        
       setRandomIsShowing(true)
-      console.log("2", randomIsShowing)
-
     }, 2000);
        
   }

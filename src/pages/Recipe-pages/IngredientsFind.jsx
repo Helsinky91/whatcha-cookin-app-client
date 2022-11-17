@@ -31,7 +31,6 @@ function IngredientsFind() {
     try {
       const response = await getRecipesListService();
       setIngredientList(response.data);
-      console.log("response from ingr", response.data);
       setIngredientSearch(response.data);
       setIsFetching(false);
     } catch (error) {

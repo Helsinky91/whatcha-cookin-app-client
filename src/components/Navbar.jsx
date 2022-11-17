@@ -15,7 +15,6 @@ function Navbar() {
   
   //function to invoke styles inside NavLink className
   const assignClassName = (navInfo) => {
-    // console.log(navInfo.isActive)
     if(navInfo.isActive === true) {
       return "nav-active" 
     } else {
