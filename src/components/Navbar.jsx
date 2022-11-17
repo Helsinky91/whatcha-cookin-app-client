@@ -5,7 +5,7 @@ import logo from "../assets/Logo.png"
 
 
 function Navbar() {
-  const { authenticaUser, isLoggedIn } = useContext(AuthContext)
+  const { authenticaUser, isLoggedIn, user } = useContext(AuthContext)
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")
@@ -25,14 +25,14 @@ function Navbar() {
   return (
     <div className='navbar'>
       
-       <div>
+      <div>
        <NavLink to="/">
         <img src={logo} alt="whatcha cookin logo" width={50} />
-       </NavLink>
-      </div>
-      
-        
+        </NavLink>
+      </div> 
+              
       {isLoggedIn === true ? (
+        
 
         <div>
           <NavLink to="/" className={assignClassName}>

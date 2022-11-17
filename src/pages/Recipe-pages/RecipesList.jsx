@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/auth.context"
 import RecipeAdd from '../../components/RecipeAdd'
 import SearchRecipe from '../../components/SearchRecipe'
 import { getRecipesListService } from '../../services/recipes.services'
-
+import ClockLoader from "react-spinners/ClockLoader";
 
 function RecipesList() {
 
@@ -55,9 +55,14 @@ function RecipesList() {
   //to hide the form unless pressing the button
   const toggleForm = () => setFormIsShowing(!formIsShowing)
 
-  //! change to loading SPINNER
+
   if (isFetching === true) {
-    return <h3>...buscando</h3>
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
+
   }
 
 

@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/auth.context"
 import { createCommentService, getCommentService } from '../../services/comment.services'
 import RecipeComment from '../../components/RecipeComment'
 import IsAdmin from '../../components/IsAdmin'
+import ClockLoader from "react-spinners/ClockLoader";
 import { getProfileService } from '../../services/profile.services'
 
 
@@ -47,9 +48,14 @@ function RecipeDetails() {
     navigate("/error")
   }
 }
-  //! change to loading SPINNER
+ 
 if (isFetching === true) {
-  return <h3>...loading</h3>
+  return (
+    <div className="App">
+      <ClockLoader color="#d68736" size={100}/>
+    </div> 
+   )
+
 }
 
 const handleDelete = async(event) => {

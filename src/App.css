@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mali:wght@300&family=Marhey:wght@300&family=Neucha&family=Poor+Story&family=Rubik+Bubbles&family=Russo+One&family=Sigmar+One&family=Source+Code+Pro:wght@300&family=VT323&family=Viga&display=swap');
 .App {
   text-align: center;
-  /* background-image: url(""); */
-  /* background-repeat: no-repeat; */
-  /* margin-bottom: 7% */
   background-color: rgba(16, 53, 40, 0.374);
   min-height: 100vh;
-
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(16, 53, 40, 0.374);
 
 }
 .navbar{
@@ -14,15 +17,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
- 
 }
 
 .navbar > div {
   margin-left: 10px;
   margin-right: 10px
 }
-
 
 .nav-active button {
   background-color: orange;
@@ -43,7 +43,6 @@
   padding: 8px;
   font-family: 'VT323', monospace;
   font-size: 20px;
-
 }
 
 .home-btn button{
@@ -52,6 +51,13 @@
   font-size: 16px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.error-message {
+  color: rgba(255, 0, 43, 0.94);
+  font-weight: bold;
+  /* width: 150px; */
+  align-items: center;
 }
 
 .home-btn li{
@@ -73,7 +79,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
 }
 
 .auth-page form{
@@ -94,9 +99,7 @@
 }
 
 .footer div > a {
-  /* text-align: left; */
-  /* margin-left: 10px */
-  text-decoration: none;
+ text-decoration: none;
 }
 
 .dashboard{

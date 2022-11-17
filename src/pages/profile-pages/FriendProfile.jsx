@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { addFriendService, getFriendFavRecipes, getProfileService, unFriendService } from '../../services/profile.services'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import ClockLoader from "react-spinners/ClockLoader";
 import { AuthContext } from "../../context/auth.context"
 
 
@@ -68,9 +69,13 @@ const delFriendFav = async () => {
 
 
 
-  //! change to loading SPINNER
   if (isFetching === true) {
-    return <h3>...buscando</h3>
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
+
   }
 
   const { username, image, description, tag } = friendProfileList
@@ -93,7 +98,7 @@ const delFriendFav = async () => {
         <h4>Mis platos preferidos</h4>
         {friendFavRecipes.map((eachFav) => {
           return (
-    
+            <div key={eachFav._id}>
             <Link to={`/recipes/${eachFav._id}/details`}>
                   <img
                     src={eachFav.image}
@@ -102,6 +107,7 @@ const delFriendFav = async () => {
                   />
                   <p>{eachFav.name}</p>
                 </Link>
+              </div>
           )
           
         })}

@@ -67,7 +67,7 @@ function Login() {
           name="email"
           value={email}
           onChange={handleEmailChange}
-        />
+        /> 
         <br />
         <label>Password:</label>
         <br />
@@ -79,8 +79,8 @@ function Login() {
         />
           <br />
         <button type="submit">Login</button>
-        {errorMessage !== "" ? <p>{errorMessage}</p> : null}
-        {/* {errorMessage !== "" && <p>{errorMessage}</p>} */}
+        {errorMessage !== "" && <p className='error-message'>{errorMessage}</p>}
+        
 
       </form>
       

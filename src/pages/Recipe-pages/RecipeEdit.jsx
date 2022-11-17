@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../context/auth.context"
 import { editRecipeService, recipeDetailsService, tagInfoService, typeOfFoodInfoService } from '../../services/recipes.services'
 import { uploadImageService } from '../../services/upload.services'
+import ClockLoader from "react-spinners/ClockLoader";
 
 
 function RecipeEdit() {
@@ -77,9 +78,13 @@ function RecipeEdit() {
   }
 
 
-  //! change to loading SPINNER
   if (isFetching === true) {
-    return <h3>...buscando</h3>
+    return (
+      <div className="App">
+        <ClockLoader color="#d68736" size={100}/>
+      </div> 
+     )
+
   }
    
   const updateRecipe = async (event) => {
