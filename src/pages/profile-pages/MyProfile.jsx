@@ -11,7 +11,7 @@ function Profile() {
   const navigate = useNavigate();
 
   //states
-    const [profileList, setProfileList] = useState([])
+  const [profileList, setProfileList] = useState([])
   const [myRecipes, setMyRecipes] = useState([])
   const [myFavRecipes, setMyFavRecipes] = useState([])
   const [myFriends, setMyFriends] = useState([])
@@ -62,22 +62,33 @@ function Profile() {
   return (
     <div>
          
-          <div>
+        <div className="bottom-padding" >
+            <div className="one-row">
             <h1>Hola {profileList.username}! </h1>
-            <img src={profileList.image} alt={profileList.username} width={150}/>
-            {profileList.tag !== undefined ? <p><b>Me interesa: </b>{`${profileList.tag}`} </p> : <p>Intereses no especificados</p> }
-            <h3>Sobre mí: </h3>
-            <p>{profileList.description}</p>
-          </div>
-         
-          <div>
+            
+            <div className='btn'>
             <Link to={`/profile/${profileList._id}/edit`}>
               <button>Edit your profile</button>
             </Link>
-          </div>
+            </div>   
+           </div>
           
-        <div>
-            <div>
+            
+            <div className="my-profile" >
+              <div>
+                <img src={profileList.image} alt={profileList.username} width={150}/>
+              </div>
+              <div className="left-margin">
+                <h3>Sobre mí: </h3>
+                <p>{profileList.description}</p>
+                {profileList.tag !== undefined ? <p><b>Me interesa: </b>{`${profileList.tag}`} </p> : <p>Intereses no especificados</p> }
+              </div>
+            </div>
+          
+         <hr className='hr-profile'/>
+         </div>
+          
+        <div className='dashboard'>
             <div>
               <h3>Tus recetas creadas</h3>
               {myRecipes !== null
@@ -89,18 +100,22 @@ function Profile() {
                   )
               })}
             </div>
+            <div>
               <h3>Tus amigos</h3>
               {myFriends !== null
               && myFriends.friends.map((eachFriend, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} >
                   {eachFriend !== undefined
-                  && <Link to={`/profile/${eachFriend._id}/details`}><p>{eachFriend.username}</p></Link>
-                  }
+                  &&  ( <div className="dashboard-profile-friends">
+                  <Link to={`/profile/${eachFriend._id}/details`}><p>
+                  <img src={eachFriend.image} alt={eachFriend.name} width={45} />{eachFriend.username}</p></Link>
+                  </div> ) }
                  </div>
                 )
               })}
             </div>
+            <div>
 
               <h3>Tus recetas favoritas</h3>
               {myFavRecipes !== null
@@ -111,6 +126,7 @@ function Profile() {
                   </div>
                 )
               })}
+            </div>
         </div>
     </div>
   )

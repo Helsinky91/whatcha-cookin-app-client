@@ -34,8 +34,6 @@ function App() {
           <Route path='/signup' element= {<Signup  /> }/>
           <Route path='/login' element= {<Login /> }/>
           <Route path='/recipes-list' element= { <RecipesList /> }/>
-          <Route path='/recipes/:recipeId/details' element= { <RecipeDetails /> }/>
-          <Route path='/recipes/:recipeId/edit' element= { <RecipeEdit /> }/>
           <Route path='/recipes/ingredients-find' element= { <IngredientsFind /> }/>
 
           {/* private pages*/}
@@ -43,6 +41,8 @@ function App() {
           <Route path='/profile/search-friends' element= { <IsPrivate> <FriendsList /> </IsPrivate> }/>
           <Route path='/profile/:userId/details' element= { <IsPrivate> <FriendProfile /> </IsPrivate> }/>
           <Route path='/profile/:userId/edit' element= { <IsPrivate> <ProfileEdit /> </IsPrivate> }/>
+          <Route path='/recipes/:recipeId/details' element= {<IsPrivate> <RecipeDetails /></IsPrivate> }/>
+          <Route path='/recipes/:recipeId/edit' element= { <IsPrivate><RecipeEdit /> </IsPrivate>}/>
 
           
           
