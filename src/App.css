@@ -169,10 +169,11 @@ h1 {
   /* margin-bottom: 10px */
 }
 
-.my-profile {
-  
+.formRecipe{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
-
 
 
 
