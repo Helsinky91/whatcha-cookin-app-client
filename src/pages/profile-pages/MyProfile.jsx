@@ -91,7 +91,9 @@ function Profile() {
               && myFriends.friends.map((eachFriend, index) => {
                 return (
                   <div key={index}>
-                 <Link to={`/profile/${eachFriend._id}/details`}><p>{eachFriend.username}</p></Link> 
+                  {eachFriend !== undefined
+                  && <Link to={`/profile/${eachFriend._id}/details`}><p>{eachFriend.username}</p></Link>
+                  }
                  </div>
                 )
               })}

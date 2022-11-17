@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/auth.context"
 import { createCommentService, getCommentService } from '../../services/comment.services'
 import RecipeComment from '../../components/RecipeComment'
 import IsAdmin from '../../components/IsAdmin'
+import { getProfileService } from '../../services/profile.services'
 
 
 function RecipeDetails() {
@@ -22,6 +23,7 @@ function RecipeDetails() {
   const [ isFetching, setIsFetching ] = useState(true)
   const [ addDeleteFav, setAddDeleteFav ] = useState(true)
   const [ newComment, setNewComment ] = useState("")
+  const [haveFavRecipe, setHaveFavRecipe] = useState([])
 
   
 
@@ -37,6 +39,8 @@ function RecipeDetails() {
       setRecipeDetails(response.data)
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
+      const response3 = await getProfileService(user._id)
+      setHaveFavRecipe(response3.data.favourites)
       setIsFetching(false)
 
   } catch (error) {
@@ -64,6 +68,7 @@ const addRecipeFav = async () => {
   try {
     await favRecipeService(recipeId)
     setAddDeleteFav(!addDeleteFav)
+    getData()
   } catch (error) {
     navigate("/error")
 
@@ -75,6 +80,7 @@ const delRecipeFav = async () => {
   try {
     await deleteFavRecipeService(recipeId)
     setAddDeleteFav(!addDeleteFav)
+    getData()
   } catch (error) {
     navigate("/error")
 
@@ -127,11 +133,11 @@ const addComment = async (event) => {
     ? <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link> 
     : <></>} 
  
-   
-
-    <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
-  
-    <button onClick={delRecipeFav}>Quitar de Favoritos</button> 
+   {haveFavRecipe.includes(recipeId)
+    ?<button onClick={delRecipeFav}>Quitar de Favoritos</button> 
+   : <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
+   }
+    
     <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
 
     <h3>Deja tu comentario</h3>
