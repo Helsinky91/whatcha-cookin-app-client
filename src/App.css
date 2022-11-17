@@ -168,6 +168,11 @@ h1 {
   /* margin-bottom: 10px */
 }
 
+.formRecipe{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 
 
 

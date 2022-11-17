@@ -85,8 +85,6 @@ function RecipeAdd(props) {
       console.log(error)
     }
   }
-  //to hide the form unless pressing the button
-  const toggleForm = () => setFormIsShowing(!formIsShowing)
   
   const handleUploadImage = async (event) => {
     
@@ -116,7 +114,7 @@ function RecipeAdd(props) {
 
   return (
     <div class="btn bottom-padding">
-      <form>
+      <form class="formRecipe">
         <label htmlFor="image">Ingredient's image</label>
         <input type="file" name="image" onChange={handleUploadImage} />
         <br />

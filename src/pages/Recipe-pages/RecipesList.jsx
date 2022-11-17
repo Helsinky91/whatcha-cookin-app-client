@@ -68,10 +68,9 @@ function RecipesList() {
 
   return (
     <div>
-      {/* only to show if you are logged in  */}
       {isLoggedIn === true &&  
-      <div>
-        <button onClick={toggleForm} class="btn bottom-padding">Add recipe</button> 
+      <div class="btn bottom-padding">
+        <button onClick={toggleForm} >Add recipe</button> 
         {formIsShowing === true 
           ? <RecipeAdd getData={getData} hideForm={setFormIsShowing} />
           : null }
