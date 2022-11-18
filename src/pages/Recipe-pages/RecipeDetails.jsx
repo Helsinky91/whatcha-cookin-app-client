@@ -17,8 +17,6 @@ function RecipeDetails() {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate();
 
-  
-
   const { recipeId } = useParams()
   const [ recipeDetails, setRecipeDetails] = useState(null)
   const [ recipeComments, setRecipeComments] = useState(null)
@@ -116,7 +114,7 @@ const addComment = async (event) => {
     
     <h1>{`Detalles de la receta ${name}`} </h1>
         <div>
-     <img src={image} alt={name} width={260}/> 
+     <img src={image} alt={name} width={240}/> 
     
     {description !== undefined ? <h2>{`${description}`}</h2> : <h2>Descripción: no especificada</h2> }
     <br />
@@ -134,8 +132,6 @@ const addComment = async (event) => {
     : <p>Este usuario ya no está registrado en nuestra app</p>
     }
     
-
-
     { user._id === createdBy._id 
     ? <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link> 
     : <></>} 
@@ -146,8 +142,8 @@ const addComment = async (event) => {
    }
 
   { user._id === createdBy._id
-   ? <button onClick={handleDelete}>Borrar la receta</button>
-   :  <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
+   ? <button className="btndelete" onClick={handleDelete}>Borrar la receta</button>
+   :  <IsAdmin> <button className="btndelete" onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
   }
   <hr className='hr-profile'/>
    

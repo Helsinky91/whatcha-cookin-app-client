@@ -5,7 +5,8 @@ import { AuthContext } from "../../context/auth.context"
 import { editRecipeService, recipeDetailsService, tagInfoService, typeOfFoodInfoService } from '../../services/recipes.services'
 import { uploadImageService } from '../../services/upload.services'
 import ClockLoader from "react-spinners/ClockLoader";
-
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 function RecipeEdit() {
   
@@ -126,20 +127,21 @@ function RecipeEdit() {
     }
   }
   return (
-    <div>
+    <div className="btn bottom-padding">
         <h1>Edita la receta</h1>
         <form>
-        <label htmlFor="image">Ingredient's image</label>
-        <input type="file" name="image" onChange={handleUploadImage} /> 
+        <label htmlFor="image" class="form-label"></label>
+        <input class="form-control" type="file" id="formFile" name="image" onChange={handleUploadImage} /> 
         
             <br />
 
-        <label htmlFor='name'>Name</label>
-        <input value={nameInput} type="text" name="name" onChange={handleNameChange} />
+        <FloatingLabel controlId="floatingInputGrid" label="name" className="mb-3">
+          <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
+        </FloatingLabel>
         
           <br />
                        
-        <label htmlFor='tag'>Tag:
+        <label htmlFor='tag'>Tag: </label> 
           <select name="tag" multiple onChange={handleTagChange} >
             {allTags.map((eachEl, index) =>{
               return(
@@ -147,19 +149,8 @@ function RecipeEdit() {
               )
             })}
           </select>
-        </label> 
 
-           <br />
-
-        <label htmlFor='description'>Description</label>
-        <input value={desciptionInput} type="text" name="description" onChange={handleDescriptionChange}/>
-        
-           <br />
-        <label htmlFor='steps'>Steps</label>
-        <input value={stepsInput} type="text" name="steps" onChange={handleStepsChange}/>
-        <br />
-                
-        <label htmlFor='typeOfFood'>Type Of Food:
+        <label htmlFor='typeOfFood'>Type Of Food: </label> 
           <select name="typeOfFood" multiple onChange={handleTypeOfFoodChange} >
             {allTypeOfFood.map((eachEl, index) =>{
               return(
@@ -167,13 +158,22 @@ function RecipeEdit() {
               )
             })}
           </select>
-        </label> 
+        
 
-        <br />
-        <label htmlFor='ingredients'>Ingredient</label>
-        <input value={IngredientsInput} type="text" name="ingredients" onChange={handleIngredientsChange}/>
-        <br />
+           <br />
+      <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="description" value={desciptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
+      </FloatingLabel>
+      
+      <FloatingLabel controlId="floatingTextarea2" label="steps" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="steps" value={stepsInput} onChange={handleStepsChange} style={{ height: '100px' }} />
+      </FloatingLabel>
+      
+      <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="ingredients" value={IngredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
+      </FloatingLabel>
 
+      
         {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 
         ? <img src={imageURL} atl="image" width={200}/> 

@@ -124,22 +124,18 @@ if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
   return (
     <div className="btn bottom-padding">
      
-    <form className="">
+    <form>
 
-      {/* <Row className="g-2">
-      <Col md> */}
-     <div>
+      
       <label htmlFor="image" class="form-label"></label>
       <input class="form-control" type="file" id="formFile" name="image" onChange={handleUploadImage}/>
-    </div>
+    
     <br />
-      {/* </Col>
-      <Col md> */}
+     
     <FloatingLabel controlId="floatingInputGrid" label="name" className="mb-3">
           <Form.Control type="text" name="name" value={nameInput}  onChange={handleNameChange}/>
      </FloatingLabel>
-     {/* </Col>
-     <Col md> */}
+    
         {/* <label htmlFor='name'>Name</label>
         <input value={nameInput} type="text" name="name" onChange={handleNameChange} /> */}
      
@@ -151,8 +147,7 @@ if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
               )
             })}
           </select> 
-          {/* </Col>
-      <Col md> */}
+          
         <label htmlFor='typeOfFood'>Type Of Food:</label> 
           <select name="typeOfFood" multiple onChange={handleTypeOfFoodChange} >
             {allTypeOfFood.map((eachEl, index) =>{
@@ -161,26 +156,21 @@ if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
               )
             })}
           </select>
-          {/* </Col>
-      </Row> */}
+          
       <br />
-      {/* <Row className="g-2">
-      <Col md> */}
+     
      <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
         <Form.Control as="textarea" type="text" name="description" value={desciptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
       </FloatingLabel>
-      {/* </Col>
-      <Col md> */}
+      
       <FloatingLabel controlId="floatingTextarea2" label="steps" className="mb-3" >
         <Form.Control as="textarea" type="text" name="steps" value={stepsInput} onChange={handleStepsChange} style={{ height: '100px' }} />
       </FloatingLabel>
-{/* // </Col>
-//       <Col md> */}
       
       <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
         <Form.Control as="textarea" type="text" name="ingredients" value={ingredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
       </FloatingLabel>
-{/* // </Col> */}
+
       
         <input hidden={true} value={createdByInput} type="text" name="steps" onChange={handleCreatedByChange}/>
       
