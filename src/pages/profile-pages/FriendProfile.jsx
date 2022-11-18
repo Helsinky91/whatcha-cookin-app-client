@@ -81,7 +81,7 @@ const delFriendFav = async () => {
   const { username, image, description, tag } = friendProfileList
 
   return (
-    <div class="btn bottom-padding">
+    <div className="btn bottom-padding">
       <div>
         <h1>Bienvenido al perfil de {username}</h1>
         <img src={image} alt={username} width={200}/>
@@ -92,8 +92,8 @@ const delFriendFav = async () => {
       : <button onClick={addFriendFav}>Añadir a Mis Amigos</button> 
       }
       <div class="profileDetails">
-        <h4 ><b>Descripción</b> {description}</h4>
-        {tag !== undefined ? <h4><b>Me interesa</b>{`${tag}`} </h4> : <p>Intereses no especificados</p> }
+        <h4 ><b>Descripción:</b> {description}</h4>
+        {tag !== undefined ? <h4><b>Me interesa: </b>{`${tag}`} </h4> : <p>Intereses no especificados</p> }
       </div>
       <div>
         <h4><b>Mis platos preferidos</b></h4>

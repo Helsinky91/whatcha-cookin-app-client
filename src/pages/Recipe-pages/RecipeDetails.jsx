@@ -10,7 +10,8 @@ import RecipeComment from '../../components/RecipeComment'
 import IsAdmin from '../../components/IsAdmin'
 import ClockLoader from "react-spinners/ClockLoader";
 import { getProfileService } from '../../services/profile.services'
-
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 function RecipeDetails() {
   const { user } = useContext(AuthContext)
@@ -38,7 +39,7 @@ function RecipeDetails() {
   try {
       const response = await recipeDetailsService(recipeId)
       setRecipeDetails(response.data)
-      console.log("response",response, "user", user)
+      
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
       const response3 = await getProfileService(user._id)
@@ -111,18 +112,18 @@ const addComment = async (event) => {
 }
 
   return (
-    <div>
+    <div className="btn bottom-padding bold">
     
-    <h4>{`Detalles de la receta ${name}`} </h4>
+    <h1>{`Detalles de la receta ${name}`} </h1>
         <div>
-     <img src={image} alt={name} width={150}/> 
+     <img src={image} alt={name} width={260}/> 
     
-    {tag !== undefined ? <h4> {`Tag: ${tag}`} </h4>  : <h4>Tag: no especificado</h4> }
-
-    {description !== undefined ? <h4>{`Descripcción: ${description}`}</h4> : <h4>Descripción: no especificada</h4> }
-    {steps !== undefined ? <h4>{`Paso a paso: ${steps}`}</h4> : <h4>Paso a paso: no especificado</h4> }
-    {typeOfFood !== undefined ? <h4>{`Tipo de receta: ${typeOfFood} `}</h4> : <h4>Tipo de receta: no especificado</h4> }
-    {ingredients !== undefined ?   <h4>{`Ingredientes: ${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
+    {description !== undefined ? <h2>{`${description}`}</h2> : <h2>Descripción: no especificada</h2> }
+    <br />
+    {steps !== undefined ? <h4> <b>Paso a paso: </b> {`${steps}`}</h4> : <h4> Paso a paso: no especificado</h4> }
+    {ingredients !== undefined ?   <h4> <b>Ingredientes: </b> {`${ingredients}`}</h4> : <h4>Ingredientes: no especificados</h4> }
+    {typeOfFood !== undefined ? <h5> <b>Tipo de receta: </b> {`${typeOfFood} `}</h5> : <h4>Tipo de receta: no especificado</h4> }
+    {tag !== undefined ? <h5> <b>Tag: </b> {`${tag}`}</h5>  : <h5>Tag: no especificado</h5> }
     
     {createdBy.username !== undefined 
     ? <p>Created by: 
@@ -138,7 +139,7 @@ const addComment = async (event) => {
     { user._id === createdBy._id 
     ? <Link to={`/recipes/${recipeId}/edit`}><button>Editar</button></Link> 
     : <></>} 
- 
+    
    {haveFavRecipe.includes(recipeId)
     ?<button onClick={delRecipeFav}>Quitar de Favoritos</button> 
    : <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
@@ -148,14 +149,20 @@ const addComment = async (event) => {
    ? <button onClick={handleDelete}>Borrar la receta</button>
    :  <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
   }
-    
+  <hr className='hr-profile'/>
    
     <h3>Deja tu comentario</h3>
-    <form>
-    <label htmlFor="comment"></label>
-     <input name="comment" type="text" value={newComment}  onChange={handleCommentChange}/>
+    
+    {/* <label htmlFor="comment"></label>
+     <input name="comment" type="text" value={newComment}  onChange={handleCommentChange}/> */}
+
+
+     <FloatingLabel controlId="floatingTextarea2" label="comment" className="mb-3">
+          <Form.Control type="text" name="comment" value={newComment}  onChange={handleCommentChange} style={{ height: '80px' }}/>
+     </FloatingLabel>
+
      <button onClick={addComment}>Comentar</button>
-    </form> 
+   
     
   <h3>Comentarios sobre esta receta</h3>
   <RecipeComment recipeComments={recipeComments} updateComments={getData}/>

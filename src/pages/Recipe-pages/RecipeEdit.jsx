@@ -101,6 +101,7 @@ function RecipeEdit() {
           ingredients: IngredientsInput
         }
       await editRecipeService(recipeId, editRecipe)
+      
         navigate("/recipes-list")
     } catch (error) {
       navigate("/error")
