@@ -229,8 +229,9 @@ h1 {
 .recipeFormCard {
   display: flex;
   flex-wrap: wrap;
- justify-content: center;
- margin: 2vh
+  justify-content: center;
+  align-items: center;
+  margin: 2vh
 }
 
 .recipeFormCard input{
@@ -239,6 +240,12 @@ h1 {
 .recipeFormCard input:hover {
   border-color: rgb(252, 194, 86);
 height: 10vh
+}
+
+.friendList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: baseline;
 }
 
 .recipeBoxCard div {

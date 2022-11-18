@@ -79,7 +79,7 @@ function FriendProfile() {
 
   return (
     <div className="btn bottom-padding">
-      
+
       <div>
         <h1>Bienvenido al perfil de {username}</h1>
         <img src={image} alt={username} width={200} />
@@ -90,30 +90,37 @@ function FriendProfile() {
 
         : <button onClick={addFriendFav}>Añadir a Mis Amigos</button>
       }
-      
-      <div class="profileDetails">
-        <h4 ><b>Descripción:</b> {description}</h4>
-        {tag !== undefined ? <h4><b>Me interesa: </b>{`${tag}`} </h4> : <p>Intereses no especificados</p>}
+
+      <div className='dashboard'>
+        <div>
+          <h4 ><b>Descripción:</b> {description}</h4>
+
+        </div>
+        <div>
+          {tag !== undefined ? <h4><b>Me interesa: </b>{`${tag}`} </h4> : <p>Intereses no especificados</p>}
+
+        </div>
+        </div>
+
+        <div>
+          <h4><b>Mis platos preferidos</b></h4>
+          {friendFavRecipes.map((eachFav) => {
+            return (
+              <div key={eachFav._id} >
+                <Link to={`/recipes/${eachFav._id}/details`}>
+                  <img
+                    src={eachFav.image}
+                    alt={eachFav.name}
+                    width={200}
+                  />
+                  <p>{eachFav.name}</p>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
       </div>
-      
-      <div>
-        <h4><b>Mis platos preferidos</b></h4>
-        {friendFavRecipes.map((eachFav) => {
-          return (
-            <div key={eachFav._id} >
-              <Link to={`/recipes/${eachFav._id}/details`}>
-                <img
-                  src={eachFav.image}
-                  alt={eachFav.name}
-                  width={200}
-                />
-                <p>{eachFav.name}</p>
-              </Link>
-            </div>
-          )
-        })}
-      </div>
-    </div>
+    
   )
 }
 

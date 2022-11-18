@@ -74,7 +74,7 @@ function SearchFriends() {
           <h1>¿A quién buscas?</h1>
           <SearchFriend filterList={filterList} />
           
-          <div>
+          <div className="friendList">
             {friendListToShow.map((eachFriend) => {
               return (
                 <div key={eachFriend._id} class="recipeBoxCard">
