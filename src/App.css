@@ -204,7 +204,11 @@ h1 {
 }
 
 .error-page {
-  background-image: "https://thumbs.gfycat.com/AcclaimedChubbyHochstettersfrog-mobile.mp4";
+  background-image: url("../src/assets/error-page.png");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 100px;
 }
 
 
