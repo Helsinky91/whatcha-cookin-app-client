@@ -79,7 +79,7 @@ function RecipeDetails() {
 
   const addRecipeFav = async () => {
     try {
-      //calling service that add favourites
+      //calling service that add favourites to user's profile
       await favRecipeService(recipeId)
       setAddDeleteFav(!addDeleteFav)
       getData()
@@ -88,15 +88,14 @@ function RecipeDetails() {
     }
   }
 
-
   const delRecipeFav = async () => {
     try {
+      //calling service that add favourites from user's profile
       await deleteFavRecipeService(recipeId)
       setAddDeleteFav(!addDeleteFav)
       getData()
     } catch (error) {
       navigate("/error")
-
     }
   }
 
@@ -104,15 +103,16 @@ function RecipeDetails() {
 
   const addComment = async (event) => {
     event.preventDefault();
+    //edits the comment field 
     const comment = {
       comment: newComment
     }
     try {
+      //calling service that creates comments by recipe Id
       await createCommentService(recipeId, comment)
       getData()
     } catch (error) {
       navigate("/error")
-
     }
   }
 
@@ -125,8 +125,8 @@ function RecipeDetails() {
 
         {description !== undefined ? <h2 style={{ width: "650px" }}>{`${description}`}</h2> : <h2>Descripción: no especificada</h2>}
         <br />
-        {steps !== undefined ? <h4 style={{ width: "650px" }}> <b>Paso a paso: </b> {`${steps}`}</h4> : <h4 style={{ width: "650px" }}> Paso a paso: no especificado</h4>}
         {ingredients !== undefined ? <h4 style={{ width: "650px" }}> <b>Ingredientes: </b> {`${ingredients}`}</h4> : <h4 style={{ width: "650px" }}>Ingredientes: no especificados</h4>}
+        {steps !== undefined ? <h4 style={{ width: "650px" }}> <b>Paso a paso: </b> {`${steps}`}</h4> : <h4 style={{ width: "650px" }}> Paso a paso: no especificado</h4>}
         {typeOfFood !== undefined ? <h5 style={{ width: "650px" }}> <b>Tipo de receta: </b> {`${typeOfFood} `}</h5> : <h4> style={{ width: "650px" }}Tipo de receta: no especificado</h4>}
         {tag !== undefined ? <h5> <b style={{ width: "650px" }}>Tag: </b> {`${tag}`}</h5> : <h5 style={{ width: "650px" }}>Tag: no especificado</h5>}
 
@@ -157,19 +157,12 @@ function RecipeDetails() {
         <hr className='hr-recipe' />
 
         <h3>Deja tu comentario</h3>
-
-        {/* <label htmlFor="comment"></label>
-        <input name="comment" type="text" value={newComment}  onChange={handleCommentChange}/> */}
-
         <div className="comment-form">
           <FloatingLabel controlId="floatingTextarea2" label="comment" className="mb-3">
             <Form.Control type="text" name="comment" value={newComment} onChange={handleCommentChange} style={{ height: '80px' }} />
           </FloatingLabel>
           <button onClick={addComment}>Comentar</button>
-
         </div>
-
-
 
         <h3>Comentarios sobre esta receta</h3>
         <RecipeComment recipeComments={recipeComments} updateComments={getData} />

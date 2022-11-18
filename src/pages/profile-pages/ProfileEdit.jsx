@@ -9,11 +9,10 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
 function ProfileEdit() {
-
+  //to be able to use authenticaUser from authcontext
   const { authenticaUser } = useContext(AuthContext)
 
   const navigate = useNavigate()
-
   const { userId } = useParams()
 
   //states 
@@ -39,8 +38,7 @@ function ProfileEdit() {
   const handleEmailChange = (event) => setEmailInput(event.target.value)
   const handleDescriptionChange = (event) => setDescriptionInput(event.target.value)
 
-
-
+  //calling the Api
   useEffect(() => {
     getData()
   }, [])
@@ -48,7 +46,7 @@ function ProfileEdit() {
   const getData = async (event) => {
 
     try {
-
+      //calling service that gets profile info by its Id from BE
       const response = await getProfileService(userId)
 
       //to set the actual value on the fields
@@ -57,6 +55,7 @@ function ProfileEdit() {
       setTagInput(response.data.tag)
       setEmailInput(response.data.email)
 
+      //calling service to get utils/tag info from BE
       const tagData = await tagProfileInfoService()
       setIsFetching(false)
       setAllTags(tagData.data)
@@ -64,14 +63,13 @@ function ProfileEdit() {
     } catch (err) {
       navigate("/error")
     }
-
   }
 
   const handleUpdate = async (event) => {
     event.preventDefault()
 
     try {
-      //recopilamos los valores a actualizar
+      //to send new data to BE
       const updatedProfile = {
         username: usernameInput,
         image: imageURL,
@@ -80,7 +78,7 @@ function ProfileEdit() {
         description: descriptionInput,
       }
 
-      //llamamos al servicio de update pasando Id y data a actualizar
+      //calling service that updates all recipes details by Id to BE
       await editProfileService(userId, updatedProfile)
 
       //redirect
@@ -88,34 +86,30 @@ function ProfileEdit() {
 
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
+        //if error is 400 stay in component and show error
         setErrorMessage(error.response.data.errorMessage)
       } else {
         navigate("/error")
       }
     }
   }
+  //function to update img from Cloudinary
   const handleUploadImage = async (event) => {
     setIsUploadingImage(true)
 
-    // tengo que insertar la imagen en un objeto de JS capaz de transmitir archivos FE - BE
     const sendForm = new FormData()
     sendForm.append("image", event.target.files[0])
-    // "image" debe ser el mismo nombre de la ejecución del middleware uploader.single("image")
 
     try {
-      // contactar a cloudinary (por el BE, service) para subir la imagen y recibir el URL
+      //calling service that updates image
       const response = await uploadImageService(sendForm)
-      // subir el url al estado para la creacion del ToDo
       setImageURL(response.data.image)
       setIsUploadingImage(false)
 
     } catch (error) {
       navigate("/error")
-
     }
   }
-
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")
@@ -125,14 +119,17 @@ function ProfileEdit() {
 
   const deleteUser = () => {
     try {
+      //calling server that deletes profile
       deleteProfileService(userId)
       handleLogout()
       navigate("/")
+
     } catch (error) {
       navigate("/error")
     }
   }
 
+  //if content is not loading, show spinner
   if (isFetching === true) {
     return (
       <div className="spinner">
@@ -141,31 +138,23 @@ function ProfileEdit() {
     )
   }
 
-
   return (
     <div>
       <div className="btn bottom-padding">
-
         <h1>Edit your profile</h1>
-
-
         <form >
-
 
           <label htmlFor="image" class="form-label"></label>
           <input class="form-control" type="file" id="formFile" name="image" onChange={handleUploadImage} />
 
           <br />
 
-
           <FloatingLabel controlId="floatingInputGrid" label="name" className="mb-3">
             <Form.Control type="text" name="name" value={usernameInput} onChange={handleNameChange} />
           </FloatingLabel>
 
-
-
-          <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
-            <Form.Control as="textarea" type="email" name="description" value={emailInput} onChange={handleEmailChange} style={{ height: '100px' }} />
+          <FloatingLabel controlId="floatingTextarea2" label="email" className="mb-3" >
+            <Form.Control as="textarea" type="email" name="description" value={emailInput} onChange={handleEmailChange}/>
           </FloatingLabel>
 
           <label htmlFor='tag'>Tag:  </label>
@@ -177,11 +166,10 @@ function ProfileEdit() {
             })}
           </select>
 
-
-          <br />
           <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
             <Form.Control as="textarea" type="text" name="description" value={descriptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
           </FloatingLabel>
+          
           {isUploadingImage === true && <p>...subiendo imagen</p>}
           {imageURL !== ""
             ? <img src={imageURL} alt="image" width={200} />
@@ -196,12 +184,8 @@ function ProfileEdit() {
 
       <div>
         <button className="btndelete" onClick={deleteUser}>Delete profile</button>
-
       </div>
-
-
     </div>
-
   )
 }
 

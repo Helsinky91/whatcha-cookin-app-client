@@ -158,6 +158,10 @@ if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
           </select>
           
       <br />
+      
+      <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
+        <Form.Control as="textarea" type="text" name="ingredients" value={ingredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
+      </FloatingLabel>
      
      <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
         <Form.Control as="textarea" type="text" name="description" value={desciptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
@@ -166,11 +170,6 @@ if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
       <FloatingLabel controlId="floatingTextarea2" label="steps" className="mb-3" >
         <Form.Control as="textarea" type="text" name="steps" value={stepsInput} onChange={handleStepsChange} style={{ height: '100px' }} />
       </FloatingLabel>
-      
-      <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
-        <Form.Control as="textarea" type="text" name="ingredients" value={ingredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
-      </FloatingLabel>
-
       
         <input hidden={true} value={createdByInput} type="text" name="steps" onChange={handleCreatedByChange}/>
       

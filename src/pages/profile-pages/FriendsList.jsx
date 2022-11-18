@@ -7,11 +7,9 @@ import { AuthContext } from "../../context/auth.context"
 import { deleteProfileService, getProfilesListService } from "../../services/profile.services";
 import ClockLoader from "react-spinners/ClockLoader";
 
-
 function SearchFriends() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext)
-
 
   //states
   const [friendList, setFriendList] = useState([]);
@@ -27,6 +25,7 @@ function SearchFriends() {
 
   const getData = async () => {
     try {
+      //call all profile info 
       const response = await getProfilesListService();
       setFriendList(response.data);
       setFriendListToShow(response.data)
@@ -47,21 +46,19 @@ function SearchFriends() {
     setFriendListToShow(filterArr);
   };
 
-  // //to hide the form unless pressing the button
-  // const toggleForm = () => setFormIsShowing(!formIsShowing);
-  
   const deleteUser = async (userId) => {
     try {
-      await deleteProfileService(userId) 
-      
+      //calling server that deletes profile
+      await deleteProfileService(userId)     
       navigate("/profile/search-friends")
       getData()
+
      }catch(error) {
       navigate("/error")
      } 
-       
   }
 
+  //if content is not loading, show spinner
   if (isFetching === true) {
     return (
       <div className="spinner">
@@ -72,29 +69,30 @@ function SearchFriends() {
 
   return (
     <div>
-    
       <div className="recipeFormCard">
-      <div>
-        <h1>¿A quién buscas?</h1>
-        <SearchFriend filterList={filterList} />
         <div>
-          {friendListToShow.map((eachFriend) => {
-            return (
-              <div key={eachFriend._id} class="recipeBoxCard">
-              {eachFriend._id !== user._id 
-                ?  (
-                <div> <Link to={`/profile/${eachFriend._id}/details`}>
-                  <img src={eachFriend.image} alt={eachFriend.username} width={200}/>
-                  <p>{eachFriend.username}</p> 
-                  </Link>
-                  <IsAdmin><button className="btndelete" onClick={() => deleteUser(eachFriend._id)} >Borrar useario</button></IsAdmin> 
-                </div> )
-                : <></> }
-              </div>
-            );
-          })}
+          <h1>¿A quién buscas?</h1>
+          <SearchFriend filterList={filterList} />
+          
+          <div>
+            {friendListToShow.map((eachFriend) => {
+              return (
+                <div key={eachFriend._id} class="recipeBoxCard">
+                {eachFriend._id !== user._id 
+                  ?  (
+                  <div> <Link to={`/profile/${eachFriend._id}/details`}>
+                    <img src={eachFriend.image} alt={eachFriend.username} width={200}/>
+                    <p>{eachFriend.username}</p> 
+                    </Link>
+                    <IsAdmin><button className="btndelete" onClick={() => deleteUser(eachFriend._id)} >Borrar useario</button></IsAdmin> 
+                  </div> )
+                  : <></> }
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+
       </div>
     </div>
   );

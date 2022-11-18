@@ -158,6 +158,9 @@ function RecipeEdit() {
         </select>
 
         <br />
+        <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
+          <Form.Control as="textarea" type="text" name="ingredients" value={IngredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
+        </FloatingLabel>
        
         <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
           <Form.Control as="textarea" type="text" name="description" value={descriptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
@@ -165,10 +168,6 @@ function RecipeEdit() {
 
         <FloatingLabel controlId="floatingTextarea2" label="steps" className="mb-3" >
           <Form.Control as="textarea" type="text" name="steps" value={stepsInput} onChange={handleStepsChange} style={{ height: '100px' }} />
-        </FloatingLabel>
-
-        <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
-          <Form.Control as="textarea" type="text" name="ingredients" value={IngredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
         </FloatingLabel>
 
         {isUploadingImage === true && <p>...subiendo imagen</p>}

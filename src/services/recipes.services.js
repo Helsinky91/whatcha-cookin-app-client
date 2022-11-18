@@ -46,10 +46,10 @@ const tagInfoService = () => {
     return service.get("/recipes/tag")
 }
 
-//select ingredient for all recipes
-const searchByIngredientService = () => {
-    return service.get("/recipes/ingredients-list")
-}
+// //select ingredient for all recipes
+// const searchByIngredientService = () => {
+//     return service.get("/recipes/ingredients-list")
+// }
 
 //send information of utils "typeOfFood" from BE
 const typeOfFoodInfoService = () => {
@@ -69,7 +69,7 @@ export {
     favRecipeService,
     deleteFavRecipeService,
     tagInfoService,
-    searchByIngredientService,
+    // searchByIngredientService,
     typeOfFoodInfoService
 
 }
