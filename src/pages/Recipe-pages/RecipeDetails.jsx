@@ -95,7 +95,6 @@ const delRecipeFav = async () => {
 
 const { name, tag, description, steps, image, typeOfFood, ingredients, createdBy } = recipeDetails
 
-
 const addComment = async (event) => {
   event.preventDefault();
   const comment = {
@@ -143,9 +142,13 @@ const addComment = async (event) => {
     ?<button onClick={delRecipeFav}>Quitar de Favoritos</button> 
    : <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
    }
+
+  {user.id === createdBy._id
+   ? <button onClick={handleDelete}>Borrar la receta</button>
+   : <h3> hola</h3>
+    }
     
     <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
-
     <h3>Deja tu comentario</h3>
     <form>
     <label htmlFor="comment"></label>
