@@ -6,7 +6,7 @@ function Error() {
        {/* <div>Nuestros desarrolladores cometieron un error, estamos trabjando en ello!</div> */}
        {/* <img src="https://thumbs.gfycat.com/AcclaimedChubbyHochstettersfrog-mobile.mp4" /> */}
     
-      <h1 >Nuestros desarrolladores cometieron un error, estamos trabjando en ello!</h1>
+      <h2 >Nuestros desarrolladores cometieron un error, estamos trabjando en ello!</h2>
     </div>
   )
 }
