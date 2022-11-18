@@ -17,7 +17,7 @@ function RecipeEdit() {
   const [ nameInput, setNameInput ] = useState()
   const [ tagInput, setTagInput ] = useState()
   const [ allTags, setAllTags ] = useState()
-  const [ desciptionInput, setDescriptionInput] = useState()
+  const [ descriptionInput, setDescriptionInput] = useState()
   const [ stepsInput, setStepsInput ] = useState()
   const [ allTypeOfFood, setAllTypeOfFood ] = useState()
   const [ typeOfFoodInput, setTypeOfFoodInput ] = useState()
@@ -95,7 +95,7 @@ function RecipeEdit() {
         const editRecipe = {
           name: nameInput,
           tag: tagInput,
-          description: desciptionInput,
+          description: descriptionInput,
           steps: stepsInput,
           image: imageURL, 
           typeOfFood: typeOfFoodInput,
@@ -162,7 +162,7 @@ function RecipeEdit() {
 
            <br />
       <FloatingLabel controlId="floatingTextarea2" label="description" className="mb-3" >
-        <Form.Control as="textarea" type="text" name="description" value={desciptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
+        <Form.Control as="textarea" type="text" name="description" value={descriptionInput} onChange={handleDescriptionChange} style={{ height: '100px' }} />
       </FloatingLabel>
       
       <FloatingLabel controlId="floatingTextarea2" label="steps" className="mb-3" >

@@ -14,20 +14,20 @@ function Login() {
   //config el uso de navigate
   const navigate = useNavigate()
 
-  const [ email, setEmail ] = useState("");
-  const [ password, setPassword ] = useState("");
-  const [ errorMessage, setErrorMessage ] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     //get user's credentials
     const userCredentials = {
-      email: email,   
-      password: password   
+      email: email,
+      password: password
     }
 
     try {
@@ -36,15 +36,15 @@ function Login() {
 
       //get the Token and store it in "authToken"
       localStorage.setItem("authToken", response.data.authToken)
-        
+
       //invoke Token validation (in auth.context)
       authenticaUser()
 
       //redirect user
       navigate("/profile/my-profile")
-      
-    }catch (err) {
-      if(err.response && err.response.status === 400) {
+
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
         //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
         setErrorMessage(err.response.data.errorMessage)
       } else {
@@ -55,11 +55,11 @@ function Login() {
   }
 
   return (
-    <div className="auth-page" >
+    <div className="auth-page btn" >
 
       <h1>🍳🍳 Log In</h1>
 
-      <form  onSubmit={handleLogin}>
+      <form onSubmit={handleLogin}>
         <label>Email:</label>
         <br />
         <input
@@ -67,7 +67,7 @@ function Login() {
           name="email"
           value={email}
           onChange={handleEmailChange}
-        /> 
+        />
         <br />
         <label>Password:</label>
         <br />
@@ -77,13 +77,14 @@ function Login() {
           value={password}
           onChange={handlePasswordChange}
         />
-          <br />
+        <br />
+        <br />
         <button type="submit">Login</button>
         {errorMessage !== "" && <p className='error-message'>{errorMessage}</p>}
-        
+
 
       </form>
-      
+
     </div>
   );
 }
