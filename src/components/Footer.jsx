@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link } from 'react-router-dom'
 import githubLogo from "../assets/github2.png"
 
 function Footer() {

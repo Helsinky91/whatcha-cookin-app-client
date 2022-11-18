@@ -20,39 +20,35 @@ import IngredientsFind from './pages/Recipe-pages/IngredientsFind';
 
 function App() {
 
-
-  
   return (
     <div className="App">
 
-        <Navbar/>
+      <Navbar />
 
-        <Routes>
+      <Routes>
 
-          {/* public pages*/}
-          <Route path='/' element= {<Home/> }/>
-          <Route path='/signup' element= {<Signup  /> }/>
-          <Route path='/login' element= {<Login /> }/>
-          <Route path='/recipes-list' element= { <RecipesList /> }/>
-          <Route path='/recipes/ingredients-find' element= { <IngredientsFind /> }/>
+        {/* public pages*/}
+        <Route path='/' element={<Home />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/recipes-list' element={<RecipesList />} />
+        <Route path='/recipes/ingredients-find' element={<IngredientsFind />} />
 
-          {/* private pages*/}
-          <Route path='/profile/my-profile' element= { <IsPrivate> <MyProfile /> </IsPrivate> }/>
-          <Route path='/profile/search-friends' element= { <IsPrivate> <FriendsList /> </IsPrivate> }/>
-          <Route path='/profile/:userId/details' element= { <IsPrivate> <FriendProfile /> </IsPrivate> }/>
-          <Route path='/profile/:userId/edit' element= { <IsPrivate> <ProfileEdit /> </IsPrivate> }/>
-          <Route path='/recipes/:recipeId/details' element= {<IsPrivate> <RecipeDetails /></IsPrivate> }/>
-          <Route path='/recipes/:recipeId/edit' element= { <IsPrivate><RecipeEdit /> </IsPrivate>}/>
+        {/* private pages*/}
+        <Route path='/profile/my-profile' element={<IsPrivate> <MyProfile /> </IsPrivate>} />
+        <Route path='/profile/search-friends' element={<IsPrivate> <FriendsList /> </IsPrivate>} />
+        <Route path='/profile/:userId/details' element={<IsPrivate> <FriendProfile /> </IsPrivate>} />
+        <Route path='/profile/:userId/edit' element={<IsPrivate> <ProfileEdit /> </IsPrivate>} />
+        <Route path='/recipes/:recipeId/details' element={<IsPrivate> <RecipeDetails /> </IsPrivate>} />
+        <Route path='/recipes/:recipeId/edit' element={<IsPrivate><RecipeEdit /> </IsPrivate>} />
 
-          
-          
-          {/* errors page*/}
-          <Route path='/error' element= {<Error /> }/>
-          <Route path='*' element= {<NotFound/> }/>
+        {/* errors page*/}
+        <Route path='/error' element={<Error />} />
+        <Route path='*' element={<NotFound />} />
 
-        </Routes>
+      </Routes>
 
-        <Footer/>
+      <Footer />
 
     </div>
   );

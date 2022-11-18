@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom'
 import RandomRecipe from '../components/RandomRecipe'
 import ClockLoader from "react-spinners/ClockLoader";
 
-
 function Home() {
 
+  //state to display RandomRecipe
   const [randomIsShowing, setRandomIsShowing] = useState(true)
+  
+  //to refresh component RandomRecipe but not the whole page
   const refresh = () => {
     if (randomIsShowing === true) {
       setRandomIsShowing(!randomIsShowing)
     }
+    //setTimeout to display message "preparando otra receta"
     setTimeout(() => {
-
       setRandomIsShowing(true)
     }, 2000);
-
   }
 
   return (
@@ -36,12 +37,10 @@ function Home() {
               <div className='spinner-random-recipe'>
                 <ClockLoader color="#d68736" size={80} />
               </div>
-
             </div>
-
           }
-
         </div>
+
         <div className="main-text">
           <h1>Sharing is caring!</h1>
           <p>Tienes 5 libros de recetas y millones de papeles con las recetas de tu abuela, tu vecina, tu cuñado, etc?
@@ -56,6 +55,7 @@ function Home() {
             puedes hacer <Link to={"/signup"}>Sing up</Link> y create una cuenta!
           </p>
         </div>
+        
         <div>
           <h1>Buscadores</h1>
           <div className='btn'>

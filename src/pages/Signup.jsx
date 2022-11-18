@@ -12,7 +12,8 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
+  //to display the error message
   const [errorMessage, setErrorMessage] = useState("");
 
   //config to handle changes on the fields' form
@@ -35,16 +36,16 @@ function Signup() {
       //contact BackEnd to create the user (with the auth.service.js)
       await signupService(newUser)
 
-      //redirect a login
+      //redirect to login
       navigate("/login")
       
 
     } catch (err) {
       if (err.response && err.response.status === 400) {
-        //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
+        //if error is 400 stay in component and show error message
         setErrorMessage(err.response.data.errorMessage)
       } else {
-        //si el error es otro(500) entonecs sí redirecciono a /error
+        //if error 500 redirect to /error
         navigate('/error')
       }
     }

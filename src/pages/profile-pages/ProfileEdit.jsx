@@ -23,14 +23,12 @@ function ProfileEdit() {
   const [emailInput, setEmailInput] = useState()
   const [descriptionInput, setDescriptionInput] = useState()
 
-
   //state for the cloudinary img
   const [imageURL, setImageURL] = useState("")
   const [isUploadingImage, setIsUploadingImage] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isFetching, setIsFetching] = useState(true)
-
 
   //hanglechanges 
   const handleNameChange = (event) => setUsernameInput(event.target.value)
@@ -186,7 +184,7 @@ function ProfileEdit() {
           </FloatingLabel>
           {isUploadingImage === true && <p>...subiendo imagen</p>}
           {imageURL !== ""
-            ? <img src={imageURL} atl="image" width={200} />
+            ? <img src={imageURL} alt="image" width={200} />
             : <p>Seleccione imagen</p>
           }
           <br />
