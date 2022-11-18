@@ -70,10 +70,11 @@ function RecipesList() {
     <div>
       {isLoggedIn === true &&  
       <div class="btn bottom-padding">
-        <button onClick={toggleForm} >Add recipe</button> 
-        {formIsShowing === true 
-          ? <RecipeAdd getData={getData} hideForm={setFormIsShowing} />
-          : null }
+        {formIsShowing === false
+        ?<button onClick={toggleForm} >Añadir receta nueva</button> 
+      
+        :<RecipeAdd getData={getData} hideForm={toggleForm} />
+        }
       </div>
       }
 

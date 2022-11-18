@@ -204,14 +204,21 @@ h1 {
 }
 
 .error-page {
-  background-image: url("../src/assets/error-page.png");
+  background-image: url("../src/assets/fire.gif");
+  min-height: 100vh;
   min-height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
   padding-top: 100px;
 }
 
-
+.notFound-page {
+  background-image: url("../src/assets/Actor.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 500px;
+  color: white
+}
 
 
 

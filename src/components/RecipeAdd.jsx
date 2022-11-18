@@ -15,15 +15,15 @@ function RecipeAdd(props) {
   const navigate = useNavigate()
   
   //set up state for all form fields:
-  const [ nameInput, setNameInput ] = useState()
+  const [ nameInput, setNameInput ] = useState("")
   const [ tagInput, setTagInput ] = useState()
   const [ allTags, setAllTags ] = useState()
   const [ createdByInput, setCreatedByInput ] = useState()
   const [ desciptionInput, setDescriptionInput] = useState()
-  const [ stepsInput, setStepsInput ] = useState()
+  const [ stepsInput, setStepsInput ] = useState("")
   const [ allTypeOfFood, setallTypeOfFoofd ] = useState()
   const [ typeOfFoodInput, setTypeOfFoofdInput ] = useState()
-  const [ IngredientsInput, setIngredientsInput ] = useState()
+  const [ ingredientsInput, setIngredientsInput ] = useState("")
   //state for the cloudinary img
   const [ imageURL, setImageURL ] = useState("")
   const [ isUploadingImage, setIsUploadingImage ] = useState(false)
@@ -68,7 +68,10 @@ function RecipeAdd(props) {
 
   const addNewRecipe = async (event) => {
     event.preventDefault();
-
+if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
+  alert("El nombre de la receta, los ingredientes y los pasos deben estar rellenados!")
+  return
+}
     const newRecipe = {
       name: nameInput,
       tag: tagInput,
@@ -77,7 +80,7 @@ function RecipeAdd(props) {
       steps: stepsInput,
       image: imageURL, 
       typeOfFood: typeOfFoodInput,
-      ingredients: IngredientsInput
+      ingredients: ingredientsInput
     }
     try {
       await createRecipeService(newRecipe)
@@ -89,8 +92,8 @@ function RecipeAdd(props) {
         //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
         setErrorMessage(error.response.data.errorMessage)
       } else {
-        console.log(error)
-        // navigate("/error")                  
+        // console.log(error)
+        navigate("/error")                  
       }
     }
   }
@@ -178,11 +181,11 @@ function RecipeAdd(props) {
 //       <Col md> */}
       
       <FloatingLabel controlId="floatingTextarea2" label="ingredients" className="mb-3" >
-        <Form.Control as="textarea" type="text" name="ingredients" value={IngredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
+        <Form.Control as="textarea" type="text" name="ingredients" value={ingredientsInput} onChange={handleIngredientsChange} style={{ height: '100px' }} />
       </FloatingLabel>
 {/* // </Col> */}
       
-        <input hidden="true" value={createdByInput} type="text" name="steps" onChange={handleCreatedByChange}/>
+        <input hidden={true} value={createdByInput} type="text" name="steps" onChange={handleCreatedByChange}/>
       
         {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 

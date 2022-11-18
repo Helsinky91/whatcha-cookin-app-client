@@ -38,6 +38,7 @@ function RecipeDetails() {
   try {
       const response = await recipeDetailsService(recipeId)
       setRecipeDetails(response.data)
+      console.log("response",response, "user", user)
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
       const response3 = await getProfileService(user._id)
@@ -143,12 +144,12 @@ const addComment = async (event) => {
    : <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
    }
 
-  {user.id === createdBy._id
+  { user._id === createdBy._id
    ? <button onClick={handleDelete}>Borrar la receta</button>
-   : <h3> hola</h3>
-    }
+   :  <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
+  }
     
-    <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
+   
     <h3>Deja tu comentario</h3>
     <form>
     <label htmlFor="comment"></label>
