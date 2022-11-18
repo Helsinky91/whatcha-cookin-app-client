@@ -7,15 +7,15 @@ import { Navigate } from 'react-router-dom'
 function IsPrivate(props) {
 
     const { isLoggedIn } = useContext(AuthContext)
-    
+
     //if isLoggedIn is true, render props.children
     if (isLoggedIn === true) {
         return props.children
 
         //if not, redirect to /login
     } else {
-        return <Navigate to='/login'/> 
-    }              
+        return <Navigate to='/login' />
+    }
 }
 
 export default IsPrivate

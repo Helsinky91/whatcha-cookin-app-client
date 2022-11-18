@@ -6,10 +6,10 @@ function IsAdmin(props) {
 
     //we call user state that contains the info of the user that is logged in
     const { user } = useContext(AuthContext)
-    
-    if (user.role === "admin" ) {
+
+    if (user.role === "admin") {
         return props.children
-    }               
+    }
 }
 
 export default IsAdmin

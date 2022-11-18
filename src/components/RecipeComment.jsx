@@ -9,19 +9,18 @@ function RecipeComment(props) {
   const { user } = useContext(AuthContext)
 
   const { recipeComments, updateComments } = props
+
   const deleteComment = async (event, commentId) => {
     event.preventDefault()
     try {
-
+      //calling server that deletes profile
       await deleteCommentService(commentId)
       updateComments()
+
     } catch (error) {
       navigate("/error")
-
-
     }
   }
-  console.log("recipeComments", recipeComments)
 
   return (
     recipeComments.map((eachComment) => {
@@ -41,7 +40,6 @@ function RecipeComment(props) {
       )
     })
   )
-
 }
 
 export default RecipeComment

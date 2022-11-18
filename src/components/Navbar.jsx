@@ -9,30 +9,30 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")
-      //invoke authenticaUser() to change states
+    //invoke authenticaUser() to change states
     authenticaUser()
   }
-  
+
   //function to invoke styles inside NavLink className
   const assignClassName = (navInfo) => {
-    if(navInfo.isActive === true) {
-      return "nav-active" 
+    if (navInfo.isActive === true) {
+      return "nav-active"
     } else {
-      return "nav-inactive" 
+      return "nav-inactive"
     }
   }
 
   return (
     <div className='navbar'>
-      
+
       <div>
-       <NavLink to="/">
-        <img src={logo} alt="whatcha cookin logo" width={50} />
+        <NavLink to="/">
+          <img src={logo} alt="whatcha cookin logo" width={50} />
         </NavLink>
-      </div> 
-              
+      </div>
+
       {isLoggedIn === true ? (
-        
+
 
         <div>
           <NavLink to="/" className={assignClassName}>
@@ -47,15 +47,15 @@ function Navbar() {
           <NavLink to="/recipes/ingredients-find" className={assignClassName}>
             <button >¿Qué cocino?</button>
           </NavLink>
-          
+
           <NavLink to="/profile/my-profile" className={assignClassName}>
             <button >My Profile</button>
           </NavLink>
-          
+
           <span className="nav-logout">
-            <button  onClick={handleLogout}>Log out</button>
+            <button onClick={handleLogout}>Log out</button>
           </span>
-      </div> 
+        </div>
 
       ) : (
 
@@ -72,7 +72,7 @@ function Navbar() {
           <NavLink to="/login" className={assignClassName}>
             <button >Log in</button>
           </NavLink>
-          </div>
+        </div>
       )}
 
     </div>

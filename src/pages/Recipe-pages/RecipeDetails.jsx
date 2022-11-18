@@ -117,19 +117,19 @@ function RecipeDetails() {
   }
 
   return (
-    <div className="btn bottom-padding bold details-page ">
+    <div className="btn bottom-padding details-page ">
 
       <h1>{`Detalles de la receta ${name}`} </h1>
       <div className="recipe-display" >
         <img src={image} alt={name} width={240} />
 
-        {description !== undefined ? <h2 style={{ width: "650px" }}>{`${description}`}</h2> : <h2>Descripción: no especificada</h2>}
+        {description !== undefined ? <h2 style={{ width: "90%" }}>{`${description}`}</h2> : <h2>Descripción: no especificada</h2>}
         <br />
-        {ingredients !== undefined ? <h4 style={{ width: "650px" }}> <b>Ingredientes: </b> {`${ingredients}`}</h4> : <h4 style={{ width: "650px" }}>Ingredientes: no especificados</h4>}
-        {steps !== undefined ? <h4 style={{ width: "650px" }}> <b>Paso a paso: </b> {`${steps}`}</h4> : <h4 style={{ width: "650px" }}> Paso a paso: no especificado</h4>}
-        {typeOfFood !== undefined ? <h5 style={{ width: "650px" }}> <b>Tipo de receta: </b> {`${typeOfFood} `}</h5> : <h4> style={{ width: "650px" }}Tipo de receta: no especificado</h4>}
-        {tag !== undefined ? <h5> <b style={{ width: "650px" }}>Tag: </b> {`${tag}`}</h5> : <h5 style={{ width: "650px" }}>Tag: no especificado</h5>}
-
+        {ingredients !== undefined ? <h4 style={{ width: "100%" }}> <b>Ingredientes: </b> {`${ingredients}`}</h4> : <h4 style={{ width: "100%" }}>Ingredientes: no especificados</h4>}
+        {steps !== undefined ? <h4 style={{ width: "100%" }}> <b>Paso a paso: </b> {`${steps}`}</h4> : <h4 style={{ width: "100%" }}> Paso a paso: no especificado</h4>}
+        {typeOfFood !== undefined ? <h5 style={{ width: "100%" }}> <b>Tipo de receta: </b> {`${typeOfFood} `}</h5> : <h4> style={{ width: "100%" }}Tipo de receta: no especificado</h4>}
+        {tag !== undefined ? <h5> <b style={{ width: "100%" }}>Tag: </b> {`${tag}`}</h5> : <h5 style={{ width: "100%" }}>Tag: no especificado</h5>}
+      
         {createdBy.username !== undefined
           ? <p>Created by:
             {createdBy._id === user._id
@@ -152,6 +152,7 @@ function RecipeDetails() {
           ? <button className="delete-btn" onClick={handleDelete}>Borrar la receta</button>
           : <IsAdmin> <button className="delete-btn" onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
         }
+        
       </div>
       <div>
         <hr className='hr-recipe' />

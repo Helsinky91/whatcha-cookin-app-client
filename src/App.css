@@ -34,6 +34,7 @@ h1 {
   font-family: 'Viga', sans-serif;
   padding-bottom: 20px;
   padding-top: 20px;
+  width: 100%;
 }
 
 .app-title {
@@ -325,13 +326,17 @@ height: 10vh
 
 .recipe-display {
   padding-left: 10%;
-  padding-right: 13%;
+  padding-right: 10%;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   padding-top: 2%;
   background-image: url("../src/assets/pergamin.png");
   background-repeat: no-repeat;
   background-position: center;
+}
+.recipe-display h2{
+  padding-left: 10%;
+  padding-right: -10%
 }
 
 .main-text {
