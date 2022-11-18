@@ -10,13 +10,12 @@ import ClockLoader from "react-spinners/ClockLoader";
 
 function SearchFriends() {
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
 
   //states
   const [friendList, setFriendList] = useState([]);
   const [friendListToShow, setFriendListToShow] = useState([]);
-  const [formIsShowing, setFormIsShowing] = useState(false);
 
   //for loading time
   const [isFetching, setIsFetching] = useState(true);
@@ -41,7 +40,9 @@ function SearchFriends() {
   //for the search only by name
   const filterList = (filterQuery) => {
     const filterArr = friendList.filter((eachEl) => {
-      return eachEl.username.includes(filterQuery);
+      return (eachEl.username.includes(filterQuery)
+      || eachEl.username.toLowerCase().includes(filterQuery)) 
+      || eachEl.username.includes(filterQuery.toLowerCase()) 
     });
     setFriendListToShow(filterArr);
   };

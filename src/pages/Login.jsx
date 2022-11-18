@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { useState } from "react";
 import { loginService } from '../services/auth.services';
-
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 
@@ -20,7 +19,7 @@ function Login() {
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -45,10 +44,10 @@ function Login() {
 
     } catch (err) {
       if (err.response && err.response.status === 400) {
-        //si el error es de tipo 400 me quedo en el componente y muestro el mensaje de error
+        //if error is 400 stay in component and show error message
         setErrorMessage(err.response.data.errorMessage)
       } else {
-        //si el error es otro(500) entonecs sí redirecciono a /error
+        //if error 500 redirect to /error
         navigate('/error')
       }
     }

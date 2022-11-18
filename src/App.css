@@ -42,7 +42,7 @@ h1 {
 }
 .app-title h1{
   font-family: 'Bungee Spice', cursive;
-  font-size: 85px;
+  font-size: 500%;
 }
 
 .navbar{
@@ -324,9 +324,11 @@ height: 10vh
 }
 
 .recipe-display {
+  padding-left: 10%;
+  padding-right: 13%;
+  align-items: center;
+  flex-wrap: wrap;
   padding-top: 2%;
-  padding-left: 3%;
-  padding-right: 5%;
   background-image: url("../src/assets/pergamin.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -339,4 +341,15 @@ height: 10vh
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 10%;
+}
+.details-page {
+  /* padding-left: 20px */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
 }

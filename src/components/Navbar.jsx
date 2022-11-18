@@ -5,7 +5,7 @@ import logo from "../assets/Logo.png"
 
 
 function Navbar() {
-  const { authenticaUser, isLoggedIn, user } = useContext(AuthContext)
+  const { authenticaUser, isLoggedIn } = useContext(AuthContext)
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")

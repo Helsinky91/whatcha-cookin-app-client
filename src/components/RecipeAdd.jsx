@@ -176,7 +176,7 @@ if (nameInput === "" || ingredientsInput === "" || stepsInput === "") {
       
         {isUploadingImage === true && <p>...subiendo imagen</p>}
         {imageURL !== "" 
-        ? <img src={imageURL} atl="image" width={200}/> 
+        ? <img src={imageURL} alt="image" width={200}/> 
         : <p>
         {/* <img src={"https://res.cloudinary.com/ddzhdj4yd/image/upload/v1668514029/whatcha-cookin/RecetaDefault_lxygod.png"} alt="default pic" /> */}
           select a picture</p>
