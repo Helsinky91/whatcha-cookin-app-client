@@ -38,6 +38,7 @@ function RecipeDetails() {
   try {
       const response = await recipeDetailsService(recipeId)
       setRecipeDetails(response.data)
+      console.log("response",response, "user", user)
       const response2 = await getCommentService(recipeId)
       setRecipeComments(response2.data)
       const response3 = await getProfileService(user._id)
@@ -95,7 +96,6 @@ const delRecipeFav = async () => {
 
 const { name, tag, description, steps, image, typeOfFood, ingredients, createdBy } = recipeDetails
 
-
 const addComment = async (event) => {
   event.preventDefault();
   const comment = {
@@ -143,9 +143,13 @@ const addComment = async (event) => {
     ?<button onClick={delRecipeFav}>Quitar de Favoritos</button> 
    : <button onClick={addRecipeFav}>Añadir a Favoritos</button> 
    }
-    
-    <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
 
+  { user._id === createdBy._id
+   ? <button onClick={handleDelete}>Borrar la receta</button>
+   :  <IsAdmin> <button onClick={handleDelete}>Borrar la receta</button> </IsAdmin>
+  }
+    
+   
     <h3>Deja tu comentario</h3>
     <form>
     <label htmlFor="comment"></label>
